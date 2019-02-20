@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="摘要：本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。 V2.2：2018年11月25日  增加了摘要； 更换了发布平台；   \&amp;lt;!–more–&amp;gt;  致谢 想了一下，把致谢放在前面，当一个幸福的舔狗。  感谢北京理工大学的唐刚博士，在本人学习、编译VASP过程中给予的悉心指导。  感谢清华大学的刘锦程博士，提供了使">
+  <meta name="description" content="本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。">
 <meta name="keywords" content="VASP,MacOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【VASP】给真·小白看的VASP本地编译自学指南 Ver 2.1">
 <meta property="og:url" content="https://myvivi.life/2019/02/20/VASP_Compile_Guide_V2.1/index.html">
 <meta property="og:site_name" content="MYVIVIDLIFE">
-<meta property="og:description" content="摘要：本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。 V2.2：2018年11月25日  增加了摘要； 更换了发布平台；   \&amp;lt;!–more–&amp;gt;  致谢 想了一下，把致谢放在前面，当一个幸福的舔狗。  感谢北京理工大学的唐刚博士，在本人学习、编译VASP过程中给予的悉心指导。  感谢清华大学的刘锦程博士，提供了使">
+<meta property="og:description" content="本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-20T03:40:09.687Z">
+<meta property="og:updated_time" content="2019-02-20T05:28:40.383Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【VASP】给真·小白看的VASP本地编译自学指南 Ver 2.1">
-<meta name="twitter:description" content="摘要：本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。 V2.2：2018年11月25日  增加了摘要； 更换了发布平台；   \&amp;lt;!–more–&amp;gt;  致谢 想了一下，把致谢放在前面，当一个幸福的舔狗。  感谢北京理工大学的唐刚博士，在本人学习、编译VASP过程中给予的悉心指导。  感谢清华大学的刘锦程博士，提供了使">
+<meta name="twitter:description" content="本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。">
 
 
 
@@ -387,7 +387,7 @@
                 
               
 
-              <time title="创建时间：2019-02-20 10:47:09 / 修改时间：11:40:09" itemprop="dateCreated datePublished" datetime="2019-02-20T10:47:09+08:00">2019-02-20</time>
+              <time title="创建时间：2019-02-20 10:47:09 / 修改时间：13:28:40" itemprop="dateCreated datePublished" datetime="2019-02-20T10:47:09+08:00">2019-02-20</time>
             
 
             
@@ -430,6 +430,8 @@
           
 
           
+            <div class="post-description">本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。</div>
+          
 
         </div>
       </header>
@@ -445,13 +447,12 @@
 
       
         <p>摘要：本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。</p>
+<hr>
 <p>V2.2：2018年11月25日</p>
 <ol>
 <li>增加了摘要；</li>
 <li>更换了发布平台；</li>
 </ol>
-<hr>
-<p>\&lt;!–more–></p>
 <hr>
 <p><strong>致谢</strong></p>
 <p>想了一下，把致谢放在前面，当一个幸福的舔狗。</p>
@@ -551,7 +552,7 @@
 <p>能够用100-200块钱提前尝试一下自己是否适合理论计算的操作环境和工作方式我觉得还是很值得的。当我们对vasp和理论计算有了一定的了解之后，可以再根据自己的需求进行设备的选择。</p>
 </blockquote>
 <h2 id="1-3-编译环境选择"><a href="#1-3-编译环境选择" class="headerlink" title="1.3 编译环境选择"></a>1.3 编译环境选择</h2><p>网上很多编译教程因为种种原因，编译环境较为复杂，有很多引入openmpi等辅助，在本指南正建议大家直接使用较新版本的Intel® Parallel Studio XE工具集直接进行编译。其中含有vasp所需的各种库。并且据说运行效率还会更高。</p>
-<h1 id="第2章-基本操作"><a href="#第2章-基本操作" class="headerlink" title="第2章 基本操作"></a>第2章 基本操作</h1><h2 id="2-1-连接软件"><a href="#2-1-连接软件" class="headerlink" title="2.1 连接软件"></a>2.1 连接软件</h2><p>这里主要介绍利用终端与服务器连接或者与自己的虚拟机交互；<br>当然利用虚拟机的同志也可以直接利用ubuntu等带图形界面的linux发行版；<br>租用服务器的同学可以考虑了解VNC的配置和使用；<br><strong>阿里云轻量应用服务器-Ubuntu16-图形界面-VNC远程连接</strong><br><a href="https://blog.csdn.net/qq_33062317/article/details/80050325" target="_blank" rel="noopener">https://blog.csdn.net/qq_33062317/article/details/80050325</a></p>
+<h1 id="第2章-基本操作"><a href="#第2章-基本操作" class="headerlink" title="第2章 基本操作"></a>第2章 基本操作</h1><h2 id="2-1-连接软件"><a href="#2-1-连接软件" class="headerlink" title="2.1 连接软件"></a>2.1 连接软件</h2><p>这里主要介绍利用终端与服务器连接或者与自己的虚拟机交互；<br>当然利用虚拟机的同志也可以直接利用ubuntu等带图形界面的linux发行版；<br>租用服务器的同学可以考虑了解VNC的配置和使用；<br><strong>阿里云轻量应用服务器-Ubuntu16-图形界面-VNC远程连接</strong><br><a href="https://blog.csdn.net/qq\_33062317/article/details/80050325" target="_blank" rel="noopener">https://blog.csdn.net/qq\_33062317/article/details/80050325</a></p>
 <h3 id="2-1-1-Win生态系统"><a href="#2-1-1-Win生态系统" class="headerlink" title="2.1.1 Win生态系统"></a>2.1.1 Win生态系统</h3><p>win下建议大家首先学会使用：winscp + putty，或xshell + xftp；<br>后续根据自己的需求使用其他更高级的终端：例如支持x11 server、VNC等功能的xmanager或mobaxterm等；</p>
 <h3 id="2-1-2-Apple生态系统"><a href="#2-1-2-Apple生态系统" class="headerlink" title="2.1.2 Apple生态系统"></a>2.1.2 Apple生态系统</h3><p>mac下：</p>
 <ul>
@@ -582,7 +583,7 @@
 <ul>
 <li><code>cd /usr/bin</code> # 跳到 /usr/bin/ 目录</li>
 <li><code>cd ~</code> # 跳到自己的home目录，注意 cd和目录之间的空格</li>
-<li>·cd ..<code>#  跳转到上一级目录</code></li>
+<li>·cd ..` #  跳转到上一级目录<br>  \`</li>
 </ul>
 <hr>
 <h5 id="ii-ls-命令"><a href="#ii-ls-命令" class="headerlink" title="ii. ls 命令"></a>ii. ls 命令</h5><p>ls命令用于显示指定工作目录下之内容（列出目前工作目录所含之文件及子目录)。<br><a href="http://www.runoob.com/linux/linux-comm-ls.html" target="_blank" rel="noopener">http://www.runoob.com/linux/linux-comm-ls.html</a></p>
@@ -622,7 +623,7 @@
 </li>
 </ol>
 <blockquote>
-<p>运行shell脚本程序时，系统将创建一个子shell。此时，系统中将有两个shell，一个是登录时系统启动的shell，另一个是系统为运行脚本程序创建的shell。当一个脚本程序运行完毕，它的脚本shell将终止，可以返回到执行该脚本之前的shell。从这种意义上来说，用户可以有许多 shell，每个shell都是由某个shell（称为父shell）派生的。<br>Shell的详细内容建议大家去看鸟哥的私房菜中关于Shell的介绍：<br><a href="http://cn.linux.vbird.org/linux_basic/0320bash.php#bash_what" target="_blank" rel="noopener">http://cn.linux.vbird.org/linux_basic/0320bash.php#bash_what</a></p>
+<p>运行shell脚本程序时，系统将创建一个子shell。此时，系统中将有两个shell，一个是登录时系统启动的shell，另一个是系统为运行脚本程序创建的shell。当一个脚本程序运行完毕，它的脚本shell将终止，可以返回到执行该脚本之前的shell。从这种意义上来说，用户可以有许多 shell，每个shell都是由某个shell（称为父shell）派生的。<br>Shell的详细内容建议大家去看鸟哥的私房菜中关于Shell的介绍：<br><a href="http://cn.linux.vbird.org/linux\_basic/0320bash.php#bash\_what" target="_blank" rel="noopener">http://cn.linux.vbird.org/linux\_basic/0320bash.php#bash\_what</a></p>
 </blockquote>
 <p>理解了关于linux的系统特点和shell的含义之后，我们再来详细介绍环境变量到底做了什么。</p>
 <h4 id="（1）环境变量是什么"><a href="#（1）环境变量是什么" class="headerlink" title="（1）环境变量是什么"></a>（1）环境变量是什么</h4><p>简而言之，环境变量相当于给系统或用户应用程序设置的一些参数，具体作用和具体的环境变量相关。比如path，是告诉系统，当要求系统运行一个程序而没有告诉它程序所在的完整路径时，系统除了在当前目录下面寻找此程序外，还应到哪些目录下去寻找。</p>
@@ -684,8 +685,8 @@
 source /opt/intel/bin/compilervars.sh intel64
 source /opt/intel/mkl/bin/mklvars.sh intel64
 export PATH=/opt/intel/bin:$PATH
-export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2019.1.144:$LD_LIBRARY_PATH</code><br><code>source ~/.bashrc</code> 退出bashrc后，该命令使设置生效</p>
-<p><strong>注意：source关键词后链接的是一个bash脚本，这两个脚本估计是启用fort编译和mkl的脚本；<br>export关键词后链接bin和mkl/bin目录，这两个目录下有很多二进制的可执行文件，是编译vasp所必须的。</strong> </p>
+export LD\_LIBRARY\_PATH=/opt/intel/compilers\_and\_libraries\_2019.1.144:$LD\_LIBRARY\_PATH</code><br><code>source ~/.bashrc</code> 退出bashrc后，该命令使设置生效</p>
+<p>**注意：source关键词后链接的是一个bash脚本，这两个脚本估计是启用fort编译和mkl的脚本；<br>export关键词后链接bin和mkl/bin目录，这两个目录下有很多二进制的可执行文件，是编译vasp所必须的。** </p>
 <ul>
 <li>方法一：ubuntu图形界面，找到home，按住ctrl+h，显示隐藏文件夹，打开.bashrc，在文件最后复制上述内容，保存并退出；</li>
 <li>方法二：terminal中，<code>vi ~/.bashrc</code>，在vi模式下加入上述内容，退出并保存；<br>完成设置后在命令行中输入，<code>source ~/.bashrc</code> 使设置生效；</li>
@@ -761,15 +762,13 @@ export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2019.1.144:$LD_LIBRARY
 <p>我们主要需要修改的就是MKLROOT的路径，以及OBJECTS行中刚刚编译的libfftw3_mpi.a的路径:<br><code>OBJECTS  = fftmpiw.o fftmpi_map.o fftw3d.o fft3dlib.o /opt/fftw/lib/libfftw3_mpi.a</code></p>
 <p>至此我们就已经把VASP的makefile文件配置好了。<br>接下来，如果一些顺利，make all之后我们就可以开始计算了。<br>如果编译过程中出现错误，那我们就可以根据错误提示来进行调整。<br>如果提示缺失某个库文件，那么我们的工作流如下：</p>
 <ul>
-<li><p>就需要首先考虑寻找这个库是不是在自己的电脑上：<code>locate XXXX</code>#这条命令会提示你是否有这个库，以及这个库具体在哪个位置</p>
-<ul>
+<li>就需要首先考虑寻找这个库是不是在自己的电脑上：<code>locate XXXX</code>#这条命令会提示你是否有这个库，以及这个库具体在哪个位置<ul>
 <li>如果没有这个库，那你要考虑去哪里安装或者copy这个库，把到它应该做的位置，然后设置环境变量；</li>
 <li>如果发现了这个库，那我们需要检查一下，环境变量是否设置正确；</li>
 <li>而最为直接、粗暴的方法则是，把这个库文件直接copy或者move到编译出错提示的那个目录下，然后重新进行编译。  </li>
 </ul>
 </li>
-<li><p>如果编译出现问题，建议大家第二次编译的时候执行 <code>make veryclean</code>指令，删除bin下的编译文件重新进行；</p>
-</li>
+<li>如果编译出现问题，建议大家第二次编译的时候执行 <code>make veryclean</code>指令，删除bin下的编译文件重新进行；</li>
 <li>如果提示缺少某些库文件，我们也可以尝试把库文件丢到编译目录下，直接继续进行编译；</li>
 </ul>
 <p><strong>至此我们的VASP的编译应该就完成了。</strong></p>
@@ -778,13 +777,13 @@ export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2019.1.144:$LD_LIBRARY
 <blockquote>
 <p>网站：<a href="https://www.bigbrosci.com/" target="_blank" rel="noopener">https://www.bigbrosci.com/</a><br>微信公众号： BigBroScience （大师兄科研网）<br>大师兄QQ群：2674006510 进群1）看群公告，了解群里的基本要求 2）修改自己的群名片。</p>
 </blockquote>
-<h1 id="小资料"><a href="#小资料" class="headerlink" title="小资料"></a>小资料</h1><h2 id="编译器："><a href="#编译器：" class="headerlink" title="编译器："></a>编译器：</h2><p>\&lt;span id=”jump”>\&lt;/span></p>
+<h1 id="小资料"><a href="#小资料" class="headerlink" title="小资料"></a>小资料</h1><h2 id="编译器："><a href="#编译器：" class="headerlink" title="编译器："></a>编译器：</h2><p>\&lt;span id=”jump”>\&lt;/span\></p>
 <blockquote>
 <p>简单讲，编译器就是将“一种语言（通常为高级语言）”翻译为“另一种语言（通常为低级语言）”的程序。一个现代编译器的主要工作流程：源代码 (source code) → 预处理器 (preprocessor) → 编译器 (compiler) → 目标代码 (object code) → 链接器 (Linker) → 可执行程序 (executables)</p>
 </blockquote>
 <p>高级计算机语言便于人编写，阅读交流，维护。机器语言是计算机能直接解读、运行的。编译器将汇编或高级计算机语言源程序（Source program）作为输入，翻译成目标语言（Target language）机器代码的等价程序。源代码一般为高级语言 (High-level language)， 如Pascal、C、C++、Java、汉语编程等或汇编语言，而目标则是机器语言的目标代码（Object code），有时也称作机器代码（Machine code）。</p>
 <p><a href>返回目录</a>(#content)</p>
-<h2 id="Intel®-Parallel-Studio-XE"><a href="#Intel®-Parallel-Studio-XE" class="headerlink" title="Intel® Parallel Studio XE"></a>Intel® Parallel Studio XE</h2><p>\&lt;span id=”intel”>\&lt;/span></p>
+<h2 id="Intel®-Parallel-Studio-XE"><a href="#Intel®-Parallel-Studio-XE" class="headerlink" title="Intel® Parallel Studio XE"></a>Intel® Parallel Studio XE</h2><p>\&lt;span id=”intel”>\&lt;/span\></p>
 <blockquote>
 <p>The Intel® Parallel Studio XE  Composer Edition includes compilers and performance libraries to improve development. These tools are included in all editions.<br>Intel® Parallel Studio XE是一款同时面向Window<em>和Linux</em>平台，既支持C/C++开发语言又支持Fortran开发语言的更高性能的并行开发工具集。<br>在Intel® Parallel Studio XE里，包含C++、Fortran等编译器以及一些数学库。</p>
 <ul>
@@ -801,12 +800,12 @@ export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2019.1.144:$LD_LIBRARY
 <p>Intel MKL，全称 Intel Math Kernel Library，提供经过高度优化和大量线程化处理的数学例程，面向性能要求极高的科学、工程及金融等领域的应用。MKL是一款商用函数库，提供C、Fortran 和 Fortran 95的支持，但仅支持Intel自家旗下的CPU。</p>
 </blockquote>
 <p><a href>返回目录</a>(#content)</p>
-<h2 id="mpi"><a href="#mpi" class="headerlink" title="mpi"></a>mpi</h2><p>\&lt;span id=”mpi”>\&lt;/span></p>
+<h2 id="mpi"><a href="#mpi" class="headerlink" title="mpi"></a>mpi</h2><p>\&lt;span id=”mpi”>\&lt;/span\></p>
 <blockquote>
 <p>MPI＝message passing interface：在分布式内存（distributed-memory）之间实现信息通讯的一种规范/标准/协议（standard）。它是一个库，不是一门语言。可以被fortran，c，c++等调用。MPI 允许静态任务调度，显示并行提供了良好的性能和移植性，用 MPI 编写的程序可直接在多核集群上运行。在集群系统中，集群的各节点之间可以采用 MPI 编程模型进行程序设计，每个节点都有自己的内存，可以对本地的指令和数据直接进行访问，各节点之间通过互联网络进行消息传递，这样设计具有很好的可移植性，完备的异步通信功能，较强的可扩展性等优点。MPI 模型存在一些不足，包括：程序的分解、开发和调试相对困难，而且通常要求对代码做大量的改动；通信会造成很大的开销，为了最小化延迟，通常需要大的代码粒度；细粒度的并行会引发大量的通信；动态负载平衡困难；并行化改进需要大量地修改原有的串行代码，调试难度比较大</p>
 </blockquote>
 <p><a href>返回目录</a>(#content)</p>
-<h2 id="fftw"><a href="#fftw" class="headerlink" title="fftw"></a>fftw</h2><p>\&lt;span id=”fftw”>\&lt;/span></p>
+<h2 id="fftw"><a href="#fftw" class="headerlink" title="fftw"></a>fftw</h2><p>\&lt;span id=”fftw”>\&lt;/span\></p>
 <blockquote>
 <p>FFTW ( the Faster Fourier Transform in the West) 是一个快速计算离散傅里叶变换的标准C语言程序集，其由MIT的M.Frigo 和S. Johnson 开发。可计算一维或多维实和复数据以及任意规模的DFT。</p>
 </blockquote>
