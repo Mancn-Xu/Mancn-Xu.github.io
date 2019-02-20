@@ -318,7 +318,7 @@ http://www.runoob.com/linux/linux-vim.html
 - /.bashrc 该文件包含专用于某个用户shell的bash信息，当该用户登录时以及每次打开新的shell时，该文件被读取。
 
 ##### ii. source和sh执行bash脚本的区别
-![演示文稿1]()(media/15429863803801/%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF1.png)
+![][image-1]
 
 > 参考：https://blog.csdn.net/s740556472/article/details/78176087 #linux下的source,sh,./三者区别
 
@@ -553,3 +553,4 @@ makefile.include.linux\_pgi
 
 
 
+[image-1]:	[http://img.myvividlife.cn/%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF1.png] "source和sh执行bash脚本的区别"
