@@ -1,12 +1,23 @@
 title: 【VASP】给真·小白看的VASP本地编译自学指南 Ver 2.1
 date: 2019-02-20 10:47:09
 categories:  
-- VASP教程
+- VASP自学成才
 tags: 
  - VASP
  - MacOS
+
+description: 本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。
+
 ---
-[最近更新日期：2018年11月25日]()
+
+摘要：本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。
+
+---
+
+V2.2：2018年11月25日
+1. 增加了摘要；
+2. 更换了发布平台；
+
 ---
 
 **致谢**
@@ -29,7 +40,7 @@ tags:
 除此之外，感谢如下作者的文档，给与我相应的帮助：
 （但以下内容仅供参考，因为部分内容已经过时或并没有非常详细的说明）
 
-1. 《教你从头编译VASP-5.4.1》，author:youyno 
+1. 《教你从头编译VASP-5.4.1》，author:youyno
 [http://muchong.com/t-10728477-1-authorid-346531]()
 [http://bbs.keinsci.com/thread-4267-1-1.html]()
 
@@ -152,7 +163,7 @@ https://www.bilibili.com/video/av33956717?from=search&seid=5599605106683072160
 当然利用虚拟机的同志也可以直接利用ubuntu等带图形界面的linux发行版；
 租用服务器的同学可以考虑了解VNC的配置和使用；
 **阿里云轻量应用服务器-Ubuntu16-图形界面-VNC远程连接**
-https://blog.csdn.net/qq_33062317/article/details/80050325
+https://blog.csdn.net/qq\_33062317/article/details/80050325
 ### 2.1.1 Win生态系统
 win下建议大家首先学会使用：winscp + putty，或xshell + xftp；
 后续根据自己的需求使用其他更高级的终端：例如支持x11 server、VNC等功能的xmanager或mobaxterm等；
@@ -166,7 +177,7 @@ ipad + iphone建议大家使用：
 
 - Termius；
 
-## 2.2 Linux基本操作 
+## 2.2 Linux基本操作
 在进行linux学习之前，我们要先做好从图形化界面到命令行界面转换的心理准备。虽然linux有的也有相应的图形界面，但是在vasp的学习和实践过程中总是少不了对着命令行修修补补。
 
 我个人感觉在习惯使用图形界面的交互模式之后，一开始会很不习惯命令行的交互模式，容错率低，界面单调，“似乎”效率低下，但是慢慢熟悉之后就会发现，利用命令行交互之后，所有可以用鼠标点击操作的事情都可以被一套指令所取代。
@@ -208,8 +219,8 @@ http://www.runoob.com/linux/linux-comm-cd.html
 示例：
 - `cd /usr/bin` # 跳到 /usr/bin/ 目录
 - `cd ~` # 跳到自己的home目录，注意 cd和目录之间的空格
-- ·cd ..` #  跳转到上一级目录
-	`
+- ·cd ..\` #  跳转到上一级目录
+	\\\`
 ---
 
 ##### ii. ls 命令
@@ -290,7 +301,7 @@ http://www.runoob.com/linux/linux-vim.html
 
 > 运行shell脚本程序时，系统将创建一个子shell。此时，系统中将有两个shell，一个是登录时系统启动的shell，另一个是系统为运行脚本程序创建的shell。当一个脚本程序运行完毕，它的脚本shell将终止，可以返回到执行该脚本之前的shell。从这种意义上来说，用户可以有许多 shell，每个shell都是由某个shell（称为父shell）派生的。
 > Shell的详细内容建议大家去看鸟哥的私房菜中关于Shell的介绍：
-> http://cn.linux.vbird.org/linux_basic/0320bash.php#bash_what
+> http://cn.linux.vbird.org/linux\_basic/0320bash.php#bash\_what
 
 理解了关于linux的系统特点和shell的含义之后，我们再来详细介绍环境变量到底做了什么。
 
@@ -375,13 +386,13 @@ source /opt/intel/bin/ifortvars.sh intel64
 source /opt/intel/bin/compilervars.sh intel64
 source /opt/intel/mkl/bin/mklvars.sh intel64
 export PATH=/opt/intel/bin:$PATH
-export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2019.1.144:$LD_LIBRARY_PATH
+export LD\_LIBRARY\_PATH=/opt/intel/compilers\_and\_libraries\_2019.1.144:$LD\_LIBRARY\_PATH
 	`
 `source ~/.bashrc` 退出bashrc后，该命令使设置生效
 
 
-**注意：source关键词后链接的是一个bash脚本，这两个脚本估计是启用fort编译和mkl的脚本；
-export关键词后链接bin和mkl/bin目录，这两个目录下有很多二进制的可执行文件，是编译vasp所必须的。** 
+\*\*注意：source关键词后链接的是一个bash脚本，这两个脚本估计是启用fort编译和mkl的脚本；
+export关键词后链接bin和mkl/bin目录，这两个目录下有很多二进制的可执行文件，是编译vasp所必须的。\*\* 
 - 方法一：ubuntu图形界面，找到home，按住ctrl+h，显示隐藏文件夹，打开.bashrc，在文件最后复制上述内容，保存并退出；
 - 方法二：terminal中，`vi ~/.bashrc`，在vi模式下加入上述内容，退出并保存；
 完成设置后在命令行中输入，`source ~/.bashrc` 使设置生效；
@@ -422,9 +433,9 @@ export关键词后链接bin和mkl/bin目录，这两个目录下有很多二进�
 4. 在vasp5.4.4目录下执行 `make all`
 
 5. 这一步耗时较长，具体看电脑配置。完成编译后，在/vasp-5.4.1/bin文件夹中会生成三个可执行文件
-	- vasp_gam  /gamma版本的vasp
-	- vasp_std  /标准版本的vasp
-	- vasp_ncl  /非线性版本的vasp
+	- vasp\_gam  /gamma版本的vasp
+	- vasp\_std  /标准版本的vasp
+	- vasp\_ncl  /非线性版本的vasp
 
 ## 4.3 makefile文件初探
 首先我们需要了解什么是makefile文件。
@@ -441,10 +452,10 @@ export关键词后链接bin和mkl/bin目录，这两个目录下有很多二进�
 `cd /解压目录/vasp.5.4.4/arch`下。
 
 我们可以看到arch文件夹下有四个文件：
-makefile.include.linux_gnu
-makefile.include.linux_intel_serial
-**makefile.include.linux_intel** 
-makefile.include.linux_pgi
+makefile.include.linux\_gnu
+makefile.include.linux\_intel\_serial
+**makefile.include.linux\_intel** 
+makefile.include.linux\_pgi
 
 对于大多数需要本机编译的小伙使用的都是Intel全家桶，我们的编译器也是intel出品的，所以这里我们直接把这个配置文件拷贝到vasp.5.4.4根目录下。
 
@@ -455,21 +466,21 @@ makefile.include.linux_pgi
 
 这一部分的话，其实我个人也不是特别了解，只能简单根据网上的内容进行一些解读，以及告知大家编译需要修改的makefile的重点。
 
-- 1.从CPP_OPTIONS到DEBUG这部分的内容建议大家不要随便修改。
+- 1.从CPP\_OPTIONS到DEBUG这部分的内容建议大家不要随便修改。
 
 	- FC=ifort：指的是fortan语言的编译使用intel fortan编译器进行。而之所以我们不用指定ifort的路径，是因为我们在安装好intel编译器后，已经在环境变量中设置了ifrot的环境变量。
 
-	- CPP_OPTIONS和FLAG的相关内容我还没有太明白是怎么回事。有机会再详细说明
+	- CPP\_OPTIONS和FLAG的相关内容我还没有太明白是怎么回事。有机会再详细说明
 
-- 2.MKLROOT到OBJECTS_O2的一系列内容都是指定vasp编译的各种库文件。这个时候我们需要理解几个概念。
+- 2.MKLROOT到OBJECTS\_O2的一系列内容都是指定vasp编译的各种库文件。这个时候我们需要理解几个概念。
 
 > .lib是一种文件名后缀，代表的是静态数据连接库，在windows操作系统中起到链接程序和函数(或子过程)的作用，相当于Linux中的·a(静态库）或·o、.so（动态库）文件。
 
-- 例如：BLAS命令中的-lmkl_intel_lp64的意思就是vasp在编译过程中需要寻找某个lib，也就是寻找某个库。具体就是 libmkl_intel_lp64这个库。这个库具体在什么位置呢？就是在MKL_PATH这个路径。
+- 例如：BLAS命令中的-lmkl\_intel\_lp64的意思就是vasp在编译过程中需要寻找某个lib，也就是寻找某个库。具体就是 libmkl\_intel\_lp64这个库。这个库具体在什么位置呢？就是在MKL\_PATH这个路径。
 
-所以我们修改MKLROOT和MKL_PATH这两个文件，以及设定环境变量的实质就是为了让VASP在编译时可以到指定的文件夹找到指定的库文件，然后调用他们。
+所以我们修改MKLROOT和MKL\_PATH这两个文件，以及设定环境变量的实质就是为了让VASP在编译时可以到指定的文件夹找到指定的库文件，然后调用他们。
 
-我们主要需要修改的就是MKLROOT的路径，以及OBJECTS行中刚刚编译的libfftw3_mpi.a的路径:
+我们主要需要修改的就是MKLROOT的路径，以及OBJECTS行中刚刚编译的libfftw3\_mpi.a的路径:
 `OBJECTS  = fftmpiw.o fftmpi_map.o fftw3d.o fft3dlib.o /opt/fftw/lib/libfftw3_mpi.a`
 
 至此我们就已经把VASP的makefile文件配置好了。
@@ -481,13 +492,9 @@ makefile.include.linux_pgi
 	- 如果没有这个库，那你要考虑去哪里安装或者copy这个库，把到它应该做的位置，然后设置环境变量；
 	- 如果发现了这个库，那我们需要检查一下，环境变量是否设置正确；
 	- 而最为直接、粗暴的方法则是，把这个库文件直接copy或者move到编译出错提示的那个目录下，然后重新进行编译。  
-		  
 - 如果编译出现问题，建议大家第二次编译的时候执行 `make veryclean`指令，删除bin下的编译文件重新进行；
 - 如果提示缺少某些库文件，我们也可以尝试把库文件丢到编译目录下，直接继续进行编译；
 
-	  
-	  
-	   
 **至此我们的VASP的编译应该就完成了。**
 
 因为个人知识有限，很难把各个方面都涉及的面面俱到。更多的问题建议大家还是多多百度、谷歌爬楼解决。当我们作为一个linux和vasp新人，把vasp编译搞定之后，基本上已经熟练了一些linux的基本操作。这样我们再去学习李强博士的Learn VASP The Hard Way课程就会更加的容易。
@@ -501,7 +508,7 @@ makefile.include.linux_pgi
 
 # 小资料
 ## 编译器：
-\<span id="jump"\>\</span\>
+\<span id="jump"\>\</span\\\>
 > 简单讲，编译器就是将“一种语言（通常为高级语言）”翻译为“另一种语言（通常为低级语言）”的程序。一个现代编译器的主要工作流程：源代码 (source code) → 预处理器 (preprocessor) → 编译器 (compiler) → 目标代码 (object code) → 链接器 (Linker) → 可执行程序 (executables)
 > 
 高级计算机语言便于人编写，阅读交流，维护。机器语言是计算机能直接解读、运行的。编译器将汇编或高级计算机语言源程序（Source program）作为输入，翻译成目标语言（Target language）机器代码的等价程序。源代码一般为高级语言 (High-level language)， 如Pascal、C、C++、Java、汉语编程等或汇编语言，而目标则是机器语言的目标代码（Object code），有时也称作机器代码（Machine code）。
@@ -510,13 +517,13 @@ makefile.include.linux_pgi
 
 
 ## Intel® Parallel Studio XE
-\<span id="intel"\>\</span\>
+\<span id="intel"\>\</span\\\>
 > The Intel® Parallel Studio XE  Composer Edition includes compilers and performance libraries to improve development. These tools are included in all editions.
 > Intel® Parallel Studio XE是一款同时面向Window*和Linux*平台，既支持C/C\++开发语言又支持Fortran开发语言的更高性能的并行开发工具集。
 > 在Intel® Parallel Studio XE里，包含C\++、Fortran等编译器以及一些数学库。
 > - Intel® C++ Compiler
 - Intel® Fortran Compiler
-- Intel® Distribution for Python* - Intel® Math Kernel Library
+- Intel® Distribution for Python\* - Intel® Math Kernel Library
 - Intel® Data Analytics Acceleration Library
 - Intel® Integrated Performance Primitives
 - Intel® Threading Building Blocks
@@ -530,16 +537,18 @@ makefile.include.linux_pgi
 [返回目录]()(#content)
 
 ## mpi
-\<span id="mpi"\>\</span\>
+\<span id="mpi"\>\</span\\\>
 > MPI＝message passing interface：在分布式内存（distributed-memory）之间实现信息通讯的一种规范/标准/协议（standard）。它是一个库，不是一门语言。可以被fortran，c，c\++等调用。MPI 允许静态任务调度，显示并行提供了良好的性能和移植性，用 MPI 编写的程序可直接在多核集群上运行。在集群系统中，集群的各节点之间可以采用 MPI 编程模型进行程序设计，每个节点都有自己的内存，可以对本地的指令和数据直接进行访问，各节点之间通过互联网络进行消息传递，这样设计具有很好的可移植性，完备的异步通信功能，较强的可扩展性等优点。MPI 模型存在一些不足，包括：程序的分解、开发和调试相对困难，而且通常要求对代码做大量的改动；通信会造成很大的开销，为了最小化延迟，通常需要大的代码粒度；细粒度的并行会引发大量的通信；动态负载平衡困难；并行化改进需要大量地修改原有的串行代码，调试难度比较大
 
 [返回目录]()(#content)
 
 ## fftw
-\<span id="fftw"\>\</span\>
+\<span id="fftw"\>\</span\\\>
 > FFTW ( the Faster Fourier Transform in the West) 是一个快速计算离散傅里叶变换的标准C语言程序集，其由MIT的M.Frigo 和S. Johnson 开发。可计算一维或多维实和复数据以及任意规模的DFT。
 
 [返回目录]()(#content)
+
+
 
 
 
