@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="最近更新日期：2018年11月25日  致谢 想了一下，把致谢放在前面，当一个幸福的舔狗。  感谢北京理工大学的唐刚博士，在本人学习、编译VASP过程中给予的悉心指导。  感谢清华大学的刘锦程博士，提供了使用intel动态库进行VASP编译的简单方法。  感谢ICIQ – Institut Català d’Investigació Química的李强博士，他是VASP系列教程——《Learn">
+  <meta name="description" content="摘要：本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。 V2.2：2018年11月25日  增加了摘要； 更换了发布平台；   \&amp;lt;!–more–&amp;gt;  致谢 想了一下，把致谢放在前面，当一个幸福的舔狗。  感谢北京理工大学的唐刚博士，在本人学习、编译VASP过程中给予的悉心指导。  感谢清华大学的刘锦程博士，提供了使">
 <meta name="keywords" content="VASP,MacOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【VASP】给真·小白看的VASP本地编译自学指南 Ver 2.1">
 <meta property="og:url" content="https://myvivi.life/2019/02/20/VASP_Compile_Guide_V2.1/index.html">
 <meta property="og:site_name" content="MYVIVIDLIFE">
-<meta property="og:description" content="最近更新日期：2018年11月25日  致谢 想了一下，把致谢放在前面，当一个幸福的舔狗。  感谢北京理工大学的唐刚博士，在本人学习、编译VASP过程中给予的悉心指导。  感谢清华大学的刘锦程博士，提供了使用intel动态库进行VASP编译的简单方法。  感谢ICIQ – Institut Català d’Investigació Química的李强博士，他是VASP系列教程——《Learn">
+<meta property="og:description" content="摘要：本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。 V2.2：2018年11月25日  增加了摘要； 更换了发布平台；   \&amp;lt;!–more–&amp;gt;  致谢 想了一下，把致谢放在前面，当一个幸福的舔狗。  感谢北京理工大学的唐刚博士，在本人学习、编译VASP过程中给予的悉心指导。  感谢清华大学的刘锦程博士，提供了使">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-20T03:34:39.587Z">
+<meta property="og:updated_time" content="2019-02-20T03:40:09.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【VASP】给真·小白看的VASP本地编译自学指南 Ver 2.1">
-<meta name="twitter:description" content="最近更新日期：2018年11月25日  致谢 想了一下，把致谢放在前面，当一个幸福的舔狗。  感谢北京理工大学的唐刚博士，在本人学习、编译VASP过程中给予的悉心指导。  感谢清华大学的刘锦程博士，提供了使用intel动态库进行VASP编译的简单方法。  感谢ICIQ – Institut Català d’Investigació Química的李强博士，他是VASP系列教程——《Learn">
+<meta name="twitter:description" content="摘要：本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。 V2.2：2018年11月25日  增加了摘要； 更换了发布平台；   \&amp;lt;!–more–&amp;gt;  致谢 想了一下，把致谢放在前面，当一个幸福的舔狗。  感谢北京理工大学的唐刚博士，在本人学习、编译VASP过程中给予的悉心指导。  感谢清华大学的刘锦程博士，提供了使">
 
 
 
@@ -387,7 +387,7 @@
                 
               
 
-              <time title="创建时间：2019-02-20 10:47:09 / 修改时间：11:34:39" itemprop="dateCreated datePublished" datetime="2019-02-20T10:47:09+08:00">2019-02-20</time>
+              <time title="创建时间：2019-02-20 10:47:09 / 修改时间：11:40:09" itemprop="dateCreated datePublished" datetime="2019-02-20T10:47:09+08:00">2019-02-20</time>
             
 
             
@@ -444,7 +444,14 @@
       
 
       
-        <p>最近更新日期：2018年11月25日</p>
+        <p>摘要：本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。</p>
+<p>V2.2：2018年11月25日</p>
+<ol>
+<li>增加了摘要；</li>
+<li>更换了发布平台；</li>
+</ol>
+<hr>
+<p>\&lt;!–more–></p>
 <hr>
 <p><strong>致谢</strong></p>
 <p>想了一下，把致谢放在前面，当一个幸福的舔狗。</p>
@@ -946,6 +953,32 @@ export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2019.1.144:$LD_LIBRARY
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Mancn-Xu" title="GitHub &rarr; https://github.com/Mancn-Xu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:myron_cang@icloud.com" title="E-Mail &rarr; mailto:myron_cang@icloud.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
