@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://img.myvividlife.cn/291858178C1D5BE8EE86462A617FF51D.jpg">
 <meta property="og:image" content="http://img.myvividlife.cn/%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF1.png">
 <meta property="og:image" content="http://img.myvividlife.cn/15431462551055.jpg">
-<meta property="og:updated_time" content="2019-02-20T07:08:47.777Z">
+<meta property="og:updated_time" content="2019-02-20T07:41:56.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【VASP】给真·小白看的VASP本地编译自学指南 Ver 2.1">
 <meta name="twitter:description" content="本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。">
@@ -391,7 +391,7 @@
                 
               
 
-              <time title="创建时间：2019-02-20 10:47:09 / 修改时间：15:08:47" itemprop="dateCreated datePublished" datetime="2019-02-20T10:47:09+08:00">2019-02-20</time>
+              <time title="创建时间：2019-02-20 10:47:09 / 修改时间：15:41:56" itemprop="dateCreated datePublished" datetime="2019-02-20T10:47:09+08:00">2019-02-20</time>
             
 
             
@@ -501,7 +501,7 @@
 <hr>
 <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>编译VASP，到底是在做什么？</p>
 <p>回答这个问题之前，我们首先要知道VASP到底是个什么东东。简而言之VASP是一款用高级语言（具体不清楚，也许是C + fortan）编写的量子化学计算软件。</p>
-<p>这和我们平常接触到的带图形化界面的软件不同，在使用之前，我们需要使用相应的<a href="#jump">编译器</a>，比如<a href="#intel">Intel® Parallel Studio XE</a>（包含C、fortan语言的编译器），把高级语言“翻译”成机器能够理解的机器语言，得到一个vasp的可执行程序。<br>（关于编译器的详细解释，可以点击编译器）</p>
+<p>这和我们平常接触到的带图形化界面的软件不同，在使用之前，我们需要使用相应的<a href="#compile">编译器</a>，<span id="compile-b"></span><br>比如<a href="#intel">Intel® Parallel Studio XE</a><span id="intel-b"></span><br>（包含C、fortan语言的编译器），把高级语言“翻译”成机器能够理解的机器语言，得到一个vasp的可执行程序。<br>（关于编译器的详细解释，可以点击编译器）</p>
 <p>根据vasp官方网站的介绍，我们可以知道，vasp就是一款通过近似求解Schrödinger方程得到体系的电子态和能量的程序。其既可以在密度泛函理论（DFT）框架内求解Kohn-Sham方程，也可以在Hartree-Fock（HF）的近似下求解Roothaan方程。<strong>其运行本质是一个矩阵的对角化运算。</strong></p>
 <ul>
 <li>From VASP官网 :（需要科学上网）</li>
@@ -512,7 +512,7 @@
 <blockquote>
 <p>To determine the electronic groundstate, VASP makes use of efficient iterative matrix diagonalisation techniques, like the residual minimisation method with direct inversion of the iterative subspace (RMM-DIIS) or blocked Davidson algorithms. These are coupled to highly efficient Broyden and Pulay density mixing schemes to speed up the self-consistency cycle.</p>
 </blockquote>
-<p>与此同时，我们为了提高计算效率，会希望vasp程序可以运行在服务器或大型集群上，这就要求我们可以在各节点之间进行通信，这是就需要相应的协议进行串联，比如<a href="#mpi">mpi</a>协议。</p>
+<p>与此同时，我们为了提高计算效率，会希望vasp程序可以运行在服务器或大型集群上，这就要求我们可以在各节点之间进行通信，这是就需要相应的协议进行串联，比如<a href="#mpi">mpi</a>协议。<br><span id="mpi-b"></span></p>
 <blockquote>
 <p>编译并行版的vasp需要并行编译器，例如MPI并行的程序需要MPI编译器，常用的MPI例如Intel MPI 、MPICH 、OPENMPI等。不同的机器可能针对自身硬件进行MPI优化，天河系统的MPI是基于开源MPICH进行的二次开发优化，进而支持性能卓越的天河自主高速互联网络。<br>from ：vasp 编译安装测试说明，author：MrZhengGang<br>[<a href="https://blog.csdn.net/sowhatgavin/article/details/70473526]" target="_blank" rel="noopener">https://blog.csdn.net/sowhatgavin/article/details/70473526]</a></p>
 </blockquote>
@@ -854,12 +854,12 @@
 <hr>
 <p>这里是结尾了，以下是小资料</p>
 <hr>
-<h1 id="小资料"><a href="#小资料" class="headerlink" title="小资料"></a>小资料</h1><h2 id="编译器："><a href="#编译器：" class="headerlink" title="编译器："></a>编译器：</h2><p><span id="jump"></span></p>
+<h1 id="小资料"><a href="#小资料" class="headerlink" title="小资料"></a>小资料</h1><h2 id="编译器："><a href="#编译器：" class="headerlink" title="编译器："></a>编译器：</h2><p><span id="compile"></span></p>
 <blockquote>
 <p>简单讲，编译器就是将“一种语言（通常为高级语言）”翻译为“另一种语言（通常为低级语言）”的程序。一个现代编译器的主要工作流程：源代码 (source code) → 预处理器 (preprocessor) → 编译器 (compiler) → 目标代码 (object code) → 链接器 (Linker) → 可执行程序 (executables)</p>
 </blockquote>
 <p>高级计算机语言便于人编写，阅读交流，维护。机器语言是计算机能直接解读、运行的。编译器将汇编或高级计算机语言源程序（Source program）作为输入，翻译成目标语言（Target language）机器代码的等价程序。源代码一般为高级语言 (High-level language)， 如Pascal、C、C++、Java、汉语编程等或汇编语言，而目标则是机器语言的目标代码（Object code），有时也称作机器代码（Machine code）。</p>
-<p><a href="#content">返回目录</a></p>
+<p><a href="#compile-b">返回</a></p>
 <h2 id="Intel®-Parallel-Studio-XE"><a href="#Intel®-Parallel-Studio-XE" class="headerlink" title="Intel® Parallel Studio XE"></a>Intel® Parallel Studio XE</h2><p><span id="intel"></span></p>
 <blockquote>
 <p>The Intel® Parallel Studio XE  Composer Edition includes compilers and performance libraries to improve development. These tools are included in all editions.<br>Intel® Parallel Studio XE是一款同时面向Window<em>和Linux</em>平台，既支持C/C++开发语言又支持Fortran开发语言的更高性能的并行开发工具集。<br>在Intel® Parallel Studio XE里，包含C++、Fortran等编译器以及一些数学库。</p>
@@ -873,22 +873,22 @@
 <li>Intel® Threading Building Blocks</li>
 </ul>
 </blockquote>
-<p><a href="#content">返回目录</a></p>
+<p><a href="#intel-b">返回</a></p>
 <h2 id="Intel®-Math-Kernel-Library"><a href="#Intel®-Math-Kernel-Library" class="headerlink" title="Intel® Math Kernel Library"></a>Intel® Math Kernel Library</h2><blockquote>
 <p>Intel MKL，全称 Intel Math Kernel Library，提供经过高度优化和大量线程化处理的数学例程，面向性能要求极高的科学、工程及金融等领域的应用。MKL是一款商用函数库，提供C、Fortran 和 Fortran 95的支持，但仅支持Intel自家旗下的CPU。</p>
 </blockquote>
-<p><a href="#content">返回目录</a></p>
+<p><a href="#intel-b">返回</a></p>
 <h2 id="mpi"><a href="#mpi" class="headerlink" title="mpi"></a>mpi</h2><p><span id="mpi"></span></p>
 <blockquote>
 <p>MPI＝message passing interface：在分布式内存（distributed-memory）之间实现信息通讯的一种规范/标准/协议（standard）。它是一个库，不是一门语言。可以被fortran，c，c++等调用。MPI 允许静态任务调度，显示并行提供了良好的性能和移植性，用 MPI 编写的程序可直接在多核集群上运行。在集群系统中，集群的各节点之间可以采用 MPI 编程模型进行程序设计，每个节点都有自己的内存，可以对本地的指令和数据直接进行访问，各节点之间通过互联网络进行消息传递，这样设计具有很好的可移植性，完备的异步通信功能，较强的可扩展性等优点。MPI 模型存在一些不足，包括：程序的分解、开发和调试相对困难，而且通常要求对代码做大量的改动；通信会造成很大的开销，为了最小化延迟，通常需要大的代码粒度；细粒度的并行会引发大量的通信；动态负载平衡困难；并行化改进需要大量地修改原有的串行代码，调试难度比较大</p>
 </blockquote>
-<p><a href="#content">返回目录</a></p>
+<p><a href="#mpi-b">返回</a></p>
 <h2 id="fftw"><a href="#fftw" class="headerlink" title="fftw"></a>fftw</h2><p><span id="fftw"></span></p>
 <blockquote>
 <p>FFTW ( the Faster Fourier Transform in the West) 是一个快速计算离散傅里叶变换的标准C语言程序集，其由MIT的M.Frigo 和S. Johnson 开发。可计算一维或多维实和复数据以及任意规模的DFT。</p>
 </blockquote>
-<p><a href="#content">返回目录</a></p>
-<h1 id="光速vasp编译指南"><a href="#光速vasp编译指南" class="headerlink" title="光速vasp编译指南"></a>光速vasp编译指南</h1><p><span id="vasp">1</span></p>
+<p><a href="#fftw-b">返回目录</a></p>
+<p><span id="vasp"><h1 id="toc_0">光速vasp编译指南</h1></span></p>
 <p><strong>1. 安装包获取</strong></p>
 <p>本人使用的安装包版本为2019 update1，授权版本为学生版，可以使用edu邮箱在intel官网进行注册获得。</p>
 <p><strong>2. intel 2019并行工具集下载和安装</strong></p>
@@ -1054,8 +1054,6 @@
                     
                       
                     
-                      
-                    
                     <span class="site-state-item-count">1</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -1135,7 +1133,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用指南"><span class="nav-text">使用指南</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第1章-基础介绍"><span class="nav-text">第1章 基础介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-VASP版本选择"><span class="nav-text">1.1 VASP版本选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-LInux版本选择"><span class="nav-text">1.2 LInux版本选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-编译环境选择"><span class="nav-text">1.3 编译环境选择</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第2章-基本操作"><span class="nav-text">第2章 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-连接软件"><span class="nav-text">2.1 连接软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-Win生态系统"><span class="nav-text">2.1.1 Win生态系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-Apple生态系统"><span class="nav-text">2.1.2 Apple生态系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Linux基本操作"><span class="nav-text">2.2 Linux基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-基本指令"><span class="nav-text">2.2.1 基本指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-编辑文档——Vim基本操作"><span class="nav-text">2.2.2 编辑文档——Vim基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-环境变量"><span class="nav-text">2.2.3 环境变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第3章-编译环境准备"><span class="nav-text">第3章 编译环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-前期准备（安装必备库和兼容包）"><span class="nav-text">3.1 前期准备（安装必备库和兼容包）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-进行更新"><span class="nav-text">3.1.1 进行更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-操作系统的一些必备库"><span class="nav-text">3.1.2 操作系统的一些必备库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-安装32位系统的兼容包"><span class="nav-text">3.1.3 安装32位系统的兼容包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-安装Intel编译环境"><span class="nav-text">3.2 安装Intel编译环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-安装包获取"><span class="nav-text">3.2.1 安装包获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-具体安装步骤"><span class="nav-text">3.2.2 具体安装步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-检查是否安装及配置成功"><span class="nav-text">3.2.3 检查是否安装及配置成功</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-编译intel-fftw3"><span class="nav-text">3.3 编译intel fftw3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-动态库和静态库"><span class="nav-text">3.4 动态库和静态库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第4章-编译VASP"><span class="nav-text">第4章 编译VASP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-VASP获取"><span class="nav-text">4.1 VASP获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-编译VASP并行版本并试运行"><span class="nav-text">4.2 编译VASP并行版本并试运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-makefile文件初探"><span class="nav-text">4.3 makefile文件初探</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-模板获取"><span class="nav-text">4.3.1 模板获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-makefile-include内容解读"><span class="nav-text">4.3.2 makefile.include内容解读</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小资料"><span class="nav-text">小资料</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译器："><span class="nav-text">编译器：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intel®-Parallel-Studio-XE"><span class="nav-text">Intel® Parallel Studio XE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intel®-Math-Kernel-Library"><span class="nav-text">Intel® Math Kernel Library</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mpi"><span class="nav-text">mpi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fftw"><span class="nav-text">fftw</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#光速vasp编译指南"><span class="nav-text">光速vasp编译指南</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用指南"><span class="nav-text">使用指南</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第1章-基础介绍"><span class="nav-text">第1章 基础介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-VASP版本选择"><span class="nav-text">1.1 VASP版本选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-LInux版本选择"><span class="nav-text">1.2 LInux版本选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-编译环境选择"><span class="nav-text">1.3 编译环境选择</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第2章-基本操作"><span class="nav-text">第2章 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-连接软件"><span class="nav-text">2.1 连接软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-Win生态系统"><span class="nav-text">2.1.1 Win生态系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-Apple生态系统"><span class="nav-text">2.1.2 Apple生态系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Linux基本操作"><span class="nav-text">2.2 Linux基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-基本指令"><span class="nav-text">2.2.1 基本指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-编辑文档——Vim基本操作"><span class="nav-text">2.2.2 编辑文档——Vim基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-环境变量"><span class="nav-text">2.2.3 环境变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第3章-编译环境准备"><span class="nav-text">第3章 编译环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-前期准备（安装必备库和兼容包）"><span class="nav-text">3.1 前期准备（安装必备库和兼容包）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-进行更新"><span class="nav-text">3.1.1 进行更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-操作系统的一些必备库"><span class="nav-text">3.1.2 操作系统的一些必备库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-安装32位系统的兼容包"><span class="nav-text">3.1.3 安装32位系统的兼容包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-安装Intel编译环境"><span class="nav-text">3.2 安装Intel编译环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-安装包获取"><span class="nav-text">3.2.1 安装包获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-具体安装步骤"><span class="nav-text">3.2.2 具体安装步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-检查是否安装及配置成功"><span class="nav-text">3.2.3 检查是否安装及配置成功</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-编译intel-fftw3"><span class="nav-text">3.3 编译intel fftw3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-动态库和静态库"><span class="nav-text">3.4 动态库和静态库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第4章-编译VASP"><span class="nav-text">第4章 编译VASP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-VASP获取"><span class="nav-text">4.1 VASP获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-编译VASP并行版本并试运行"><span class="nav-text">4.2 编译VASP并行版本并试运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-makefile文件初探"><span class="nav-text">4.3 makefile文件初探</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-模板获取"><span class="nav-text">4.3.1 模板获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-makefile-include内容解读"><span class="nav-text">4.3.2 makefile.include内容解读</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小资料"><span class="nav-text">小资料</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译器："><span class="nav-text">编译器：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intel®-Parallel-Studio-XE"><span class="nav-text">Intel® Parallel Studio XE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intel®-Math-Kernel-Library"><span class="nav-text">Intel® Math Kernel Library</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mpi"><span class="nav-text">mpi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fftw"><span class="nav-text">fftw</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#toc_0"><span class="nav-text">光速vasp编译指南</span></a></li></ol></div>
             
 
           </div>
