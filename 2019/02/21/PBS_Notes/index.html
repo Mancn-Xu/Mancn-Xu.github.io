@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://img.myvividlife.cn/2D5B2FAC48992298DAC9EDAF6DADBC09.jpg">
 <meta property="og:image" content="http://img.myvividlife.cn/8566911AEF0D986C75F97FAD9B33ECBF.jpg">
 <meta property="og:image" content="http://img.myvividlife.cn/31EB7748213717F8D63B715576C8168C.jpg">
-<meta property="og:updated_time" content="2019-02-21T11:52:37.259Z">
+<meta property="og:updated_time" content="2019-02-21T11:58:20.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PBS学习笔记">
 <meta name="twitter:description" content="本文主要总结了PBS系统的一些使用方法以及在组内使用集群遇到的一些问题">
@@ -442,7 +442,7 @@
                 
               
 
-              <time title="创建时间：2019-02-21 19:37:09 / 修改时间：19:52:37" itemprop="dateCreated datePublished" datetime="2019-02-21T19:37:09+08:00">2019-02-21</time>
+              <time title="创建时间：2019-02-21 19:37:09 / 修改时间：19:58:20" itemprop="dateCreated datePublished" datetime="2019-02-21T19:37:09+08:00">2019-02-21</time>
             
 
             
@@ -514,7 +514,9 @@
 <li>整理了网络上对于PBE文档的介绍，并结合实验室集群的相关信息进行整理。</li>
 <li>包括一些在集群任务遇到的坑以及解决方案。</li>
 </ul>
-<h2 id="最近更新时间：2019-02-21"><a href="#最近更新时间：2019-02-21" class="headerlink" title="最近更新时间：2019-02-21"></a>最近更新时间：2019-02-21</h2><h1 id="一、PBS简介"><a href="#一、PBS简介" class="headerlink" title="一、PBS简介"></a>一、PBS简介</h1><p>PBS(Portable Batch System)最初由NASA的Ames研究中心开发，主要为了提供一个能满足异构计算网络需要的软件包，用于灵活的批处理，特别是满足高性能计算的需要，如集群系统、超级计算机和大规模并行系统。</p>
+<p>最近更新时间：2019-02-21</p>
+<hr>
+<h1 id="一、PBS简介"><a href="#一、PBS简介" class="headerlink" title="一、PBS简介"></a>一、PBS简介</h1><p>PBS(Portable Batch System)最初由NASA的Ames研究中心开发，主要为了提供一个能满足异构计算网络需要的软件包，用于灵活的批处理，特别是满足高性能计算的需要，如集群系统、超级计算机和大规模并行系统。</p>
 <p>PBS的主要特点有：代码开放，免费获取；支持批处理、交互式作业和串行、多种并行作业。</p>
 <p>PBS的目前包括openPBS, PBS Pro和Torque三个主要分支，本集群主要用的是torque+maui。作业系统有三个主要组成模块，SCHEDULER、PBS_SERVER  和PBS_MOM。</p>
 <p>作业管理系统通过这三个模块间的相互工作来完成对节点的监控和分配任务。 </p>
@@ -1002,7 +1004,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最近更新时间：2019-02-21"><span class="nav-text">最近更新时间：2019-02-21</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#一、PBS简介"><span class="nav-text">一、PBS简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、PBS常用命令"><span class="nav-text">二、PBS常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-qsub命令"><span class="nav-text">2.1 qsub命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更多设置："><span class="nav-text">更多设置：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-qstat命令"><span class="nav-text">2.2 qstat命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-qdel命令"><span class="nav-text">2.3 qdel命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、MPI运行部分"><span class="nav-text">三、MPI运行部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-mpi简介"><span class="nav-text">3.1 mpi简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-MPI常用命令"><span class="nav-text">3.2 MPI常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mpirun"><span class="nav-text">mpirun:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-MPI进阶"><span class="nav-text">3.3* MPI进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-MPI通讯结构"><span class="nav-text">3.4* MPI通讯结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、vasp作业提交脚本"><span class="nav-text">四、vasp作业提交脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-、其它配置文件（部分协议已经过时）"><span class="nav-text">五*、其它配置文件（部分协议已经过时）</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、PBS简介"><span class="nav-text">一、PBS简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、PBS常用命令"><span class="nav-text">二、PBS常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-qsub命令"><span class="nav-text">2.1 qsub命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更多设置："><span class="nav-text">更多设置：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-qstat命令"><span class="nav-text">2.2 qstat命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-qdel命令"><span class="nav-text">2.3 qdel命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、MPI运行部分"><span class="nav-text">三、MPI运行部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-mpi简介"><span class="nav-text">3.1 mpi简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-MPI常用命令"><span class="nav-text">3.2 MPI常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mpirun"><span class="nav-text">mpirun:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-MPI进阶"><span class="nav-text">3.3* MPI进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-MPI通讯结构"><span class="nav-text">3.4* MPI通讯结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、vasp作业提交脚本"><span class="nav-text">四、vasp作业提交脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-、其它配置文件（部分协议已经过时）"><span class="nav-text">五*、其它配置文件（部分协议已经过时）</span></a></li></ol></div>
             
 
           </div>
