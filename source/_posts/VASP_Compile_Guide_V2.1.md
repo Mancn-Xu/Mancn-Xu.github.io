@@ -85,7 +85,9 @@ V2.2：2018年11月25日
 
 回答这个问题之前，我们首先要知道VASP到底是个什么东东。简而言之VASP是一款用高级语言（具体不清楚，也许是C + fortan）编写的量子化学计算软件。
 
-这和我们平常接触到的带图形化界面的软件不同，在使用之前，我们需要使用相应的[编译器](#jump)，比如[Intel® Parallel Studio XE](#intel)（包含C、fortan语言的编译器），把高级语言“翻译”成机器能够理解的机器语言，得到一个vasp的可执行程序。
+这和我们平常接触到的带图形化界面的软件不同，在使用之前，我们需要使用相应的[编译器](#compile)，<span id="compile-b"></span>
+比如[Intel® Parallel Studio XE](#intel)<span id="intel-b"></span>
+（包含C、fortan语言的编译器），把高级语言“翻译”成机器能够理解的机器语言，得到一个vasp的可执行程序。
 （关于编译器的详细解释，可以点击编译器）
 
 根据vasp官方网站的介绍，我们可以知道，vasp就是一款通过近似求解Schrödinger方程得到体系的电子态和能量的程序。其既可以在密度泛函理论（DFT）框架内求解Kohn-Sham方程，也可以在Hartree-Fock（HF）的近似下求解Roothaan方程。**其运行本质是一个矩阵的对角化运算。**
@@ -97,6 +99,7 @@ V2.2：2018年11月25日
 >To determine the electronic groundstate, VASP makes use of efficient iterative matrix diagonalisation techniques, like the residual minimisation method with direct inversion of the iterative subspace (RMM-DIIS) or blocked Davidson algorithms. These are coupled to highly efficient Broyden and Pulay density mixing schemes to speed up the self-consistency cycle.
 
 与此同时，我们为了提高计算效率，会希望vasp程序可以运行在服务器或大型集群上，这就要求我们可以在各节点之间进行通信，这是就需要相应的协议进行串联，比如[mpi](#mpi)协议。
+<span id="mpi-b"></span>
 
 >编译并行版的vasp需要并行编译器，例如MPI并行的程序需要MPI编译器，常用的MPI例如Intel MPI 、MPICH 、OPENMPI等。不同的机器可能针对自身硬件进行MPI优化，天河系统的MPI是基于开源MPICH进行的二次开发优化，进而支持性能卓越的天河自主高速互联网络。
 >from ：vasp 编译安装测试说明，author：MrZhengGang
@@ -608,12 +611,12 @@ LAPACK （linear algebra package），是著名的线性代数库，也是Netlib
 
 # 小资料
 ## 编译器：
-<span id="jump"></span>
+<span id="compile"></span>
 >简单讲，编译器就是将“一种语言（通常为高级语言）”翻译为“另一种语言（通常为低级语言）”的程序。一个现代编译器的主要工作流程：源代码 (source code) → 预处理器 (preprocessor) → 编译器 (compiler) → 目标代码 (object code) → 链接器 (Linker) → 可执行程序 (executables)
 >
 高级计算机语言便于人编写，阅读交流，维护。机器语言是计算机能直接解读、运行的。编译器将汇编或高级计算机语言源程序（Source program）作为输入，翻译成目标语言（Target language）机器代码的等价程序。源代码一般为高级语言 (High-level language)， 如Pascal、C、C++、Java、汉语编程等或汇编语言，而目标则是机器语言的目标代码（Object code），有时也称作机器代码（Machine code）。
 
-[返回目录](#content)
+[返回](#compile-b)
 
 
 ## Intel® Parallel Studio XE
@@ -629,29 +632,28 @@ LAPACK （linear algebra package），是著名的线性代数库，也是Netlib
 - Intel® Integrated Performance Primitives
 - Intel® Threading Building Blocks
 
-[返回目录](#content)
+[返回](#intel-b)
 
 
 ## Intel® Math Kernel Library
 >Intel MKL，全称 Intel Math Kernel Library，提供经过高度优化和大量线程化处理的数学例程，面向性能要求极高的科学、工程及金融等领域的应用。MKL是一款商用函数库，提供C、Fortran 和 Fortran 95的支持，但仅支持Intel自家旗下的CPU。
 
-[返回目录](#content)
+[返回](#intel-b)
 
 ## mpi
 <span id="mpi"></span>
 >MPI＝message passing interface：在分布式内存（distributed-memory）之间实现信息通讯的一种规范/标准/协议（standard）。它是一个库，不是一门语言。可以被fortran，c，c\++等调用。MPI 允许静态任务调度，显示并行提供了良好的性能和移植性，用 MPI 编写的程序可直接在多核集群上运行。在集群系统中，集群的各节点之间可以采用 MPI 编程模型进行程序设计，每个节点都有自己的内存，可以对本地的指令和数据直接进行访问，各节点之间通过互联网络进行消息传递，这样设计具有很好的可移植性，完备的异步通信功能，较强的可扩展性等优点。MPI 模型存在一些不足，包括：程序的分解、开发和调试相对困难，而且通常要求对代码做大量的改动；通信会造成很大的开销，为了最小化延迟，通常需要大的代码粒度；细粒度的并行会引发大量的通信；动态负载平衡困难；并行化改进需要大量地修改原有的串行代码，调试难度比较大
 
-[返回目录](#content)
+[返回](#mpi-b)
 
 ## fftw
 <span id="fftw"></span>
 >FFTW ( the Faster Fourier Transform in the West) 是一个快速计算离散傅里叶变换的标准C语言程序集，其由MIT的M.Frigo 和S. Johnson 开发。可计算一维或多维实和复数据以及任意规模的DFT。
 
-[返回目录](#content)
+[返回目录](#fftw-b)
 
 
-#  光速vasp编译指南
-<span id="vasp">1</span>
+<span id="vasp"><h1 id="toc_0">光速vasp编译指南</h1></span>
 
 **1. 安装包获取**
 
