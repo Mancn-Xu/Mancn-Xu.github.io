@@ -96,25 +96,25 @@
 
 
 
-  <meta name="description" content="本文由一次VASP收敛性测试遇到的实际问题出发，记述了出现问题的折腾经历和解决方案，以及对第一性原理一些概念的理解。">
-<meta name="keywords" content="VASP,第一性原理">
+  <meta name="description" content="本系列文章主要介绍光谱学的相关内容。是根据武汉理工大学材料学院`薛理辉`课程内容结合自身学习整理的课程笔记系列。">
+<meta name="keywords" content="光谱学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ENCUT到底是个什么东东">
-<meta property="og:url" content="https://myvivi.life/2019/02/26/Ecut_notes/index.html">
+<meta property="og:title" content="光谱学笔记（一）">
+<meta property="og:url" content="https://myvivi.life/2019/02/26/Spectroscopy/index.html">
 <meta property="og:site_name" content="MYVIVIDLIFE">
-<meta property="og:description" content="本文由一次VASP收敛性测试遇到的实际问题出发，记述了出现问题的折腾经历和解决方案，以及对第一性原理一些概念的理解。">
+<meta property="og:description" content="本系列文章主要介绍光谱学的相关内容。是根据武汉理工大学材料学院`薛理辉`课程内容结合自身学习整理的课程笔记系列。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-26T12:09:04.849Z">
+<meta property="og:updated_time" content="2019-02-26T12:01:57.160Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ENCUT到底是个什么东东">
-<meta name="twitter:description" content="本文由一次VASP收敛性测试遇到的实际问题出发，记述了出现问题的折腾经历和解决方案，以及对第一性原理一些概念的理解。">
+<meta name="twitter:title" content="光谱学笔记（一）">
+<meta name="twitter:description" content="本系列文章主要介绍光谱学的相关内容。是根据武汉理工大学材料学院`薛理辉`课程内容结合自身学习整理的课程笔记系列。">
 
 
 
 
 
 
-  <link rel="canonical" href="https://myvivi.life/2019/02/26/Ecut_notes/">
+  <link rel="canonical" href="https://myvivi.life/2019/02/26/Spectroscopy/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>ENCUT到底是个什么东东 | MYVIVIDLIFE</title>
+  <title>光谱学笔记（一） | MYVIVIDLIFE</title>
   
 
 
@@ -395,7 +395,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://myvivi.life/2019/02/26/Ecut_notes/">
+    <link itemprop="mainEntityOfPage" href="https://myvivi.life/2019/02/26/Spectroscopy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mancn">
@@ -412,7 +412,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ENCUT到底是个什么东东
+          <h1 class="post-title" itemprop="name headline">光谱学笔记（一）
 
               
             
@@ -438,7 +438,7 @@
                 
               
 
-              <time title="创建时间：2019-02-26 19:09:09 / 修改时间：20:09:04" itemprop="dateCreated datePublished" datetime="2019-02-26T19:09:09+08:00">2019-02-26</time>
+              <time title="创建时间：2019-02-26 20:09:09 / 修改时间：20:01:57" itemprop="dateCreated datePublished" datetime="2019-02-26T20:09:09+08:00">2019-02-26</time>
             
 
             
@@ -460,14 +460,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/VASP自学成才/" itemprop="url" rel="index"><span itemprop="name">VASP自学成才</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/课程/" itemprop="url" rel="index"><span itemprop="name">课程</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/VASP自学成才/集群里的那些坑坑洼洼/" itemprop="url" rel="index"><span itemprop="name">集群里的那些坑坑洼洼</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/课程/光谱学/" itemprop="url" rel="index"><span itemprop="name">光谱学</span></a></span>
 
                 
                 
@@ -488,7 +488,7 @@
           
 
           
-            <div class="post-description">本文由一次VASP收敛性测试遇到的实际问题出发，记述了出现问题的折腾经历和解决方案，以及对第一性原理一些概念的理解。</div>
+            <div class="post-description">本系列文章主要介绍光谱学的相关内容。是根据武汉理工大学材料学院`薛理辉`课程内容结合自身学习整理的课程笔记系列。</div>
           
 
         </div>
@@ -504,64 +504,7 @@
       
 
       
-        <p>预计文章可能会写的比较长。时间跨度也比较久。因为如果要讲清楚ENCUT究竟是个什么东西，可能会涉及到第一性原理计算所需要的各种理论、计算手段和近似方法，包括平面波方法、贗势的选取等等。</p>
-<p>文章主要参考资料：</p>
-<ul>
-<li><code>ChemiAndy</code>老师的<a href="http://chemiandy.lofter.com/post/1d254b22_69a16c6" target="_blank" rel="noopener">《关于平面波PW ——从波的角度理解平面波密度泛函》</a>。其中介绍了关于平面波、K点采样、动能截断等相关问题。</li>
-<li>华中科技大学单斌老师等人编著的《材料学的纳米尺度计算模拟：从基本原理到算法实现》</li>
-</ul>
-<hr>
-<h1 id="0-写作动机"><a href="#0-写作动机" class="headerlink" title="0 写作动机"></a>0 写作动机</h1><p>本文写作的主要动机主要还是源于一次实践中遇到的问题。而也正是这个问题促使了前面两篇文章<a href="https://myvivi.life/2019/02/26/InfinitiBand_Notes/">《简单介绍InfiniBand》</a>和<a href="https://myvivi.life/2019/02/21/PBS_Notes/">《PBS学习笔记》的诞生</a>。</p>
-<p>问题来源：对PZT单胞进行收敛性测试，发现在截断能ENCUT超过900后系统终止。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">终止位置信息：</span><br><span class="line"> k-point 74 :   0.5000 0.3750 0.5000  plane waves:   13692</span><br><span class="line"> k-point 75 :   0.5000 0.5000 0.5000  plane waves:   13696</span><br><span class="line"></span><br><span class="line"> maximum and minimum number of plane-waves per node :     13724    13604</span><br><span class="line"></span><br><span class="line"> maximum number of plane-waves:     13724</span><br><span class="line"> maximum index in each direction:</span><br><span class="line">   IXMAX=   11   IYMAX=   11   IZMAX=   26</span><br><span class="line">   IXMIN=  -11   IYMIN=  -11   IZMIN=  -26</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">out输出信息：</span><br><span class="line"></span><br><span class="line">running on    1 nodes</span><br><span class="line">distr:  one band on    1 nodes,    1 groups</span><br><span class="line">vasp.4.6.31 08Feb07 complex</span><br><span class="line">POSCAR found :  4 types and   80 ions</span><br><span class="line">WARNING: PSMAXN for non-local potential too small</span><br><span class="line">LDA part: xc-table for Pade appr. of Perdew</span><br><span class="line">POSCAR, INCAR and KPOINTS ok, starting setup</span><br><span class="line">WARNING: wrap around errors must be expected</span><br><span class="line">REAL_OPTLAY: internal error (1)     6851168     6851456</span><br></pre></td></tr></table></figure>
-<h4 id="PSMAXN"><a href="#PSMAXN" class="headerlink" title="PSMAXN:"></a>PSMAXN:</h4><p>来自官网的解释：</p>
-<blockquote>
-<p>PSMAXN (the cutoff for the projection operators) is read form POTCAR. NTYP=1 is the forst of the potentials read from POTCAR.</p>
-</blockquote>
-<blockquote>
-<p>The warning means that PSMAXN is too small for the required cutoff energy (ENMAX) the first of the atoms given in POTCAR.please either use a harder potential or decrease ENMAX</p>
-</blockquote>
-<p>排除各种硬件及软件设置因素后，发现是ENCUT和元素贗势之间可能有某种关联关系，导致VASP在正空间进行运算时ENCUT不能超过元素贗势所给定的EMAX太多。</p>
-<p>解决方案为：</p>
-<ul>
-<li>使用更低的ENCUT</li>
-<li>使用更“硬”的元素贗势</li>
-<li>INCAR加入：<code>LREAL = .FALSE</code></li>
-</ul>
-<p>更多详细内容请参考《The VASP Manual》 ——<a href="https://cms.mpi.univie.ac.at/vasp/vasp/LREAL_tag_and_ROPT_tag.html" target="_blank" rel="noopener">#6.39 LREAL-tag</a></p>
-<h2 id="0-1-采坑经历："><a href="#0-1-采坑经历：" class="headerlink" title="0.1 采坑经历："></a>0.1 采坑经历：</h2><h3 id="（1）怀疑内存不够"><a href="#（1）怀疑内存不够" class="headerlink" title="（1）怀疑内存不够"></a>（1）怀疑内存不够</h3><p>1.考虑跨节点并行程序以获取更多内存</p>
-<ul>
-<li><p>遭遇跨节点问题，遂先解决了跨节点问题详见《简单介绍InfiniBand》和《PBS学习笔记》</p>
-</li>
-<li><p>在多节点并行后，发现问题依旧。转而进行内存测试。</p>
-</li>
-</ul>
-<p>2.使用能使软件正常运行的较低ENCUT，并减少内存资源申请；</p>
-<ul>
-<li>计算终止有一个波函数展开上限，8500左右。超过上限无论几个节点并行都会报错；低于8500，发现仅需非常低的内存使用量就可以完成计算；</li>
-</ul>
-<p>遂排除内存问题，用时2天。</p>
-<h3 id="（2）怀疑INCAR问题"><a href="#（2）怀疑INCAR问题" class="headerlink" title="（2）怀疑INCAR问题"></a>（2）怀疑INCAR问题</h3><p>1.尽量最小化改默认设置</p>
-<ul>
-<li>发现仅设置<code>ENCUT</code>、<code>IBRION</code>、<code>ISIF</code>、<code>ISMEAR</code>时，vasp可以正常运行</li>
-</ul>
-<p>遂怀疑可能是某个INCAR参数导致了计算错误。经过搜索和自己测试，发现起决定性作用的INCAR参数为<code>LREAL</code></p>
-<p>修改后VASP恢复正常。<br>用时1天。</p>
-<p>从问题出现到解决估计用了3个工作日加上1个周末。通过该问题的解决也顺道解决了一个集群上的软件问题并且加深了自己对于波函数、贗势、截断能的了解。</p>
-<p>这也让我深刻的认识到，有很多错误混杂在硬件和软件之间，要积极探索，敢于尝试，同时也要在明确问题大概方向后尽快找专业人员解决。</p>
-<hr>
-<p>以下是正文部分</p>
-<hr>
-<h1 id="一、基组是什么及基组的选择"><a href="#一、基组是什么及基组的选择" class="headerlink" title="一、基组是什么及基组的选择"></a>一、基组是什么及基组的选择</h1><h2 id="1-1-计算化学中的基组"><a href="#1-1-计算化学中的基组" class="headerlink" title="1.1 计算化学中的基组"></a>1.1 计算化学中的基组</h2><p>量子化学中有2大计算流派，基于分子轨道的的计算(HF理论)，和基于密度泛函的计算(DFT)。</p>
-<ul>
-<li><p>HF使用“轨道-轨道”和“轨道-核”的作用来计算能量。</p>
-</li>
-<li><p>密度泛函使用“密度-密度”，和“密度-外势(原子核)“以及“密度-&gt;交换相关能”来计算能量</p>
-</li>
-</ul>
-<p>因此，对于DFT来说，只要密度计算正确，你就别管我用了什么基函数来对密度进行展开表示。因此，有几种不同的基函数类型。其中由固体电子理论发展而来的平面波表示应用非常广泛，因为其中平面波基函数的使用数量主要由体积决定，而与电子数目无关，因而可以应用到较大体系。</p>
-
+        
       
     </div>
 
@@ -584,9 +527,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/VASP/" rel="tag"># VASP</a>
-          
-            <a href="/tags/第一性原理/" rel="tag"># 第一性原理</a>
+            <a href="/tags/光谱学/" rel="tag"># 光谱学</a>
           
         </div>
       
@@ -599,8 +540,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/26/InfinitiBand_Notes/" rel="next" title="简单介绍InfiniBand">
-                <i class="fa fa-chevron-left"></i> 简单介绍InfiniBand
+              <a href="/2019/02/26/Ecut_notes/" rel="next" title="ENCUT到底是个什么东东">
+                <i class="fa fa-chevron-left"></i> ENCUT到底是个什么东东
               </a>
             
           </div>
@@ -608,10 +549,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/26/Spectroscopy/" rel="prev" title="光谱学笔记（一）">
-                光谱学笔记（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -656,17 +593,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -780,23 +708,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-写作动机"><span class="nav-text">0 写作动机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1-采坑经历："><span class="nav-text">0.1 采坑经历：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（1）怀疑内存不够"><span class="nav-text">（1）怀疑内存不够</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（2）怀疑INCAR问题"><span class="nav-text">（2）怀疑INCAR问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、基组是什么及基组的选择"><span class="nav-text">一、基组是什么及基组的选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-计算化学中的基组"><span class="nav-text">1.1 计算化学中的基组</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
