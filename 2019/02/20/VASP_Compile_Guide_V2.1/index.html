@@ -564,20 +564,18 @@
 <hr>
 <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>编译VASP，到底是在做什么？</p>
 <p>回答这个问题之前，我们首先要知道VASP到底是个什么东东。简而言之VASP是一款用高级语言（具体不清楚，也许是C + fortan）编写的量子化学计算软件。</p>
-<p>这和我们平常接触到的带图形化界面的软件不同，在使用之前，我们需要使用相应的<a href="#compile">编译器</a>，<span id="compile-b"></span><br>比如<a href="#intel">Intel® Parallel Studio XE</a><span id="intel-b"></span><br>（包含C、fortan语言的编译器），把高级语言“翻译”成机器能够理解的机器语言，得到一个vasp的可执行程序。<br>（关于编译器的详细解释，可以点击编译器）</p>
+<p>这和我们平常接触到的带图形化界面的软件不同，在使用之前，我们需要使用相应的<a href="#compile">编译器</a>，<span id="compile-b">&lt;/span&gt;<br>比如<a href="#intel">Intel® Parallel Studio XE</a><span id="intel-b"></span><br>（包含C、fortan语言的编译器），把高级语言“翻译”成机器能够理解的机器语言，得到一个vasp的可执行程序。<br>（关于编译器的详细解释，可以点击编译器）</span></p>
 <p>根据vasp官方网站的介绍，我们可以知道，vasp就是一款通过近似求解Schrödinger方程得到体系的电子态和能量的程序。其既可以在密度泛函理论（DFT）框架内求解Kohn-Sham方程，也可以在Hartree-Fock（HF）的近似下求解Roothaan方程。<strong>其运行本质是一个矩阵的对角化运算。</strong></p>
 <ul>
 <li>From VASP官网 :（需要科学上网）</li>
 </ul>
 <blockquote>
 <p>VASP computes an approximate solution to the many-body Schrödinger equation, either within density functional theory (DFT), solving the Kohn-Sham equations, or within the Hartree-Fock (HF) approximation, solving the Roothaan equations. </p>
-</blockquote>
-<blockquote>
 <p>To determine the electronic groundstate, VASP makes use of efficient iterative matrix diagonalisation techniques, like the residual minimisation method with direct inversion of the iterative subspace (RMM-DIIS) or blocked Davidson algorithms. These are coupled to highly efficient Broyden and Pulay density mixing schemes to speed up the self-consistency cycle.</p>
 </blockquote>
 <p>与此同时，我们为了提高计算效率，会希望vasp程序可以运行在服务器或大型集群上，这就要求我们可以在各节点之间进行通信，这是就需要相应的协议进行串联，比如<a href="#mpi">mpi</a>协议。<br><span id="mpi-b"></span></p>
 <blockquote>
-<p>编译并行版的vasp需要并行编译器，例如MPI并行的程序需要MPI编译器，常用的MPI例如Intel MPI 、MPICH 、OPENMPI等。不同的机器可能针对自身硬件进行MPI优化，天河系统的MPI是基于开源MPICH进行的二次开发优化，进而支持性能卓越的天河自主高速互联网络。<br>from ：vasp 编译安装测试说明，author：MrZhengGang<br>[<a href="https://blog.csdn.net/sowhatgavin/article/details/70473526]" target="_blank" rel="noopener">https://blog.csdn.net/sowhatgavin/article/details/70473526]</a></p>
+<p>编译并行版的vasp需要并行编译器，例如MPI并行的程序需要MPI编译器，常用的MPI例如Intel MPI 、MPICH 、OPENMPI等。不同的机器可能针对自身硬件进行MPI优化，天河系统的MPI是基于开源MPICH进行的二次开发优化，进而支持性能卓越的天河自主高速互联网络。<br>from ：vasp 编译安装测试说明，author：MrZhengGang<br>[<a href="https://blog.csdn.net/sowhatgavin/article/details/70473526" target="_blank" rel="noopener">https://blog.csdn.net/sowhatgavin/article/details/70473526</a>]</p>
 </blockquote>
 <p>除此之外，当vasp进行到空间傅里叶变换时还需要使用<a href="#fftw">fftw</a>等相应的数学库。</p>
 <p>综合以上我们的介绍，似乎想要得到vasp的可执行程序还是比较繁琐的。但是好在如今的工具集非常齐全。我们只需要一个<a href="#intel">Intel® Parallel Studio XE</a> 的并行工具集，既可以完成vasp的编译工作。因为该并行工具集下有vasp所需的编译器、并行协议和各种数学变换库。</p>
@@ -592,8 +590,6 @@
 <p><strong>以下内容被强哥点评为XJBC。大家看看就好</strong></p>
 <blockquote>
 <p>具体怎么在本地安装linux系统建议大家自行百度解决。如果不会安装双系统、不方便安装双系统或者是电脑性能有限的同学，这里提供一个<strong>阿里云服务器</strong>的思路：</p>
-</blockquote>
-<blockquote>
 <p>这个思路的优点在于：</p>
 <ol>
 <li>不会因为重装系统对自己原本的系统造成损害；</li>
@@ -601,11 +597,7 @@
 <li>云上各种系统环境配置都比较容易，出现问题回滚和修复都较为方便；</li>
 <li>随时随地可以用ipad等设备进行学习；</li>
 </ol>
-</blockquote>
-<blockquote>
 <p>当然这个思路的缺点在于一个月的服务器价格大概在100-200元之间，还算是一笔不小的花销。这里建议大家至少选购2个cpu核心的服务器。</p>
-</blockquote>
-<blockquote>
 <p>能够用100-200块钱提前尝试一下自己是否适合理论计算的操作环境和工作方式我觉得还是很值得的。当我们对vasp和理论计算有了一定的了解之后，可以再根据自己的需求进行设备的选择。</p>
 </blockquote>
 <h2 id="1-3-编译环境选择"><a href="#1-3-编译环境选择" class="headerlink" title="1.3 编译环境选择"></a>1.3 编译环境选择</h2><p>网上很多编译教程因为种种原因，编译环境较为复杂，有很多引入openmpi等辅助，在本指南正建议大家直接使用较新版本的Intel® Parallel Studio XE工具集直接进行编译。其中含有vasp所需的各种库。并且据说运行效率还会更高。</p>
@@ -744,7 +736,7 @@
 <li><code>sudo apt-get install gcc-multilib</code></li>
 <li><code>sudo apt-get install g++-multilib</code></li>
 </ul>
-<h2 id="3-2-安装Intel编译环境"><a href="#3-2-安装Intel编译环境" class="headerlink" title="3.2 安装Intel编译环境"></a>3.2 安装Intel编译环境</h2><h3 id="3-2-1-安装包获取"><a href="#3-2-1-安装包获取" class="headerlink" title="3.2.1 安装包获取"></a>3.2.1 安装包获取</h3><p>本人使用的安装包版本为2019 update1，授权版本为学生版，可以使用edu邮箱在intel官网进行注册获得。<br>链接：[<a href="https://software.intel.com/zh-cn/qualify-for-free-software/student]" target="_blank" rel="noopener">https://software.intel.com/zh-cn/qualify-for-free-software/student]</a><br>具体步骤可参考：[<a href="https://blog.csdn.net/zh314js/article/details/76258705]" target="_blank" rel="noopener">https://blog.csdn.net/zh314js/article/details/76258705]</a></p>
+<h2 id="3-2-安装Intel编译环境"><a href="#3-2-安装Intel编译环境" class="headerlink" title="3.2 安装Intel编译环境"></a>3.2 安装Intel编译环境</h2><h3 id="3-2-1-安装包获取"><a href="#3-2-1-安装包获取" class="headerlink" title="3.2.1 安装包获取"></a>3.2.1 安装包获取</h3><p>本人使用的安装包版本为2019 update1，授权版本为学生版，可以使用edu邮箱在intel官网进行注册获得。<br>链接：[<a href="https://software.intel.com/zh-cn/qualify-for-free-software/student" target="_blank" rel="noopener">https://software.intel.com/zh-cn/qualify-for-free-software/student</a>]<br>具体步骤可参考：[<a href="https://blog.csdn.net/zh314js/article/details/76258705" target="_blank" rel="noopener">https://blog.csdn.net/zh314js/article/details/76258705</a>]</p>
 <h3 id="3-2-2-具体安装步骤"><a href="#3-2-2-具体安装步骤" class="headerlink" title="3.2.2 具体安装步骤"></a>3.2.2 具体安装步骤</h3><ol>
 <li><p>解压安装包 <code>tar –xvzf parallel_studio_xe_2019_update1_cluster_edition.tgz</code></p>
 </li>
@@ -787,12 +779,13 @@
 <li>进入intel安装目录，找到fftw3xf这个子文件夹。比如我的intel目录在opt下：<code>cd /opt/intel/mkl/interfaces/fftw3xf⁄</code></li>
 </ol>
 </li>
-<li><ol start="2">
+<li><ol>
 <li><code>make libintel64</code>编译完成后你就会得到libfftw3.mpi.a</li>
 </ol>
 </li>
 </ul>
 <h2 id="3-4-动态库和静态库"><a href="#3-4-动态库和静态库" class="headerlink" title="3.4 动态库和静态库"></a>3.4 动态库和静态库</h2><p>Linux系统中，lib文件夹下会存有很多库文件，其中分别包括·a(静态库）或·o、.so（动态库）文件。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -824,6 +817,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>当我们使用静态库进行编译时，特点在于编译后的可执行程序可以方便复制给其他人使用；当我们使用动态库进行编译时，特点在于后续编译会较为简单，但可移植性会变差。</p>
 <h1 id="第4章-编译VASP"><a href="#第4章-编译VASP" class="headerlink" title="第4章 编译VASP"></a>第4章 编译VASP</h1><h2 id="4-1-VASP获取"><a href="#4-1-VASP获取" class="headerlink" title="4.1 VASP获取"></a>4.1 VASP获取</h2><p>由于VASP是付费商业软件，需要课题组购买license获得授权并下载；<br>当然现在网络上也有很多相应版本的源代码包，各位可以自行百度。</p>
 <h2 id="4-2-编译VASP并行版本并试运行"><a href="#4-2-编译VASP并行版本并试运行" class="headerlink" title="4.2 编译VASP并行版本并试运行"></a>4.2 编译VASP并行版本并试运行</h2><ol>
@@ -884,7 +878,7 @@
 <p>接下来，我们要了解下面这样一行代码到底是什么意思：<br><code>BLAS       =-L$(MKL_PATH) -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread</code></p>
 <hr>
 <p><strong>-I (大写i)</strong></p>
-<p>编译程序按照-I指定的路进去搜索头文件。<br>-I/home/include/表示将-I/home/include/目录作为第一个寻找头文件的目录，寻找的顺序是：<br>/home/include/ –&gt;/usr/include–&gt;/usr/local/include</p>
+<p>编译程序按照-I指定的路进去搜索头文件。<br>-I/home/include/表示将-I/home/include/目录作为第一个寻找头文件的目录，寻找的顺序是：<br>/home/include/ —&gt;/usr/include—&gt;/usr/local/include</p>
 <p><strong>-L(大写l)</strong><br>表示：编译程序按照－L指定的路进去寻找库文件，一般的在-L的后面可以一次用-l指定多个库文件。<br>-L/lib/表示到/lib/目录下找库文件</p>
 <p><strong>-l(小写l)</strong><br>表示：编译程序到系统默认路进搜索，如果找不到，到当前目录，如果当前目录找不到，则到LD_LIBRARY_PATH等环境变量置顶的路进去查找，如果还找不到，那么编译程序提示找不到库。</p>
 <p>那么上述句子的意思就是：</p>
@@ -920,8 +914,8 @@
 <h1 id="小资料"><a href="#小资料" class="headerlink" title="小资料"></a>小资料</h1><h2 id="编译器："><a href="#编译器：" class="headerlink" title="编译器："></a>编译器：</h2><p><span id="compile"></span></p>
 <blockquote>
 <p>简单讲，编译器就是将“一种语言（通常为高级语言）”翻译为“另一种语言（通常为低级语言）”的程序。一个现代编译器的主要工作流程：源代码 (source code) → 预处理器 (preprocessor) → 编译器 (compiler) → 目标代码 (object code) → 链接器 (Linker) → 可执行程序 (executables)</p>
-</blockquote>
 <p>高级计算机语言便于人编写，阅读交流，维护。机器语言是计算机能直接解读、运行的。编译器将汇编或高级计算机语言源程序（Source program）作为输入，翻译成目标语言（Target language）机器代码的等价程序。源代码一般为高级语言 (High-level language)， 如Pascal、C、C++、Java、汉语编程等或汇编语言，而目标则是机器语言的目标代码（Object code），有时也称作机器代码（Machine code）。</p>
+</blockquote>
 <p><a href="#compile-b">返回</a></p>
 <h2 id="Intel®-Parallel-Studio-XE"><a href="#Intel®-Parallel-Studio-XE" class="headerlink" title="Intel® Parallel Studio XE"></a>Intel® Parallel Studio XE</h2><p><span id="intel"></span></p>
 <blockquote>
@@ -1141,8 +1135,6 @@
                     
                       
                     
-                      
-                    
                     <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -1155,8 +1147,6 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     
-                    
-                      
                     
                       
                     
