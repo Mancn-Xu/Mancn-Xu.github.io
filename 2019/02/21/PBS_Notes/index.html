@@ -104,14 +104,14 @@
 <meta property="og:site_name" content="MYVIVIDLIFE">
 <meta property="og:description" content="本文主要总结了PBS系统的一些使用方法以及在组内使用集群遇到的一些问题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.myvividlife.cn/2D5B2FAC48992298DAC9EDAF6DADBC09.jpg">
-<meta property="og:image" content="http://img.myvividlife.cn/8566911AEF0D986C75F97FAD9B33ECBF.jpg">
-<meta property="og:image" content="http://img.myvividlife.cn/31EB7748213717F8D63B715576C8168C.jpg">
-<meta property="og:updated_time" content="2019-02-26T10:40:58.155Z">
+<meta property="og:image" content="https://img.myvividlife.cn/2D5B2FAC48992298DAC9EDAF6DADBC09.jpg">
+<meta property="og:image" content="https://img.myvividlife.cn/8566911AEF0D986C75F97FAD9B33ECBF.jpg">
+<meta property="og:image" content="https://img.myvividlife.cn/31EB7748213717F8D63B715576C8168C.jpg">
+<meta property="og:updated_time" content="2019-02-26T12:20:59.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PBS学习笔记">
 <meta name="twitter:description" content="本文主要总结了PBS系统的一些使用方法以及在组内使用集群遇到的一些问题">
-<meta name="twitter:image" content="http://img.myvividlife.cn/2D5B2FAC48992298DAC9EDAF6DADBC09.jpg">
+<meta name="twitter:image" content="https://img.myvividlife.cn/2D5B2FAC48992298DAC9EDAF6DADBC09.jpg">
 
 
 
@@ -459,7 +459,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-26 18:40:58" itemprop="dateModified" datetime="2019-02-26T18:40:58+08:00">2019-02-26</time>
+                <time title="修改时间：2019-02-26 20:20:59" itemprop="dateModified" datetime="2019-02-26T20:20:59+08:00">2019-02-26</time>
               
             
           </span>
@@ -800,9 +800,9 @@
 <p>但不知为何组里的集群在节点间通讯会有问题，所以需要手动设置通信结构。这里经过测试发现组里应该使用以太网来进行节点之间的数据交换。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">方法一：</span><br><span class="line">mpiexec.hydra -genv I_MPI_FIBRIC=sch:tcp //节点内shm，节点外tcp</span><br><span class="line"></span><br><span class="line">mpiexec.hydra -genv I_MPI_FIBRIC=tcp //节点内外均为tcp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">方法二；</span><br><span class="line">export I_MPI_FIBRIC=tcp //节点内外均为tcp</span><br><span class="line"></span><br><span class="line">方法三：</span><br><span class="line">设置结构列表，使用I_MPI_FABRICS_LIST变量，例如：</span><br><span class="line">export I_MPI_FABRICS_LIST=ofi,tcp</span><br></pre></td></tr></table></figure></p>
 <p>参考文档：<a href="https://blog.csdn.net/qq_35571432/article/details/78501612" target="_blank" rel="noopener">linux下intel使用intel mpi</a></p>
 <h1 id="四、vasp作业提交脚本"><a href="#四、vasp作业提交脚本" class="headerlink" title="四、vasp作业提交脚本"></a>四、vasp作业提交脚本</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">sub.pbs代码示例及解析：</span><br><span class="line"></span><br><span class="line"># Job: Task</span><br><span class="line">#</span><br><span class="line">#PBS -N //作业名</span><br><span class="line">#PBS -m n //是否发送邮件</span><br><span class="line">#PBS -l nodes=1:ppn=20 //调用系统资源，nodes=1:ppn=20，表示调用1个节点，每节点调用24核心</span><br><span class="line">#PBS -l walltime=1696:00:00 //申请计算时间，此处表示要求计算1696小时</span><br><span class="line">#PBS -l mem=120000mb //\调用系统内存</span><br><span class="line">#PBS -e /your_folder/$PBS_JOBID.err //错误输出重定向及命名，使用绝对路径</span><br><span class="line">#PBS -o /your_folder/$PBS_JOBID.out //标准输出重定向及命名，使用绝对路径</span><br><span class="line">#PBS -q batch //申请队列类型</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">export PATH=$PATH:.:/your_direction/vasp.5.4.4_vtst/bin //将vasp可执行文件的目录临时添加进环境变量</span><br><span class="line"></span><br><span class="line">source /opt/intel/composer_xe_2015/bin/compilervars.sh intel64 //intel编译器的环境变量</span><br><span class="line">source /opt/intel/mkl/bin/intel64/mklvars_intel64.sh //intel_mkl数学库的环境变量</span><br><span class="line">source /opt/intel/impi/5.0.2.044/bin64/mpivars.sh //mpi并行的环境变量</span><br><span class="line"></span><br><span class="line">cd /your_VASP_Cal_Folder/  //进入VASP计算目录</span><br><span class="line"></span><br><span class="line">mpiexec.hydra -n 20 vasp_std //并行命令，调用1个节点，每个节点20个核心，运行vasp_std程序</span><br></pre></td></tr></table></figure>
-<h1 id="五-、其它配置文件（部分协议已经过时）"><a href="#五-、其它配置文件（部分协议已经过时）" class="headerlink" title="五*、其它配置文件（部分协议已经过时）"></a>五*、其它配置文件（部分协议已经过时）</h1><p><img src="http://img.myvividlife.cn/2D5B2FAC48992298DAC9EDAF6DADBC09.jpg" alt="mpirun-intel mpi"></p>
-<p><img src="http://img.myvividlife.cn/8566911AEF0D986C75F97FAD9B33ECBF.jpg" alt="mpirun-open mpi"></p>
-<p><img src="http://img.myvividlife.cn/31EB7748213717F8D63B715576C8168C.jpg" alt="PBS_script"></p>
+<h1 id="五-、其它配置文件（部分协议已经过时）"><a href="#五-、其它配置文件（部分协议已经过时）" class="headerlink" title="五*、其它配置文件（部分协议已经过时）"></a>五*、其它配置文件（部分协议已经过时）</h1><p><img src="https://img.myvividlife.cn/2D5B2FAC48992298DAC9EDAF6DADBC09.jpg" alt="mpirun-intel mpi"></p>
+<p><img src="https://img.myvividlife.cn/8566911AEF0D986C75F97FAD9B33ECBF.jpg" alt="mpirun-open mpi"></p>
+<p><img src="https://img.myvividlife.cn/31EB7748213717F8D63B715576C8168C.jpg" alt="PBS_script"></p>
 
       
     </div>

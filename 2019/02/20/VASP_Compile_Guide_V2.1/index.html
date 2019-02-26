@@ -104,14 +104,14 @@
 <meta property="og:site_name" content="MYVIVIDLIFE">
 <meta property="og:description" content="本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.myvividlife.cn/291858178C1D5BE8EE86462A617FF51D.jpg">
-<meta property="og:image" content="http://img.myvividlife.cn/%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF1.png">
-<meta property="og:image" content="http://img.myvividlife.cn/15431462551055.jpg">
-<meta property="og:updated_time" content="2019-02-20T07:41:56.555Z">
+<meta property="og:image" content="https://img.myvividlife.cn/291858178C1D5BE8EE86462A617FF51D.jpg">
+<meta property="og:image" content="https://img.myvividlife.cn/%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF1.png">
+<meta property="og:image" content="https://img.myvividlife.cn/15431462551055.jpg">
+<meta property="og:updated_time" content="2019-02-26T12:21:07.887Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【VASP】给真·小白看的VASP本地编译自学指南 Ver 2.1">
 <meta name="twitter:description" content="本文主要介绍了VASP新人在本机进行VASP源码编译的流程，以及一些Linux基础操作知识。记录了本人学习过程中的一些经验。">
-<meta name="twitter:image" content="http://img.myvividlife.cn/291858178C1D5BE8EE86462A617FF51D.jpg">
+<meta name="twitter:image" content="https://img.myvividlife.cn/291858178C1D5BE8EE86462A617FF51D.jpg">
 
 
 
@@ -442,12 +442,24 @@
                 
               
 
-              <time title="创建时间：2019-02-20 10:47:09 / 修改时间：15:41:56" itemprop="dateCreated datePublished" datetime="2019-02-20T10:47:09+08:00">2019-02-20</time>
+              <time title="创建时间：2019-02-20 10:47:09" itemprop="dateCreated datePublished" datetime="2019-02-20T10:47:09+08:00">2019-02-20</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-26 20:21:07" itemprop="dateModified" datetime="2019-02-26T20:21:07+08:00">2019-02-26</time>
               
             
           </span>
@@ -693,8 +705,8 @@
 </li>
 </ul>
 <hr>
-<p><img src="http://img.myvividlife.cn/291858178C1D5BE8EE86462A617FF51D.jpg" alt="291858178C1D5BE8EE86462A617FF51D"></p>
-<h5 id="ii-source和sh执行bash脚本的区别"><a href="#ii-source和sh执行bash脚本的区别" class="headerlink" title="ii. source和sh执行bash脚本的区别"></a>ii. source和sh执行bash脚本的区别</h5><p><img src="http://img.myvividlife.cn/%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF1.png" alt="演示文稿1"></p>
+<p><img src="https://img.myvividlife.cn/291858178C1D5BE8EE86462A617FF51D.jpg" alt="291858178C1D5BE8EE86462A617FF51D"></p>
+<h5 id="ii-source和sh执行bash脚本的区别"><a href="#ii-source和sh执行bash脚本的区别" class="headerlink" title="ii. source和sh执行bash脚本的区别"></a>ii. source和sh执行bash脚本的区别</h5><p><img src="https://img.myvividlife.cn/%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF1.png" alt="演示文稿1"></p>
 <blockquote>
 <p>参考：<a href="https://blog.csdn.net/s740556472/article/details/78176087" target="_blank" rel="noopener">https://blog.csdn.net/s740556472/article/details/78176087</a> #linux下的source,sh,./三者区别</p>
 </blockquote>
@@ -864,7 +876,7 @@
 <p><strong>BLACS</strong><br>BLACS （Basic Linear Algebra Communication Subprograms），是一个专门为线性代数运算而设计的消息传递库；</p>
 <p><strong>LAPACK</strong><br>LAPACK （linear algebra package），是著名的线性代数库，也是Netlib用fortran语言编写的。其底层是BLAS，在此基础上定义了很多矩阵和向量高级运算的函数，如矩阵分解、求逆和求奇异值等。该库的运行效率比BLAS库高。<br>从某个角度讲，LAPACK也可以称作是一组科学计算（矩阵运算）的接口规范。Netlib实现了这一组规范的功能，得到的这个库叫做LAPACK库。<br>前面BLAS和LAPACK的实现均是用的Fortran语言。为了方便c程序的调用，Netlib开发了CBLAS和CLAPACK。其本质是在BLAS和LAPACK的基础上，增加了c的调用方式。</p>
 <p><strong>ScaLAPACK</strong><br>主要针对密集和带状线性代数系统，提供若干线性代数求解功能，如各种矩阵运算，矩阵分解，线性方程组求解，最小二乘问题，本征值问题，奇异值问题等，具有高效、可移植、可伸缩、高可靠性等优点，利用它的求解库可以开发出基于线性代数运算的并行应用程序。</p>
-<p><img src="http://img.myvividlife.cn/15431462551055.jpg" alt="15431462551055"></p>
+<p><img src="https://img.myvividlife.cn/15431462551055.jpg" alt="15431462551055"></p>
 <blockquote>
 <p>上图中在水平线以下标记为 local 的软件成分是单处理器/单进程调用的，数据只存储在单进程上；在水平线以上标记为 global 的软件成分一般是同步并行调用的，其数据（矩阵或向量）分布在多个处理器/多个进程上。</p>
 </blockquote>
