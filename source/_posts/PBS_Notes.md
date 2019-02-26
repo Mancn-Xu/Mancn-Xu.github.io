@@ -184,6 +184,18 @@ mpi补充阅读：
 
 **此时节点和核心的分配完全由PBS系统进行分配，跨节点运行时也会自动进行核心和节点的匹配**
 
+另外，在实际操作过程中，我发现部分同学对于PBS和`mpirun -np`的作用可能不太理解，在这里想简单解释如下：
+1. PBS是作业分配系统，通过.pbs脚本像PBS作业管理软件申请相应的核心数量和节点数量。
+2. 但要注意，这并不意味着通过分配的作业会完全按照申请的资源运行。下面看一个小小的例子：
+
+```
+#PBS -l nodes=2:ppn=20 //请求分配2个节点，20个核心
+
+mpirun -np 30 vsap_std //30核心并行vsap_std程序
+
+```
+这意味着`#PBS -l`命令部分决定问集群申请多少计算资源。
+`mpirun -np`部分决定vasp程序实际使用多少个节点并行。
 ---
 
 ### mpirun:
@@ -284,7 +296,7 @@ export I_MPI_FIBRIC=tcp //节点内外均为tcp
 export I_MPI_FABRICS_LIST=ofi,tcp
 ```
 
-
+参考文档：[linux下intel使用intel mpi](https://blog.csdn.net/qq_35571432/article/details/78501612)
 
 
 # 四、vasp作业提交脚本
@@ -318,8 +330,8 @@ mpiexec.hydra -n 20 vasp_std //并行命令，调用1个节点，每个节点20�
 
 # 五*、其它配置文件（部分协议已经过时）
  
-![mpirun-intel mpi](http://img.myvividlife.cn/2D5B2FAC48992298DAC9EDAF6DADBC09.jpg)
+![mpirun-intel mpi](https://img.myvividlife.cn/2D5B2FAC48992298DAC9EDAF6DADBC09.jpg)
 
-![mpirun-open mpi](http://img.myvividlife.cn/8566911AEF0D986C75F97FAD9B33ECBF.jpg)
+![mpirun-open mpi](https://img.myvividlife.cn/8566911AEF0D986C75F97FAD9B33ECBF.jpg)
 
-![PBS_script](http://img.myvividlife.cn/31EB7748213717F8D63B715576C8168C.jpg)
+![PBS_script](https://img.myvividlife.cn/31EB7748213717F8D63B715576C8168C.jpg)

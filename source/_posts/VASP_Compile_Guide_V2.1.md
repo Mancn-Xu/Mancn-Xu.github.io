@@ -309,12 +309,12 @@ http://www.runoob.com/linux/linux-vim.html
 ---
     
 
-![291858178C1D5BE8EE86462A617FF51D](http://img.myvividlife.cn/291858178C1D5BE8EE86462A617FF51D.jpg)
+![291858178C1D5BE8EE86462A617FF51D](https://img.myvividlife.cn/291858178C1D5BE8EE86462A617FF51D.jpg)
 
 
 
 ##### ii. source和sh执行bash脚本的区别
-![演示文稿1](http://img.myvividlife.cn/%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF1.png)
+![演示文稿1](https://img.myvividlife.cn/%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF1.png)
 
 
 >参考：https://blog.csdn.net/s740556472/article/details/78176087 #linux下的source,sh,./三者区别
@@ -537,7 +537,7 @@ LAPACK （linear algebra package），是著名的线性代数库，也是Netlib
 **ScaLAPACK**
 主要针对密集和带状线性代数系统，提供若干线性代数求解功能，如各种矩阵运算，矩阵分解，线性方程组求解，最小二乘问题，本征值问题，奇异值问题等，具有高效、可移植、可伸缩、高可靠性等优点，利用它的求解库可以开发出基于线性代数运算的并行应用程序。
 
-![15431462551055](http://img.myvividlife.cn/15431462551055.jpg)
+![15431462551055](https://img.myvividlife.cn/15431462551055.jpg)
 
 
 >上图中在水平线以下标记为 local 的软件成分是单处理器/单进程调用的，数据只存储在单进程上；在水平线以上标记为 global 的软件成分一般是同步并行调用的，其数据（矩阵或向量）分布在多个处理器/多个进程上。
