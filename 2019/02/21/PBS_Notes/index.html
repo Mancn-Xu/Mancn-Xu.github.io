@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://img.myvividlife.cn/2D5B2FAC48992298DAC9EDAF6DADBC09.jpg">
 <meta property="og:image" content="http://img.myvividlife.cn/8566911AEF0D986C75F97FAD9B33ECBF.jpg">
 <meta property="og:image" content="http://img.myvividlife.cn/31EB7748213717F8D63B715576C8168C.jpg">
-<meta property="og:updated_time" content="2019-02-21T12:01:16.902Z">
+<meta property="og:updated_time" content="2019-02-26T10:40:58.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PBS学习笔记">
 <meta name="twitter:description" content="本文主要总结了PBS系统的一些使用方法以及在组内使用集群遇到的一些问题">
@@ -442,12 +442,24 @@
                 
               
 
-              <time title="创建时间：2019-02-21 19:37:09 / 修改时间：20:01:16" itemprop="dateCreated datePublished" datetime="2019-02-21T19:37:09+08:00">2019-02-21</time>
+              <time title="创建时间：2019-02-21 19:37:09" itemprop="dateCreated datePublished" datetime="2019-02-21T19:37:09+08:00">2019-02-21</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-26 18:40:58" itemprop="dateModified" datetime="2019-02-26T18:40:58+08:00">2019-02-26</time>
               
             
           </span>
@@ -726,8 +738,14 @@
 <p><code>mpirun -n 20 vasp_std</code> //20核心并行vasp_std程序，vasp_std需要加入环境变量</p>
 <p><code>mpiexec.hydra -n 20 vasp_std</code> //20核心并行vasp_std程序，vasp_std需要加入环境变量</p>
 <p><strong>此时节点和核心的分配完全由PBS系统进行分配，跨节点运行时也会自动进行核心和节点的匹配</strong></p>
-<hr>
-<h3 id="mpirun"><a href="#mpirun" class="headerlink" title="mpirun:"></a>mpirun:</h3><blockquote>
+<p>另外，在实际操作过程中，我发现部分同学对于PBS和<code>mpirun -np</code>的作用可能不太理解，在这里想简单解释如下：</p>
+<ol>
+<li>PBS是作业分配系统，通过.pbs脚本像PBS作业管理软件申请相应的核心数量和节点数量。</li>
+<li>但要注意，这并不意味着通过分配的作业会完全按照申请的资源运行。下面看一个小小的例子：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#PBS -l nodes=2:ppn=20 //请求分配2个节点，20个核心</span><br><span class="line"></span><br><span class="line">mpirun -np 30 vsap_std //30核心并行vsap_std程序</span><br></pre></td></tr></table></figure>
+<p>这意味着<code>#PBS -l</code>命令部分决定问集群申请多少计算资源。</p>
+<h2 id="mpirun-np部分决定vasp程序实际使用多少个节点并行。"><a href="#mpirun-np部分决定vasp程序实际使用多少个节点并行。" class="headerlink" title="mpirun -np部分决定vasp程序实际使用多少个节点并行。"></a><code>mpirun -np</code>部分决定vasp程序实际使用多少个节点并行。</h2><h3 id="mpirun"><a href="#mpirun" class="headerlink" title="mpirun:"></a>mpirun:</h3><blockquote>
 <p>Use this command to launch an MPI job. The mpirun command uses Hydra as the underlying process manager.<br>The mpirun command detects if the MPI job is submitted from within a session allocated using a job scheduler like Torque<em>, PBS Pro</em>, LSF<em>, Parallelnavi</em> NQS<em>, SLURM</em>, Univa<em> Grid Engine</em>, or LoadLeveler*. The mpirun command extracts the host list from the respective environment and uses these nodes automatically according to the above scheme.<br>In this case, you do not need to create a host file. Allocate the session using a job scheduler installed on your system, and use the mpirun command inside this session to run your MPI job.</p>
 </blockquote>
 <hr>
@@ -835,6 +853,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/02/26/InfinitiBand_Notes/" rel="prev" title="简单介绍InfiniBand">
+                简单介绍InfiniBand <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -905,7 +927,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -943,7 +965,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1005,7 +1029,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、PBS简介"><span class="nav-text">一、PBS简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、PBS常用命令"><span class="nav-text">二、PBS常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-qsub命令"><span class="nav-text">2.1 qsub命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更多设置："><span class="nav-text">更多设置：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-qstat命令"><span class="nav-text">2.2 qstat命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-qdel命令"><span class="nav-text">2.3 qdel命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、MPI运行部分"><span class="nav-text">三、MPI运行部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-mpi简介"><span class="nav-text">3.1 mpi简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-MPI常用命令"><span class="nav-text">3.2 MPI常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mpirun"><span class="nav-text">mpirun:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-MPI进阶"><span class="nav-text">3.3* MPI进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-MPI通讯结构"><span class="nav-text">3.4* MPI通讯结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、vasp作业提交脚本"><span class="nav-text">四、vasp作业提交脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-、其它配置文件（部分协议已经过时）"><span class="nav-text">五*、其它配置文件（部分协议已经过时）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、PBS简介"><span class="nav-text">一、PBS简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、PBS常用命令"><span class="nav-text">二、PBS常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-qsub命令"><span class="nav-text">2.1 qsub命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更多设置："><span class="nav-text">更多设置：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-qstat命令"><span class="nav-text">2.2 qstat命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-qdel命令"><span class="nav-text">2.3 qdel命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、MPI运行部分"><span class="nav-text">三、MPI运行部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-mpi简介"><span class="nav-text">3.1 mpi简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-MPI常用命令"><span class="nav-text">3.2 MPI常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mpirun-np部分决定vasp程序实际使用多少个节点并行。"><span class="nav-text">mpirun -np部分决定vasp程序实际使用多少个节点并行。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mpirun"><span class="nav-text">mpirun:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-MPI进阶"><span class="nav-text">3.3* MPI进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-MPI通讯结构"><span class="nav-text">3.4* MPI通讯结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、vasp作业提交脚本"><span class="nav-text">四、vasp作业提交脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-、其它配置文件（部分协议已经过时）"><span class="nav-text">五*、其它配置文件（部分协议已经过时）</span></a></li></ol></div>
             
 
           </div>

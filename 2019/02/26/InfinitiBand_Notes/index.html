@@ -96,21 +96,25 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="资源">
-<meta property="og:url" content="https://myvivi.life/resources/index.html">
+  <meta name="description" content="本文简单介绍集群中的另一种不为人所知的高速数据交换通道——IB网。具体内容不会深入，只是简单记录一些基础知识。">
+<meta name="keywords" content="VASP,集群">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单介绍InfiniBand">
+<meta property="og:url" content="https://myvivi.life/2019/02/26/InfinitiBand_Notes/index.html">
 <meta property="og:site_name" content="MYVIVIDLIFE">
+<meta property="og:description" content="本文简单介绍集群中的另一种不为人所知的高速数据交换通道——IB网。具体内容不会深入，只是简单记录一些基础知识。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-20T08:02:18.973Z">
+<meta property="og:updated_time" content="2019-02-26T11:55:53.814Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="资源">
+<meta name="twitter:title" content="简单介绍InfiniBand">
+<meta name="twitter:description" content="本文简单介绍集群中的另一种不为人所知的高速数据交换通道——IB网。具体内容不会深入，只是简单记录一些基础知识。">
 
 
 
 
 
 
-  <link rel="canonical" href="https://myvivi.life/resources/">
+  <link rel="canonical" href="https://myvivi.life/2019/02/26/InfinitiBand_Notes/">
 
 
 
@@ -120,7 +124,7 @@
   };
 </script>
 
-  <title>资源 | MYVIVIDLIFE</title>
+  <title>简单介绍InfiniBand | MYVIVIDLIFE</title>
   
 
 
@@ -312,7 +316,7 @@
         
         
           
-          <li class="menu-item menu-item-resources menu-item-active">
+          <li class="menu-item menu-item-resources">
 
     
     
@@ -371,87 +375,225 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://myvivi.life/2019/02/26/InfinitiBand_Notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mancn">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MYVIVIDLIFE">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">资源
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">简单介绍InfiniBand
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-26 19:00:09 / 修改时间：19:55:53" itemprop="dateCreated datePublished" datetime="2019-02-26T19:00:09+08:00">2019-02-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/VASP自学成才/" itemprop="url" rel="index"><span itemprop="name">VASP自学成才</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/VASP自学成才/集群里的那些坑坑洼洼/" itemprop="url" rel="index"><span itemprop="name">集群里的那些坑坑洼洼</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">本文简单介绍集群中的另一种不为人所知的高速数据交换通道——IB网。具体内容不会深入，只是简单记录一些基础知识。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>一、InfiniBand（IB网）简介</p>
+<p>我们都知道对于集群计算而言，其最大的优势在于并行计算。但在大规模并行计算的同时，如何在节点之间快速传输和交换数据成为了集群所需要面对的严峻考验。</p>
+<p>一个集群中需要支持多种类型的数据流，所以，我们可以选择在同一集群中同时采用不同类型的互联网络，这些不同的网络将各自支持不同的网络协议，同时，这些不同的网络也拥有不同的网络性能和特性。例如，基于以太网的网络，其带宽一般可以达到千兆（1Gb/s）、万兆（10Gb/s），可以通过TCP/IP通道来传输信息，但缺点是需要占用大量CPU资源来处理网络通信，导致整体处理效率的下降。</p>
+<p>Infiniband是一种新型的总线结构，它可以消除目前阻碍服务器和存储系统的瓶颈问题，是一种将服务器、网络设备和存储设备连接在一起的交换结构的I/O技术。 它是一种致力于服务器端而不是PC端的高性能I/O技术。</p>
+<p>现阶段其理论带宽最高可达44Gb/s，是常见千兆以太网的44倍。对于需要大量进行并行计算的集群来说，无疑是最为优秀的信号传输方案。</p>
+<p>经过测试其可以大大减小多节点并行时数据在节点交换所需的时间。</p>
+<p>二、集群中遇到的问题</p>
+<p>上一篇文章<a href="https://myvivi.life/2019/02/21/PBS_Notes/">《PBS学习笔记》</a>中说到，在节尝试并行任务的时候，集群一直报错：</p>
+<p>任务提交脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#PBS -l nodes=2:ppn=20</span><br><span class="line">mpiexec.hydra -n 30 vasp_std &gt; VASP.out</span><br></pre></td></tr></table></figure></p>
+<p>错误提示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#PBS 输出文件</span><br><span class="line">[18:cu40] unexpected DAPL event 0x4008</span><br><span class="line">Assertion failed in file ../../src/mpid/ch3/channels/nemesis/netmod/dapl/dapl_init_rc.c at line 1525: 0</span><br><span class="line">internal ABORT - process 0</span><br><span class="line">[19:cu40] unexpected DAPL event 0x4008</span><br><span class="line">Assertion failed in file ../../src/mpid/ch3/channels/nemesis/netmod/dapl/dapl_init_rc.c at line 1525: 0</span><br><span class="line">internal ABORT - process 0</span><br><span class="line"></span><br><span class="line">#VASP 输出文件</span><br><span class="line">cu34:CMA:65dd:a1ebf700: 60167511 us(7 us): dapl_cma_active: CM ADDR ERROR: -&gt; DST 10.0.0.32 retry (1)..</span><br><span class="line">cu34:CMA:65dd:a1ebf700: 60167516 us(5 us): dapl_cma_active: ARP_ERR, retries(15) exhausted -&gt; DST 10.0.0.32,25925</span><br><span class="line">cu34:CMA:65df:d8134700: 60167529 us(4 us): dapl_cma_active: ARP_ERR, retries(15) exhausted -&gt; DST 10.0.0.32,25925</span><br><span class="line">cu34:CMA:65d7:bac99700: 60163599 us(4004212 us!!!): dapl_cma_active: CM ADDR ERROR: -&gt; DST 10.0.0.32 retry (1)..</span><br><span class="line">cu34:CMA:65d7:bac99700: 60163613 us(14 us): dapl_cma_active: ARP_ERR, retries(15) exhausted -&gt; DST 10.0.0.32,25916</span><br></pre></td></tr></table></figure></p>
+<p>后来经过个人查阅，虽然通过将通信协议强制改为<code>shm:tcp</code>可以解决问题，但是发现并行效率相比单节点没有任何优势，这是因为集群使用千兆以太网，本身效率就不高。</p>
+<p>后来通过百度、谷歌等各种查询，隐隐约约发觉是因为IB网卡的驱动没有装好，导致整个IB网的连接是断开的。根据网络的指示在user用户下找了半天也没找到相应的驱动那个程序和服务开启方法。遂暂时作罢。</p>
+<p>这几天刚好有工程师过来日常维护，便向工程师询问了相关IB网络的问题。后来经过了解是因为IB网络的服务在配置好后一直没有开启，导致以默认的网络拓扑进行通信是，IB网不通发生错误。</p>
+<p>经过工程师介绍，现在主流的IB网硬件供应商为：Intel/英特尔和Mellanox/迈络斯，这两家分别提供了不同的IB交换机驱动，如果需要自行安装的话一定要认准集群的网卡型号。当然最好的还是请工程师来排查、部署。</p>
+<p>心得：<br>日后集群上计算的大家如果遇到类似的错误提示，建议大家直接致电集群工程师进行维护和排查。自己排查宛如大海捞针，真的太辛苦了。</p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/VASP/" rel="tag"># VASP</a>
+          
+            <a href="/tags/集群/" rel="tag"># 集群</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/21/PBS_Notes/" rel="next" title="PBS学习笔记">
+                <i class="fa fa-chevron-left"></i> PBS学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/26/Ecut_notes/" rel="prev" title="ENCUT到底是个什么东东">
+                ENCUT到底是个什么东东 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -725,6 +867,8 @@
 
   
 
+
+  
 
 
   
