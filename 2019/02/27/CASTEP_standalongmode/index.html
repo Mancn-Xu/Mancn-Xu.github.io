@@ -104,10 +104,14 @@
 <meta property="og:site_name" content="MYVIVIDLIFE">
 <meta property="og:description" content="本文主要介绍在standalone模式下使用MS，也就是使用命令行向集群提交CASTEP作业。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-27T14:02:09.869Z">
+<meta property="og:image" content="https://img.myvividlife.cn/15512740034694.jpg">
+<meta property="og:image" content="https://img.myvividlife.cn/15512741300635.jpg">
+<meta property="og:image" content="https://img.myvividlife.cn/15512742386388.jpg">
+<meta property="og:updated_time" content="2019-02-27T14:02:59.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用standalone模式（命令行）运行CASTEP">
 <meta name="twitter:description" content="本文主要介绍在standalone模式下使用MS，也就是使用命令行向集群提交CASTEP作业。">
+<meta name="twitter:image" content="https://img.myvividlife.cn/15512740034694.jpg">
 
 
 
@@ -438,7 +442,7 @@
                 
               
 
-              <time title="创建时间：2019-02-27 22:09:09 / 修改时间：22:02:09" itemprop="dateCreated datePublished" datetime="2019-02-27T22:09:09+08:00">2019-02-27</time>
+              <time title="创建时间：2019-02-27 22:09:09 / 修改时间：22:02:59" itemprop="dateCreated datePublished" datetime="2019-02-27T22:09:09+08:00">2019-02-27</time>
             
 
             
@@ -504,9 +508,114 @@
       
 
       
-        <p>Material Studio作为一款强大的材料计算模拟软件，其主要的优势在于有强大的图形界面支持，极大地方便了材料结构模型的建立。</p>
+        <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>Material Studio作为一款强大的材料计算模拟软件，其主要的优势在于有强大的图形界面支持，极大地方便了材料结构模型的建立。</p>
 <p>但相信也会有一部分同学更喜欢使用Linux下的命令行进行交互，这样可以通过脚本实现一些列的批量操作。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/sh/</span></span><br><span class="line"></span><br><span class="line">[shenjie@mu01 dapl]$ <span class="built_in">cd</span> <span class="built_in">test</span></span><br><span class="line">[shenjie@mu01 <span class="built_in">test</span>]$ ls</span><br><span class="line">BaTiO3.castep  BaTiO3.param</span><br><span class="line">[shenjie@mu01 <span class="built_in">test</span>]$</span><br><span class="line"></span><br><span class="line">```](---</span><br><span class="line">title: 使用standalone模式（命令行）运行CASTEP</span><br><span class="line">date: 2019-02-26 19:09:09</span><br><span class="line">categories:  </span><br><span class="line">- CASTEP</span><br><span class="line">- 集群里的那些坑坑洼洼</span><br><span class="line">tags: </span><br><span class="line"> - CASTEP</span><br><span class="line"> - Material Studio</span><br><span class="line"></span><br><span class="line">description: 本文主要介绍在standalone模式下使用MS，也就是使用命令行向集群提交CASTEP作业。</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一、简介</span></span><br><span class="line"></span><br><span class="line">Material Studio作为一款强大的材料计算模拟软件，其主要的优势在于有强大的图形界面支持，极大地方便了材料结构模型的建立。</span><br><span class="line"></span><br><span class="line">但相信也会有一部分同学更喜欢使用Linux下的命令行进行交互，这样可以通过脚本实现一些列的批量操作。</span><br><span class="line"></span><br><span class="line">MS本身提供了两种方式进行批量化计算，其一是通过其内置的API使用perl语言在MS软件内进行批量操作；除此之外，MS还提供了一种`standalone`模式，可以直接调用各模块的执行程序配合MPI以及PBS作业系统使用。</span><br><span class="line"></span><br><span class="line">关于MS Linux并行版的集群配置问题在这里不会详细展开，本文仅适用于组内已经配置好MS Linux并行版、MPI并行套件和PBS作业系统的同学。</span><br><span class="line"></span><br><span class="line">**文章的所有内容均出自Material Studio 内置Tutorials。如果有疑问或者是希望详细了解，还望各位查阅手册。**</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 二、CASTEP输入文件准备</span></span><br><span class="line"></span><br><span class="line">与VASP类似，如果我们想要在命令行中运行CASTEP模块需要先了解CASTEP模块所需要的输入文件。</span><br><span class="line">根据手册介绍:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">File <span class="built_in">type</span>	|	Input or Output	|	Brief description</span><br><span class="line">---	|	---	|	---</span><br><span class="line">.param * |	**Input**	|	General input file (text)</span><br><span class="line">.cell *	|	**Input**	|	Structure input file (text)</span><br><span class="line">.castep	|	Output	|	Report on the calculation (text)</span><br><span class="line">.check, .castep_bin *	|	Output	|	Charge density, wavefunctions, structure, and so on (binary)</span><br><span class="line">.bands *	|	Output	|	Eigenvalues (text)</span><br><span class="line">.cst_esp *	|	Output	|	Electrostatic potentials (binary)</span><br><span class="line">.geom *	|	Output	|	Geometry optimization trajectory data (text)</span><br><span class="line">.md *	|	Output	|	Molecular dynamics trajectory data (text)</span><br><span class="line">.ts *	|	Output	|	Transition state search trajectory data (text)</span><br><span class="line">.phonon *	|	Output	|	Phonon data (text)</span><br><span class="line">.pdos_weights *	|	Output	|	Weights required to calculate PDOS (binary)</span><br><span class="line">.cst_ome *	|	Output	|	Matrix elements required to calculate optical properties (binary)</span><br><span class="line">.elf *	|	Output	|	Electron localization <span class="keyword">function</span>, ELF (binary)</span><br><span class="line">.bib	|	Output	|	Bibliography file <span class="keyword">in</span> BibTeX format (text)</span><br><span class="line">.otfg *	|	N/A	|	Information required <span class="keyword">for</span> generating pseudopotential files on the fly stored on the client (text)</span><br><span class="line"></span><br><span class="line">也就是说我们主要需要准备两个文件：</span><br><span class="line"></span><br><span class="line">- `.param`文件：该文件即是CASTEP calculattion图形化界面所对应的内容</span><br><span class="line"></span><br><span class="line">- `.cell`文件：该文件在win操作系统下是一个隐藏文件，其对应于可视化界面中的.xsd文件</span><br><span class="line"></span><br><span class="line">也就是说最简单的单点能计算，我们只需要导出`.param`文件和`.cell`文件并发送至服务器即可。</span><br><span class="line"></span><br><span class="line">除此之外当然是必不可少的`.pbs`文件。</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.1 获取CASTEP输入文件</span></span><br><span class="line"></span><br><span class="line">1.在图形界面的Calculation界面中设置好参数，点击底部的`Save Files`按钮，可以导出计算参数。</span><br><span class="line">![-w595](https://img.myvividlife.cn/15512740034694.jpg)</span><br><span class="line"></span><br><span class="line">2.在左侧文件夹中我们已经可以看到以.param为后缀的文件。</span><br><span class="line">![-w679](https://img.myvividlife.cn/15512741300635.jpg)</span><br><span class="line"></span><br><span class="line">3.在对应地文件夹中可以看到`.cell`为后缀的结构文件。</span><br><span class="line">![-w599](https://img.myvividlife.cn/15512742386388.jpg)</span><br><span class="line"></span><br><span class="line">4.现在我们已经准备好了两个输入文件，通过FTP软件或者是MS中的Tools-File Transfer工具可以将准备好的文件上传至集群中。</span><br><span class="line"></span><br><span class="line">```sh</span><br><span class="line">[shenjie@mu01 dapl]$ <span class="built_in">cd</span> <span class="built_in">test</span></span><br><span class="line">[shenjie@mu01 <span class="built_in">test</span>]$ ls</span><br><span class="line">BaTiO3.castep  BaTiO3.param</span><br><span class="line">[shenjie@mu01 <span class="built_in">test</span>]$</span><br></pre></td></tr></table></figure>
+<p>MS本身提供了两种方式进行批量化计算，其一是通过其内置的API使用perl语言在MS软件内进行批量操作；除此之外，MS还提供了一种<code>standalone</code>模式，可以直接调用各模块的执行程序配合MPI以及PBS作业系统使用。</p>
+<p>关于MS Linux并行版的集群配置问题在这里不会详细展开，本文仅适用于组内已经配置好MS Linux并行版、MPI并行套件和PBS作业系统的同学。</p>
+<p><strong>文章的所有内容均出自Material Studio 内置Tutorials。如果有疑问或者是希望详细了解，还望各位查阅手册。</strong></p>
+<h2 id="二、CASTEP输入文件准备"><a href="#二、CASTEP输入文件准备" class="headerlink" title="二、CASTEP输入文件准备"></a>二、CASTEP输入文件准备</h2><p>与VASP类似，如果我们想要在命令行中运行CASTEP模块需要先了解CASTEP模块所需要的输入文件。<br>根据手册介绍:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>File type</th>
+<th>Input or Output</th>
+<th>Brief description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.param *</td>
+<td><strong>Input</strong></td>
+<td>General input file (text)</td>
+</tr>
+<tr>
+<td>.cell *</td>
+<td><strong>Input</strong></td>
+<td>Structure input file (text)</td>
+</tr>
+<tr>
+<td>.castep</td>
+<td>Output</td>
+<td>Report on the calculation (text)</td>
+</tr>
+<tr>
+<td>.check, .castep_bin *</td>
+<td>Output</td>
+<td>Charge density, wavefunctions, structure, and so on (binary)</td>
+</tr>
+<tr>
+<td>.bands *</td>
+<td>Output</td>
+<td>Eigenvalues (text)</td>
+</tr>
+<tr>
+<td>.cst_esp *</td>
+<td>Output</td>
+<td>Electrostatic potentials (binary)</td>
+</tr>
+<tr>
+<td>.geom *</td>
+<td>Output</td>
+<td>Geometry optimization trajectory data (text)</td>
+</tr>
+<tr>
+<td>.md *</td>
+<td>Output</td>
+<td>Molecular dynamics trajectory data (text)</td>
+</tr>
+<tr>
+<td>.ts *</td>
+<td>Output</td>
+<td>Transition state search trajectory data (text)</td>
+</tr>
+<tr>
+<td>.phonon *</td>
+<td>Output</td>
+<td>Phonon data (text)</td>
+</tr>
+<tr>
+<td>.pdos_weights *</td>
+<td>Output</td>
+<td>Weights required to calculate PDOS (binary)</td>
+</tr>
+<tr>
+<td>.cst_ome *</td>
+<td>Output</td>
+<td>Matrix elements required to calculate optical properties (binary)</td>
+</tr>
+<tr>
+<td>.elf *</td>
+<td>Output</td>
+<td>Electron localization function, ELF (binary)</td>
+</tr>
+<tr>
+<td>.bib</td>
+<td>Output</td>
+<td>Bibliography file in BibTeX format (text)</td>
+</tr>
+<tr>
+<td>.otfg *</td>
+<td>N/A</td>
+<td>Information required for generating pseudopotential files on the fly stored on the client (text)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>也就是说我们主要需要准备两个文件：</p>
+<ul>
+<li><p><code>.param</code>文件：该文件即是CASTEP calculattion图形化界面所对应的内容</p>
+</li>
+<li><p><code>.cell</code>文件：该文件在win操作系统下是一个隐藏文件，其对应于可视化界面中的.xsd文件</p>
+</li>
+</ul>
+<p>也就是说最简单的单点能计算，我们只需要导出<code>.param</code>文件和<code>.cell</code>文件并发送至服务器即可。</p>
+<p>除此之外当然是必不可少的<code>.pbs</code>文件。</p>
+<h2 id="2-1-获取CASTEP输入文件"><a href="#2-1-获取CASTEP输入文件" class="headerlink" title="2.1 获取CASTEP输入文件"></a>2.1 获取CASTEP输入文件</h2><p>1.在图形界面的Calculation界面中设置好参数，点击底部的<code>Save Files</code>按钮，可以导出计算参数。<br><img src="https://img.myvividlife.cn/15512740034694.jpg" alt="-w595"></p>
+<p>2.在左侧文件夹中我们已经可以看到以.param为后缀的文件。<br><img src="https://img.myvividlife.cn/15512741300635.jpg" alt="-w679"></p>
+<p>3.在对应地文件夹中可以看到<code>.cell</code>为后缀的结构文件。<br><img src="https://img.myvividlife.cn/15512742386388.jpg" alt="-w599"></p>
+<p>4.现在我们已经准备好了两个输入文件，通过FTP软件或者是MS中的Tools-File Transfer工具可以将准备好的文件上传至集群中。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[shenjie@mu01 dapl]$ <span class="built_in">cd</span> <span class="built_in">test</span></span><br><span class="line">[shenjie@mu01 <span class="built_in">test</span>]$ ls</span><br><span class="line">BaTiO3.castep  BaTiO3.param</span><br><span class="line">[shenjie@mu01 <span class="built_in">test</span>]$</span><br></pre></td></tr></table></figure>
 <h2 id="2-2-准备PBS文件"><a href="#2-2-准备PBS文件" class="headerlink" title="2.2 准备PBS文件"></a>2.2 准备PBS文件</h2><p>关于PBS的使用可以详见<a href="https://myvivi.life/2019/02/21/PBS_Notes/">《PBS学习笔记》</a></p>
 <p>这里直接贴出PBS脚本</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash -l</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Job: Task</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#PBS -m n</span></span><br><span class="line"><span class="comment">#PBS -l nodes=1:ppn=20</span></span><br><span class="line"><span class="comment">#PBS -l walltime=1696:00:00</span></span><br><span class="line"><span class="comment">#PBS -e /your_dir/PBS_JOBID.err</span></span><br><span class="line"><span class="comment">#PBS -o ./PBS_JOBID.out</span></span><br><span class="line"><span class="comment">#PBS -j oe</span></span><br><span class="line"><span class="comment">#PBS -N Mancn //修改为你的任务名</span></span><br><span class="line"><span class="comment">#PBS -q batch</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#添加MS安装路径的环境变量</span></span><br><span class="line"><span class="built_in">export</span> PATH=PATH:.:/home/msi/BIOVIA172/MaterialsStudio17.2/etc/CASTEP/bin</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加MPI并行和MKL数学库的环境变量</span></span><br><span class="line"><span class="built_in">source</span> /opt/intel/composer_xe_2015/bin/compilervars.sh intel64</span><br><span class="line"><span class="built_in">source</span> /opt/intel/mkl/bin/intel64/mklvars_intel64.sh</span><br><span class="line"><span class="built_in">source</span> /opt/intel/impi/5.0.2.044/bin64/mpivars.sh</span><br><span class="line"></span><br><span class="line"><span class="comment">#cd到任务目录</span></span><br><span class="line"><span class="built_in">cd</span> PBS_O_WORKDIR</span><br><span class="line"></span><br><span class="line"><span class="comment">#执行CASTEP脚本</span></span><br><span class="line">RunCASTEP.sh -np 20 BaTiO3 //这里务必注意要省略.param</span><br></pre></td></tr></table></figure>
@@ -776,7 +885,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-准备PBS文件"><span class="nav-text">2.2 准备PBS文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-CASTEP执行脚本"><span class="nav-text">2.3 CASTEP执行脚本</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、简介"><span class="nav-text">一、简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二、CASTEP输入文件准备"><span class="nav-text">二、CASTEP输入文件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-获取CASTEP输入文件"><span class="nav-text">2.1 获取CASTEP输入文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-准备PBS文件"><span class="nav-text">2.2 准备PBS文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-CASTEP执行脚本"><span class="nav-text">2.3 CASTEP执行脚本</span></a></li></ol></li></ol></div>
             
 
           </div>
