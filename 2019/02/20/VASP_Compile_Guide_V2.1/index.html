@@ -753,7 +753,7 @@
 <li><p>设置环境变量</p>
 </li>
 </ol>
-<p><code>vi ~/.bashrc</code> 进入编辑环境变量的文本文档<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source /opt/intel/bin/compilervars.sh intel64</span><br><span class="line">source /opt/intel/mkl/bin/mklvars.sh intel64</span><br></pre></td></tr></table></figure></p>
+<p><code>vi ~/.bashrc</code> 进入编辑环境变量的文本文档<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span> <span class="regexp">/opt/i</span>ntel<span class="regexp">/bin/</span>compilervars.sh intel64</span><br><span class="line"><span class="keyword">source</span> <span class="regexp">/opt/i</span>ntel<span class="regexp">/mkl/</span>bin<span class="regexp">/mklvars.sh intel64</span></span><br></pre></td></tr></table></figure></p>
 <p><del>export PATH=/opt/intel/bin:$PATH</del><br><del>export LD_LIBRARY_PATH=/opt/intel<br>compilers_and_libraries_2019.1.144:$LD_LIBRARY_PATH</del></p>
 <p><code>source ~/.bashrc</code> 退出bashrc后，该命令使设置生效</p>
 <p><strong>注意：source关键词后链接的是一个bash脚本，这两个脚本分别是启用intel编译器和mkl编译器的脚本；</strong></p>
@@ -861,7 +861,7 @@
 <li><p>2.MKLROOT到OBJECTS_O2的一系列内容都是指定vasp编译的各种库文件。这个时候我们需要理解几个名次和几个概念。</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">MKLROOT    =/opt/intel/mkl </span><br><span class="line">MKL_PATH   = $(MKLROOT)/lib/intel64 </span><br><span class="line">BLAS       =-L$(MKL_PATH) -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread </span><br><span class="line">LAPACK     =-L$(MKL_PATH) -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread </span><br><span class="line">BLACS      =-L$(MKL_PATH) -lmkl_blacs_openmpi_lp64 </span><br><span class="line">SCALAPACK  = $(MKL_PATH)/libmkl_scalapack_lp64.a $(MKL_PATH)/libmkl_scalapack_ilp64.a $(BLACS)</span><br><span class="line">OBJECTS    = fftmpiw.o fftmpi_map.o fftw3d.o fft3dlib.o /opt/fftw/lib/libfftw3_mpi.a</span><br><span class="line">INCS       =-I/opt/fftw/include</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line">MKLROOT    =/opt/intel/mkl </span><br><span class="line">MKL_PATH   = <span class="variable">$(MKLROOT)</span>/lib/intel64 </span><br><span class="line">BLAS       =-L<span class="variable">$(MKL_PATH)</span> -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread </span><br><span class="line">LAPACK     =-L<span class="variable">$(MKL_PATH)</span> -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread </span><br><span class="line">BLACS      =-L<span class="variable">$(MKL_PATH)</span> -lmkl_blacs_openmpi_lp64 </span><br><span class="line">SCALAPACK  = <span class="variable">$(MKL_PATH)</span>/libmkl_scalapack_lp64.a <span class="variable">$(MKL_PATH)</span>/libmkl_scalapack_ilp64.a <span class="variable">$(BLACS)</span></span><br><span class="line">OBJECTS    = fftmpiw.o fftmpi_map.o fftw3d.o fft3dlib.o /opt/fftw/lib/libfftw3_mpi.a</span><br><span class="line">INCS       =-I/opt/fftw/<span class="keyword">include</span></span><br></pre></td></tr></table></figure>
 <hr>
 <p>首先，MKLROOT和MKL_PATH都是指向库的路径。</p>
 <hr>
@@ -963,7 +963,7 @@
 <li><p>完成所有步骤后安装程序自动退出</p>
 </li>
 <li><p>设置环境变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source /opt/intel/bin/compilervars.sh intel64</span><br><span class="line">source /opt/intel/mkl/bin/mklvars.sh intel64</span><br></pre></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span> <span class="regexp">/opt/i</span>ntel<span class="regexp">/bin/</span>compilervars.sh intel64</span><br><span class="line"><span class="keyword">source</span> <span class="regexp">/opt/i</span>ntel<span class="regexp">/mkl/</span>bin<span class="regexp">/mklvars.sh intel64</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>echo $MKLROOT</code> #检查环境变量是否生效 </p>
 </li>
