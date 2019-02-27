@@ -60,7 +60,66 @@ cu34:CMA:65d7:bac99700: 60163613 us(14 us): dapl_cma_active: ARP_ERR, retries(15
 
 经过工程师介绍，现在主流的IB网硬件供应商为：Intel/英特尔和Mellanox/迈络斯，这两家分别提供了不同的IB交换机驱动，如果需要自行安装的话一定要认准集群的网卡型号。当然最好的还是请工程师来排查、部署。
 
-## 三、心得
+
+## 三、MPI通信结构表
+
+本部分内容来自[Selecting a Network Fabric](https://scc.ustc.edu.cn/zlsc/chinagrid/intel/Getting_Started/2_6_Selecting_a_Network_Fabric.htm)部分集群应该可以直接使用默认设置。
+
+这部分的设置内容主要是决定集群节点之间的通信方式。详见链接内容。
+
+如果有更希望更进一步了解集群中MPI设置的同学可以看[《Running MPI applications on Linux over Infiniband cluster with Intel MPI》](https://www.mir.wustl.edu/Portals/0/Documents/Uploads/CHPC/WashU_6_intelmpi.pdf)，写的十分详细。
+
+>The Intel® MPI Library dynamically selects the most appropriate fabric for communication between MPI processes. To select a specific fabric combination, set I_MPI_FABRICS or the deprecated I_MPI_DEVICE environment variable.
+
+### 3.1 I_MPI_FABRICS
+
+Select a particular network fabric to be used for communication.
+
+#### 3.1.1 Syntax
+
+`I_MPI_FABRICS=<fabric>|<intra-node fabric>:<inter-nodes fabric>`
+
+```
+<fabric> := {shm, dapl, tcp, tmi, ofa}
+<intra-node fabric> := {shm, dapl, tcp, tmi, ofa}
+<inter-nodes fabric> := {shm, tcp, tmi, ofa}
+```
+Deprecated Syntax
+
+`I_MPI_DEVICE=<device>[:<provider>]`
+
+#### 3.1.2 Arguments
+
+|Argument|Definition|
+|--|--|
+|fabric|Define a network fabric|
+|shm|Shared memory transport (used for intra-node)|
+|ofi|OpenFabrics Interfaces* (OFI)-capable network fabrics, such as Intel® True Scale Fabric, Intel® Omni-Path Architecture, InfiniBand\*, and Ethernet (through OFI API).|
+|dapl|Direct Access Programming Library\* (DAPL)-capable network fabrics, such as InfiniBand\* and iWarp\* (through DAPL). 
+|tcp|TCP/IP-capable network fabrics, such as Ethernet and InfiniBand\* (through IPoIB\*).|
+|tmi|Tag Matching Interface (TMI)-capable network fabrics, such as Intel® True Scale Fabric, Intel® Omni-Path Architecture and Myrinet\* (through TMI).
+|ofa|OpenFabrics Alliance* (OFA)-capable network fabrics, such as InfiniBand\* (through OFED* verbs).
+|ofi|OpenFabrics Interfaces\* (OFI)-capable network fabrics, such as Intel® True Scale Fabric, Intel® Omni-Path Architecture, InfiniBand\* and Ethernet (through OFI API). 
+
+### 3.2 Correspondence with I_MPI_DEVICE
+
+**Switch interconnection fabrics support without re-linking**
+
+|device|Equivalent notation for the I_MPI_FABRICS variable|
+|---|---|
+|sock|TCP/IP sockets – ethernet,  IPoIB|
+|shm|shared memory for large SMPs|
+|ssm|shared memory + sockets|
+|rdma|InfiniBand,  Myrinet,  Quadrix|
+|rdssm|rdma + shm + Sock|
+
+rdssm:
+- Shared memory for intra-node processes
+- RDMA for inter-node processes
+- Fails over to sockets if RDMA device is not available (default)
+
+
+## 四、心得
 日后集群上计算的大家如果遇到类似的错误提示，建议大家直接致电集群工程师进行维护和排查。自己排查宛如大海捞针，辛苦不说还容易误入歧途。
 不过话又说回来，自己排错的过程也是自己学习的过程，这种排查会让自己有更多对硬件、软件、参数之间关联的理解。推荐时间较为充裕，又比较爱瞎折腾的同学可以尝试。
 
