@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://img.myvividlife.cn/15512740034694.jpg">
 <meta property="og:image" content="https://img.myvividlife.cn/15512741300635.jpg">
 <meta property="og:image" content="https://img.myvividlife.cn/15512742386388.jpg">
-<meta property="og:updated_time" content="2019-02-27T15:07:36.414Z">
+<meta property="og:updated_time" content="2019-02-27T15:29:44.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用standalone模式（命令行）运行CASTEP">
 <meta name="twitter:description" content="本文主要介绍在standalone模式下使用MS，也就是使用命令行向集群提交CASTEP作业。">
@@ -442,7 +442,7 @@
                 
               
 
-              <time title="创建时间：2019-02-27 22:09:09 / 修改时间：23:07:36" itemprop="dateCreated datePublished" datetime="2019-02-27T22:09:09+08:00">2019-02-27</time>
+              <time title="创建时间：2019-02-27 22:09:09 / 修改时间：23:29:44" itemprop="dateCreated datePublished" datetime="2019-02-27T22:09:09+08:00">2019-02-27</time>
             
 
             
@@ -639,10 +639,25 @@
 <td>-np</td>
 <td>Specifies the number of cores on which to run CASTEP. When this option is not specified a single core is used. </td>
 </tr>
+<tr>
+<td>number of cores</td>
+<td>The number of cores to use. </td>
+</tr>
+<tr>
+<td>-q</td>
+<td>Submits the job to the specified queue. </td>
+</tr>
+<tr>
+<td>queue name</td>
+<td>The name of the queue on which to run the job. </td>
+</tr>
+<tr>
+<td>seedname</td>
+<td>The seed used to identify the set of CASTEP input and output files. The input files should be present in the directory in which the CASTEP script is started. </td>
+</tr>
 </tbody>
 </table>
 </div>
-<p>number of cores  |The number of cores to use.<br>|-q  |Submits the job to the specified queue.<br>|queue name  |The name of the queue on which to run the job.<br>|seedname  |The seed used to identify the set of CASTEP input and output files. The input files should be present in the directory in which the CASTEP script is started. </p>
 <p>If you wish to calculate properties, you should execute the script for the main run first:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RunCASTEP.sh -np 4 seedname</span><br></pre></td></tr></table></figure>
 <p>When that run is complete, you should make copies of the .check file that will be used in all subsequent properties runs:</p>
