@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://img.myvividlife.cn/2D5B2FAC48992298DAC9EDAF6DADBC09.jpg">
 <meta property="og:image" content="https://img.myvividlife.cn/8566911AEF0D986C75F97FAD9B33ECBF.jpg">
 <meta property="og:image" content="https://img.myvividlife.cn/31EB7748213717F8D63B715576C8168C.jpg">
-<meta property="og:updated_time" content="2019-02-26T12:20:59.720Z">
+<meta property="og:updated_time" content="2019-02-27T12:25:01.375Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PBS学习笔记">
 <meta name="twitter:description" content="本文主要总结了PBS系统的一些使用方法以及在组内使用集群遇到的一些问题">
@@ -459,7 +459,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-26 20:20:59" itemprop="dateModified" datetime="2019-02-26T20:20:59+08:00">2019-02-26</time>
+                <time title="修改时间：2019-02-27 20:25:01" itemprop="dateModified" datetime="2019-02-27T20:25:01+08:00">2019-02-27</time>
               
             
           </span>
@@ -539,12 +539,29 @@
 </ul>
 <p>作业管理软件可以自动且合理地分配资源，避免各个用户之间抢占CPU资源，造成机器死机。</p>
 <h1 id="二、PBS常用命令"><a href="#二、PBS常用命令" class="headerlink" title="二、PBS常用命令"></a>二、PBS常用命令</h1><p>在终端界面，可以使用<code>pbsnodes</code>命令查看节点的pbs状态。<br>PBS常用的命令有：</p>
-<ul>
-<li><p><code>qsub</code>：用于提交作业脚本，所采用的选项一般放在pbs脚本中提交，详见pbs脚本选项；</p>
-</li>
-<li><p><code>qstat</code>：用于查询作业状态信息；</p>
-</li>
+<h4 id="作业控制"><a href="#作业控制" class="headerlink" title="作业控制"></a>作业控制</h4><ul>
+<li><code>qsub</code>：用于提交作业脚本，所采用的选项一般放在pbs脚本中提交，详见pbs脚本选项；</li>
 <li><p><code>qdel</code>：用于删除已经提交的作业；</p>
+</li>
+<li><p><code>qhold</code>:挂起作业；</p>
+</li>
+<li><code>qrls</code>：释放挂起的作业</li>
+<li><code>qrerun</code>：重新运行作业</li>
+<li><code>qmove</code>：将作业移动到另一个队列</li>
+<li><code>qalter</code>： 更改作业资源属性</li>
+</ul>
+<h4 id="作业检测"><a href="#作业检测" class="headerlink" title="作业检测"></a>作业检测</h4><ul>
+<li><p><code>qstat</code>：显示作业状态</p>
+</li>
+<li><p><code>showq</code>： 查看所有作业</p>
+</li>
+</ul>
+<h4 id="节点状态"><a href="#节点状态" class="headerlink" title="节点状态"></a>节点状态</h4><ul>
+<li><p><code>pbsnodes</code>：列出集群中所有节点的状态和属性</p>
+<ul>
+<li>-a 列出所有节点及其属性</li>
+<li>-l free 以行的方式列出空余节点</li>
+</ul>
 </li>
 </ul>
 <h2 id="2-1-qsub命令"><a href="#2-1-qsub命令" class="headerlink" title="2.1 qsub命令"></a>2.1 qsub命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">命令格式：qsub [-x]</span><br><span class="line"></span><br><span class="line">命令作用：用于提交作业脚本</span><br><span class="line"></span><br><span class="line">全部命令：[-a][-c][-C][-e][-I][-j][-k][-l][-m][-M][-N][-o][-p][-q][-r][-S][-u][-v][-V][-W][-z]  </span><br><span class="line"></span><br><span class="line">常见命令：[-l][-j][-e][-o][-q][-N][-m]</span><br></pre></td></tr></table></figure>
@@ -560,6 +577,10 @@
 <tr>
 <td>[-a date_time]</td>
 <td>表示经过date_time 时间后作业才可以运行,格式为：[[[[CC]YY]MM]DD]hhmm[.SS]</td>
+</tr>
+<tr>
+<td>[-A user_name]</td>
+<td>使用不同用户名提交作业，缺省使用当前用户名</td>
 </tr>
 <tr>
 <td>[-c interval]</td>
@@ -722,6 +743,46 @@
 <p>示例：</p>
 <p><code>qdel 211</code>：删除作业号为211的作业</p>
 <hr>
+<h2 id="2-4-PBS中常用的环境变量"><a href="#2-4-PBS中常用的环境变量" class="headerlink" title="2.4 PBS中常用的环境变量"></a>2.4 PBS中常用的环境变量</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录SHELL继承来的变量</td>
+<td>包括#PATH、$SHELL等</td>
+</tr>
+<tr>
+<td>$PBS_O_HOST</td>
+<td>qsub提交的节点名称</td>
+</tr>
+<tr>
+<td>$PBS_O_QUEUE</td>
+<td>qsub提交的作业的最初队列名</td>
+</tr>
+<tr>
+<td>$PBS_JOBID</td>
+<td>qsub提交的作业的绝对路径</td>
+</tr>
+<tr>
+<td>$PBS_JOBNAME</td>
+<td>用户指定的作业名，#PBS -N</td>
+</tr>
+<tr>
+<td>$PBS_NODEFILE</td>
+<td>PBS系统指定的作业运行的节点名</td>
+</tr>
+<tr>
+<td>$PBS_QUEUE</td>
+<td>PBS脚本执行时所处的对列名</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h1 id="三、MPI运行部分"><a href="#三、MPI运行部分" class="headerlink" title="三、MPI运行部分"></a>三、MPI运行部分</h1><h2 id="3-1-mpi简介"><a href="#3-1-mpi简介" class="headerlink" title="3.1 mpi简介"></a>3.1 mpi简介</h2><p>MPI全称是message passing interface，即信息传递接口，是用于跨节点通讯的基础软件环境。它提供让相关进程之间进行通信，同步等操作的API，可以说是并行计算居家出游必备的基础库。</p>
 <p>一个 MPI 程序包含若干个进程。每个 mpi 进程都运行一份相同的代码，进程的行为由通讯域(communication world)和该通讯域下的 id(rank id)所决定。</p>
 <p>MPI的编程方式，是“一处代码，多处执行”。编写过多线程的人应该能够理解，就是同样的代码，不同的进程执行不同的路径。</p>
@@ -933,7 +994,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -954,7 +1015,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -979,7 +1044,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1041,7 +1110,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、PBS简介"><span class="nav-text">一、PBS简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、PBS常用命令"><span class="nav-text">二、PBS常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-qsub命令"><span class="nav-text">2.1 qsub命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更多设置："><span class="nav-text">更多设置：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-qstat命令"><span class="nav-text">2.2 qstat命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-qdel命令"><span class="nav-text">2.3 qdel命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、MPI运行部分"><span class="nav-text">三、MPI运行部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-mpi简介"><span class="nav-text">3.1 mpi简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-MPI常用命令"><span class="nav-text">3.2 MPI常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mpirun-np部分决定vasp程序实际使用多少个节点并行。"><span class="nav-text">mpirun -np部分决定vasp程序实际使用多少个节点并行。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mpirun"><span class="nav-text">mpirun:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-MPI进阶"><span class="nav-text">3.3* MPI进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-MPI通讯结构"><span class="nav-text">3.4* MPI通讯结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、vasp作业提交脚本"><span class="nav-text">四、vasp作业提交脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-、其它配置文件（部分协议已经过时）"><span class="nav-text">五*、其它配置文件（部分协议已经过时）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、PBS简介"><span class="nav-text">一、PBS简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、PBS常用命令"><span class="nav-text">二、PBS常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-qsub命令"><span class="nav-text">2.1 qsub命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更多设置："><span class="nav-text">更多设置：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-qstat命令"><span class="nav-text">2.2 qstat命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-qdel命令"><span class="nav-text">2.3 qdel命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-PBS中常用的环境变量"><span class="nav-text">2.4 PBS中常用的环境变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、MPI运行部分"><span class="nav-text">三、MPI运行部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-mpi简介"><span class="nav-text">3.1 mpi简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-MPI常用命令"><span class="nav-text">3.2 MPI常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mpirun-np部分决定vasp程序实际使用多少个节点并行。"><span class="nav-text">mpirun -np部分决定vasp程序实际使用多少个节点并行。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mpirun"><span class="nav-text">mpirun:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-MPI进阶"><span class="nav-text">3.3* MPI进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-MPI通讯结构"><span class="nav-text">3.4* MPI通讯结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、vasp作业提交脚本"><span class="nav-text">四、vasp作业提交脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-、其它配置文件（部分协议已经过时）"><span class="nav-text">五*、其它配置文件（部分协议已经过时）</span></a></li></ol></div>
             
 
           </div>
