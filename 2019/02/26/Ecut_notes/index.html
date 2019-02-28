@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="MYVIVIDLIFE">
 <meta property="og:description" content="本文由一次VASP收敛性测试遇到的实际问题出发，记述了出现问题的折腾经历和解决方案，以及对第一性原理一些概念的理解。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-27T12:16:49.018Z">
+<meta property="og:updated_time" content="2019-02-28T00:52:33.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ENCUT到底是个什么东东">
 <meta name="twitter:description" content="本文由一次VASP收敛性测试遇到的实际问题出发，记述了出现问题的折腾经历和解决方案，以及对第一性原理一些概念的理解。">
@@ -455,7 +455,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-27 20:16:49" itemprop="dateModified" datetime="2019-02-27T20:16:49+08:00">2019-02-27</time>
+                <time title="修改时间：2019-02-28 08:52:33" itemprop="dateModified" datetime="2019-02-28T08:52:33+08:00">2019-02-28</time>
               
             
           </span>
@@ -526,7 +526,7 @@
 <h1 id="0-写作动机"><a href="#0-写作动机" class="headerlink" title="0 写作动机"></a>0 写作动机</h1><p>本文写作的主要动机主要还是源于一次实践中遇到的问题。而也正是这个问题促使了前面两篇文章<a href="https://myvivi.life/2019/02/26/InfinitiBand_Notes/">《简单介绍InfiniBand》</a>和<a href="https://myvivi.life/2019/02/21/PBS_Notes/">《PBS学习笔记》的诞生</a>。</p>
 <p>问题来源：对PZT单胞进行收敛性测试，发现在截断能ENCUT超过900后系统终止。</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">终止位置信息：</span><br><span class="line"> k-point <span class="number">74</span> :   <span class="number">0.5000</span> <span class="number">0.3750</span> <span class="number">0.5000</span>  plane waves:   <span class="number">13692</span></span><br><span class="line"> k-point <span class="number">75</span> :   <span class="number">0.5000</span> <span class="number">0.5000</span> <span class="number">0.5000</span>  plane waves:   <span class="number">13696</span></span><br><span class="line"></span><br><span class="line"> maximum <span class="keyword">and</span> minimum <span class="keyword">number</span> of plane-waves per <span class="keyword">node</span> <span class="title">:     13724</span>    <span class="number">13604</span></span><br><span class="line"></span><br><span class="line"> maximum <span class="keyword">number</span> of plane-waves:     <span class="number">13724</span></span><br><span class="line"> maximum index <span class="keyword">in</span> each direction:</span><br><span class="line">   <span class="attr">IXMAX=</span>   <span class="number">11</span>   <span class="attr">IYMAX=</span>   <span class="number">11</span>   <span class="attr">IZMAX=</span>   <span class="number">26</span></span><br><span class="line">   <span class="attr">IXMIN=</span>  -<span class="number">11</span>   <span class="attr">IYMIN=</span>  -<span class="number">11</span>   <span class="attr">IZMIN=</span>  -<span class="number">26</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">out输出信息：</span><br><span class="line"></span><br><span class="line">running on    1 nodes</span><br><span class="line">distr:  one band on    1 nodes,    1 groups</span><br><span class="line">vasp.4.6.31 08Feb07 complex</span><br><span class="line">POSCAR found :  4 types and   80 ions</span><br><span class="line"><span class="symbol">WARNING: </span>PSMAXN for non-local potential too small</span><br><span class="line">LDA part: xc-table for Pade appr. of Perdew</span><br><span class="line">POSCAR, INCAR and KPOINTS ok, starting setup</span><br><span class="line"><span class="symbol">WARNING: </span>wrap around errors must be expected</span><br><span class="line">REAL<span class="emphasis">_OPTLAY: internal error (1)     6851168     6851456</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">out输出信息：</span><br><span class="line"></span><br><span class="line">running on    1 nodes</span><br><span class="line">distr:  one band on    1 nodes,    1 groups</span><br><span class="line">vasp.4.6.31 08Feb07 complex</span><br><span class="line">POSCAR found :  4 types and   80 ions</span><br><span class="line">WARNING: PSMAXN <span class="keyword">for</span> non-local potential too small</span><br><span class="line">LDA part: xc-table <span class="keyword">for</span> Pade appr. of Perdew</span><br><span class="line">POSCAR, INCAR and KPOINTS ok, starting setup</span><br><span class="line">WARNING: wrap around errors must be expected</span><br><span class="line">REAL_OPTLAY: internal error (1)     6851168     6851456</span><br></pre></td></tr></table></figure>
 <h4 id="PSMAXN"><a href="#PSMAXN" class="headerlink" title="PSMAXN:"></a>PSMAXN:</h4><p>来自官网的解释：</p>
 <blockquote>
 <p>PSMAXN (the cutoff for the projection operators) is read form POTCAR. NTYP=1 is the forst of the potentials read from POTCAR.</p>
@@ -704,7 +704,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -729,7 +729,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -758,7 +766,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
