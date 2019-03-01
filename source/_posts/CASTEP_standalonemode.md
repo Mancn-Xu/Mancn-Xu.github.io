@@ -2,12 +2,13 @@
 title: 使用standalone模式（命令行）运行CASTEP
 date: 2019-02-27 22:09:09
 categories:  
-- CASTEP
-- 集群里的那些坑坑洼洼
+ - CASTEP
+ - 集群里的那些坑坑洼洼
+ - Linux
 tags: 
  - CASTEP
  - Material Studio
-
+ - Linux
 description: 本文主要介绍在standalone模式下使用MS，也就是使用命令行向集群提交CASTEP作业。
 ---
 
@@ -136,7 +137,7 @@ RunCASTEP [-h] [-np number of cores] [-q queue name] seedname (Windows)
 |---|---|
 |-h  |Displays the help text. 
 |-np  |Specifies the number of cores on which to run CASTEP. When this option is not specified a single core is used. 
-number of cores  |The number of cores to use. 
+|number of cores  |The number of cores to use. 
 |-q  |Submits the job to the specified queue. 
 |queue name  |The name of the queue on which to run the job. 
 |seedname  |The seed used to identify the set of CASTEP input and output files. The input files should be present in the directory in which the CASTEP script is started. 

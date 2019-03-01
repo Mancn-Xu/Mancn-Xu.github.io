@@ -41,7 +41,7 @@ mathjax: true
 
 ```
 
-```
+```bash
 out输出信息：
 
 running on    1 nodes

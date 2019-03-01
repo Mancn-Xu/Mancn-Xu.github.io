@@ -2,8 +2,8 @@
 title: 简单介绍InfiniBand
 date: 2019-02-26 19:00:09
 categories:  
-- VASP自学成才
-- 集群里的那些坑坑洼洼
+ - VASP自学成才
+ - 集群里的那些坑坑洼洼
 tags: 
  - VASP
  - 集群

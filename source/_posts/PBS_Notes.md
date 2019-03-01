@@ -8,6 +8,7 @@ tags:
  - VASP
  - 集群
  - PBS
+ - Linux
 
 description: 本文主要总结了PBS系统的一些使用方法以及在组内使用集群遇到的一些问题
 ---
@@ -279,12 +280,12 @@ mpiexec –configfile <file> 
 之所以会出现这一节是因为在集群的使用中，当进行跨节点并行计算时，集群疯狂报错，查阅了关于MPI的很多资料，最终解决了在本地集群上的报错问题。最终发现问题的出现于MPI在节点之间的通讯结构（Communication Fabrics）有关，特别记录如下：
 
 任务提交脚本：
-```
+```sh
 #PBS -l nodes=2:ppn=20
 mpiexec.hydra -n 30 vasp_std > VASP.out
 ```
 错误提示：
-```
+```sh
 #PBS 输出文件
 [18:cu40] unexpected DAPL event 0x4008
 Assertion failed in file ../../src/mpid/ch3/channels/nemesis/netmod/dapl/dapl_init_rc.c at line 1525: 0
@@ -318,7 +319,7 @@ cu34:CMA:65d7:bac99700: 60163613 us(14 us): dapl_cma_active: ARP_ERR, retries(15
 通讯结构由变量 `I_MPI_FIBRIC` 控制，默认的行为：使用共享内存，并从结构表中选择最前面且可用的结构方式，结构表一般为（dapl,ofa,tcp,tmi,ofi），也可以看I_MPI_FABRICS_LIST。
 
 但不知为何组里的集群在节点间通讯会有问题，所以需要手动设置通信结构。这里经过测试发现组里应该使用以太网来进行节点之间的数据交换。
-``` 
+``` sh
 方法一：
 mpiexec.hydra -genv I_MPI_FIBRIC=sch:tcp //节点内shm，节点外tcp
 
@@ -338,7 +339,7 @@ export I_MPI_FABRICS_LIST=ofi,tcp
 
 # 四、vasp作业提交脚本
 
-```
+```sh
 sub.pbs代码示例及解析：
 
 # Job: Task
