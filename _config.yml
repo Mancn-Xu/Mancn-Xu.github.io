@@ -89,5 +89,7 @@ search:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
  type: git
- repo: https://github.com/Mancn-Xu/Mancn-Xu.github.io.git
- branch: master
+ repo: 
+	github: git@github.com:Mancn-Xu/Mancn-Xu.github.io.git,master
+	coding: git@git.coding.net:mancn/mancn.git,master
+
