@@ -104,17 +104,17 @@
 <meta property="og:site_name" content="MYVIVIDLIFE">
 <meta property="og:description" content="本文主要介绍jupyter lab应用，并介绍如何通过相关配置实现其在局域网内的加密安全访问，同时也介绍了使用frp内网穿透工具，配合公网主机、域名和ssl证书实现将内网的服务安全部署到公网。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530835834097.jpg">
-<meta property="og:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530834790957.jpg">
-<meta property="og:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530843171679.png">
-<meta property="og:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530856246927.jpg">
-<meta property="og:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530882010340.jpg">
-<meta property="og:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530882958194.jpg">
-<meta property="og:updated_time" content="2019-03-20T14:12:45.917Z">
+<meta property="og:image" content="https://img.myvividlife.cn/15530835834097.jpg">
+<meta property="og:image" content="https://img.myvividlife.cn/15530834790957.jpg">
+<meta property="og:image" content="https://img.myvividlife.cn/15530843171679.png">
+<meta property="og:image" content="https://img.myvividlife.cn/15530856246927.jpg">
+<meta property="og:image" content="https://img.myvividlife.cn/15530882010340.jpg">
+<meta property="og:image" content="https://img.myvividlife.cn/15530882958194.jpg">
+<meta property="og:updated_time" content="2019-03-20T14:42:50.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jupyter lab——可视化与便捷性的完美结合">
 <meta name="twitter:description" content="本文主要介绍jupyter lab应用，并介绍如何通过相关配置实现其在局域网内的加密安全访问，同时也介绍了使用frp内网穿透工具，配合公网主机、域名和ssl证书实现将内网的服务安全部署到公网。">
-<meta name="twitter:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530835834097.jpg">
+<meta name="twitter:image" content="https://img.myvividlife.cn/15530835834097.jpg">
 
 
 
@@ -445,7 +445,7 @@
                 
               
 
-              <time title="创建时间：2019-03-20 22:06:29 / 修改时间：22:12:45" itemprop="dateCreated datePublished" datetime="2019-03-20T22:06:29+08:00">2019-03-20</time>
+              <time title="创建时间：2019-03-20 22:06:29 / 修改时间：22:42:50" itemprop="dateCreated datePublished" datetime="2019-03-20T22:06:29+08:00">2019-03-20</time>
             
 
             
@@ -516,8 +516,8 @@
 <p>在Anaconda中包含了Jupyter lab和Jupyter notebook两个python套件。只要从官网下载并安装即可。</p>
 <p>建议选择Python3.7的版本，并注意操作系统的选择。</p>
 <p><a href="https://www.anaconda.com/distribution/#download-section" target="_blank" rel="noopener">Jupyter官方网站</a></p>
-<p><img src="media/15528212653377/15530835834097.jpg" alt="-w669"></p>
-<p>安装完后Anaconda的界面如下：<br><img src="media/15528212653377/15530834790957.jpg" alt="-w1916"></p>
+<p><img src="https://img.myvividlife.cn/15530835834097.jpg" alt="-w669"></p>
+<p>安装完后Anaconda的界面如下：<br><img src="https://img.myvividlife.cn/15530834790957.jpg" alt="-w1916"></p>
 <h4 id="1-2-2-Linux操作系统"><a href="#1-2-2-Linux操作系统" class="headerlink" title="1.2.2 Linux操作系统"></a>1.2.2 Linux操作系统</h4><p>对于linux操作系统，同样我们也可以从官方网站直接下载Anaconda的安装包进行安装。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
 <p>如果不想安装anaconda，那么可以使用python包管理器直接安装jupyter lab或jupyter notbook。</p>
@@ -526,7 +526,7 @@
 <p>3.最后，尝试在服务器本地启动 jupyter lab 应用。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
 <p>4.如果终端看到下面的提示，就说明 notebook 启动成功了。</p>
-<p><img src="media/15528212653377/15530843171679.png" alt></p>
+<p><img src="https://img.myvividlife.cn/15530843171679.png" alt></p>
 <p>5.如果需要在后台启动，我们可以使用：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 后台启动 notebook 服务</span></span><br><span class="line">nohup jupyter lab &amp;</span><br></pre></td></tr></table></figure>
 <p>这里<code>nohup</code>命令确保这个进程在断开 ssh  连接后依旧运行，&amp; 让进程在后台运行。如果想终止 notebook 应用，请找到含有 jupyter 的进程，并用 kill 杀掉它。</p>
@@ -534,7 +534,7 @@
 <h3 id="1-3-内网运行jupyter"><a href="#1-3-内网运行jupyter" class="headerlink" title="1.3 内网运行jupyter"></a>1.3 内网运行jupyter</h3><h4 id="1-3-1-使用密码加密jupyter-lab"><a href="#1-3-1-使用密码加密jupyter-lab" class="headerlink" title="1.3.1 使用密码加密jupyter lab"></a>1.3.1 使用密码加密jupyter lab</h4><p>我们默认安装好的jupyter lab都是可以直接登陆的，但考虑到jupyter的功能强大，可以直接使用终端访问本地账户，而且我们的最终目的是希望将jupyter应用架设在校园局域网内甚至是公网内，这就对我们的应用安全有了更高的要求。我们可以考虑为jupyter加上密码保护，这样只有经过授权的用户才能访问jupyter。</p>
 <p>对于密码而言，存储明文密码显然不是一个安全的做法。我们需要提供一个 hash 过的密码。登录时，notebook 应用获取用户提交的密码，进行 hash 计算，再与预先存储的值比对。如果两者相同，则认为用户提交的密码正确，予以放行。获取 hash 密码的方式如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开ipython</span></span><br><span class="line">ipython</span><br><span class="line"></span><br><span class="line"><span class="comment">#只需复制In[1]:后的部分</span></span><br><span class="line">In[1]: from IPython.lib import passwd</span><br><span class="line"></span><br><span class="line">In[2]: passwd()</span><br><span class="line"></span><br><span class="line"><span class="comment">#输入密码并确认</span></span><br><span class="line">Enter password:</span><br><span class="line">Verify password:</span><br><span class="line"></span><br><span class="line"><span class="comment">#得到Hash值</span></span><br><span class="line">Out[2]: <span class="string">'sha1:e91aa8647e19:65adaefb90a7446283606eeae049af01fa050828'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#注意这里要复制上面的hash值，包括`sha1:`部分</span></span><br></pre></td></tr></table></figure>
-<p><img src="media/15528212653377/15530856246927.jpg" alt></p>
+<p><img src="https://img.myvividlife.cn/15530856246927.jpg" alt></p>
 <p>这里我们得到了python给出的密码hash值：<br><strong>sha1:e91aa8647e19:65adaefb90a7446283606eeae049af01fa050828</strong></p>
 <p>接下来我们需要配置jupyter应用<br>这里我们主要介绍通过jupyter config文件进行配置。</p>
 <p>1.生成jupyter config文件</p>
@@ -566,9 +566,9 @@
 <h4 id="2-有域名的情况"><a href="#2-有域名的情况" class="headerlink" title="(2)有域名的情况"></a>(2)有域名的情况</h4><p>更进一步，如果我们是在服务器上进行jupyter的配置，那么我们完全可以利用云服务商提供的免费域名ssl证书，实现jupyter应用的加密访问。</p>
 <p>接下来以阿里云为例，进行服务器端的jupyter应用域名绑定。</p>
 <p>1.首先购买免费的ssl证书</p>
-<p><img src="media/15528212653377/15530882010340.jpg" alt="-w1068"></p>
+<p><img src="https://img.myvividlife.cn/15530882010340.jpg" alt="-w1068"></p>
 <p>2.根据网页提示部署到云产品，也即为域名DNS添加一个.TXT的记录</p>
-<p>3.下载秘钥对<br><img src="media/15528212653377/15530882958194.jpg" alt="-w237"></p>
+<p>3.下载秘钥对<br><img src="https://img.myvividlife.cn/15530882958194.jpg" alt="-w237"></p>
 <p>4.采用第<code>1.3.2</code>节的方法，把下载到的秘钥对拷贝到<code>.jupyter</code>文件夹下，并修改jupyter conifg的相关路径。</p>
 <p>5.在网页的DNS记录中添加一个指向服务器IP的A记录，注意这里可以是主域名也可以二级域名。</p>
 <p>至此，服务器上的ssl加密设置就已经完成了。我们不但可以使用公网的IP（服务器IP）进行访问，还可以使用域名进行加密访问。（传说中的小绿锁）</p>
