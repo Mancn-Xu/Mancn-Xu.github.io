@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文主要介绍jupyter lab应用，并通过相关配置实现其在局域网、甚至公网内进行访问。">
+<meta name="keywords" content="Python,Jupyter,网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jupyter lab——可视化与便捷性的完美结合">
+<meta property="og:url" content="https://myvivi.life/2019/03/20/jupyter_frp/index.html">
+<meta property="og:site_name" content="MYVIVIDLIFE">
+<meta property="og:description" content="本文主要介绍jupyter lab应用，并通过相关配置实现其在局域网、甚至公网内进行访问。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530835834097.jpg">
+<meta property="og:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530834790957.jpg">
+<meta property="og:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530843171679.png">
+<meta property="og:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530856246927.jpg">
+<meta property="og:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530882010340.jpg">
+<meta property="og:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530882958194.jpg">
+<meta property="og:updated_time" content="2019-03-20T14:09:32.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jupyter lab——可视化与便捷性的完美结合">
+<meta name="twitter:description" content="本文主要介绍jupyter lab应用，并通过相关配置实现其在局域网、甚至公网内进行访问。">
+<meta name="twitter:image" content="https://myvivi.life/2019/03/20/jupyter_frp/media/15528212653377/15530835834097.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://myvivi.life/2019/03/20/jupyter_frp/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>jupyter lab——可视化与便捷性的完美结合 | MYVIVIDLIFE</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MYVIVIDLIFE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Mancn & Vivian</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-series">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/seris/" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>系列</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-notes">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/notes/" rel="section"><i class="menu-item-icon fa fa-fw fa-sticky-note"></i> <br>札记</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-resources">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/resources" rel="section"><i class="menu-item-icon fa fa-fw fa-download"></i> <br>资源</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://myvivi.life/2019/03/20/jupyter_frp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mancn">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MYVIVIDLIFE">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jupyter lab——可视化与便捷性的完美结合
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-20 22:06:29 / 修改时间：22:09:32" itemprop="dateCreated datePublished" datetime="2019-03-20T22:06:29+08:00">2019-03-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python、数据科学与机器学习/" itemprop="url" rel="index"><span itemprop="name">Python、数据科学与机器学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">本文主要介绍jupyter lab应用，并通过相关配置实现其在局域网、甚至公网内进行访问。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要介绍jupyter lab应用，它是一个在统计、数据分析和机器学习等领域广受好评的基于python的应用，同时也支持多种其他语言。</p>
+<p>对于在校学生（可能更多地是研究生），尤其是实验室或者寝室有台式电脑，随身携带平板或者笔记本的同学们来说，如果能将台式电脑作为服务器，将jupyter架设在校园网或公网上，那么我们将会拥有一台高性能的服务器，并且可以随时随地的访问和使用。</p>
+<p>基于这样的目的，本文将简单介绍jupyter的安装、配置、内网访问和公网访问等一系列需求和解决方案。</p>
+<h2 id="一、关于jupyter"><a href="#一、关于jupyter" class="headerlink" title="一、关于jupyter"></a>一、关于jupyter</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>Jupyter源于Ipython Notebook，是使用Python（也有R、Julia、Node等其他语言的内核）进行代码演示、数据分析、可视化、教学的很好的工具，对Python的愈加流行和在AI领域的领导地位有很大的推动作用。</p>
+<p>Jupyter Lab是Jupyter的一个拓展，提供了更好的用户体验，例如可以同时在一个浏览器页面打开编辑多个Notebook，Ipython console和terminal终端，并且支持预览和编辑更多种类的文件，如代码文件，Markdown文档，json，yml，csv，各种格式的图片，vega文件（一种使用json定义图表的语言)和geojson（用json表示地理对象），还可以使用Jupyter Lab连接Google Drive等云存储服务，极大得提升了生产力。</p>
+<h3 id="1-2-本地运行"><a href="#1-2-本地运行" class="headerlink" title="1.2 本地运行"></a>1.2 本地运行</h3><p>一般来讲，jupyter lab的网页应用会默认运行在 <a href="http://localhost:8888" target="_blank" rel="noopener">http://localhost:8888</a> 位置，用户可以在本地计算机通过浏览器访问网页使用jupyter相关服务。</p>
+<p>可能大部分同学都只需要在单一电脑上使用jupyter服务，所以接下来将会主要讲解本机运行jupyter的相关内容。</p>
+<h4 id="1-2-1-Mac、Win操作系统"><a href="#1-2-1-Mac、Win操作系统" class="headerlink" title="1.2.1 Mac、Win操作系统"></a>1.2.1 Mac、Win操作系统</h4><p>对于mac和win操作系统，最简便的使用jupyter的方式就是Anaconda。</p>
+<p>相信了解python的同学对Anaconda都不会陌生，Anaconda指的是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项。是我们一般使用python语言进行数据科学探索的必备工具之一。</p>
+<p>在Anaconda中包含了Jupyter lab和Jupyter notebook两个python套件。只要从官网下载并安装即可。</p>
+<p>建议选择Python3.7的版本，并注意操作系统的选择。</p>
+<p><a href="https://www.anaconda.com/distribution/#download-section" target="_blank" rel="noopener">Jupyter官方网站</a></p>
+<p><img src="media/15528212653377/15530835834097.jpg" alt="-w669"></p>
+<p>安装完后Anaconda的界面如下：<br><img src="media/15528212653377/15530834790957.jpg" alt="-w1916"></p>
+<h4 id="1-2-2-Linux操作系统"><a href="#1-2-2-Linux操作系统" class="headerlink" title="1.2.2 Linux操作系统"></a>1.2.2 Linux操作系统</h4><p>对于linux操作系统，同样我们也可以从官方网站直接下载Anaconda的安装包进行安装。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+<p>如果不想安装anaconda，那么可以使用python包管理器直接安装jupyter lab或jupyter notbook。</p>
+<p> 1.首先验证linux服务器python版本和包管理器pip版本<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br><span class="line">python3 --version</span><br><span class="line">pip -V</span><br><span class="line">pip3 -V</span><br></pre></td></tr></table></figure></p>
+<p>2.根据相应版本安装jupyter，建议使用python3<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python 2 的 notebook</span></span><br><span class="line">sudo pip install jupyter</span><br><span class="line">sudo pip install jupyterlab</span><br><span class="line"></span><br><span class="line"><span class="comment"># Python 3 的 notebook</span></span><br><span class="line">sudo pip3 install jupyter</span><br><span class="line">sudo pip3 install jupyterlab</span><br></pre></td></tr></table></figure></p>
+<p>3.最后，尝试在服务器本地启动 jupyter lab 应用。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+<p>4.如果终端看到下面的提示，就说明 notebook 启动成功了。</p>
+<p><img src="media/15528212653377/15530843171679.png" alt></p>
+<p>5.如果需要在后台启动，我们可以使用：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 后台启动 notebook 服务</span></span><br><span class="line">nohup jupyter lab &amp;</span><br></pre></td></tr></table></figure>
+<p>这里<code>nohup</code>命令确保这个进程在断开 ssh  连接后依旧运行，&amp; 让进程在后台运行。如果想终止 notebook 应用，请找到含有 jupyter 的进程，并用 kill 杀掉它。</p>
+<p>可以使用：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep jupyter</span><br><span class="line"><span class="built_in">kill</span> 任务ID(PID)</span><br></pre></td></tr></table></figure></p>
+<h3 id="1-3-内网运行jupyter"><a href="#1-3-内网运行jupyter" class="headerlink" title="1.3 内网运行jupyter"></a>1.3 内网运行jupyter</h3><h4 id="1-3-1-使用密码加密jupyter-lab"><a href="#1-3-1-使用密码加密jupyter-lab" class="headerlink" title="1.3.1 使用密码加密jupyter lab"></a>1.3.1 使用密码加密jupyter lab</h4><p>我们默认安装好的jupyter lab都是可以直接登陆的，但考虑到jupyter的功能强大，可以直接使用终端访问本地账户，而且我们的最终目的是希望将jupyter应用架设在校园局域网内甚至是公网内，这就对我们的应用安全有了更高的要求。我们可以考虑为jupyter加上密码保护，这样只有经过授权的用户才能访问jupyter。</p>
+<p>对于密码而言，存储明文密码显然不是一个安全的做法。我们需要提供一个 hash 过的密码。登录时，notebook 应用获取用户提交的密码，进行 hash 计算，再与预先存储的值比对。如果两者相同，则认为用户提交的密码正确，予以放行。获取 hash 密码的方式如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开ipython</span></span><br><span class="line">ipython</span><br><span class="line"></span><br><span class="line"><span class="comment">#只需复制In[1]:后的部分</span></span><br><span class="line">In[1]: from IPython.lib import passwd</span><br><span class="line"></span><br><span class="line">In[2]: passwd()</span><br><span class="line"></span><br><span class="line"><span class="comment">#输入密码并确认</span></span><br><span class="line">Enter password:</span><br><span class="line">Verify password:</span><br><span class="line"></span><br><span class="line"><span class="comment">#得到Hash值</span></span><br><span class="line">Out[2]: <span class="string">'sha1:e91aa8647e19:65adaefb90a7446283606eeae049af01fa050828'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#注意这里要复制上面的hash值，包括`sha1:`部分</span></span><br></pre></td></tr></table></figure>
+<p><img src="media/15528212653377/15530856246927.jpg" alt></p>
+<p>这里我们得到了python给出的密码hash值：<br><strong>sha1:e91aa8647e19:65adaefb90a7446283606eeae049af01fa050828</strong></p>
+<p>接下来我们需要配置jupyter应用<br>这里我们主要介绍通过jupyter config文件进行配置。</p>
+<p>1.生成jupyter config文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成 /home/ipynb/.jupyter/jupyter_notebook_config.py 文件</span></span><br><span class="line"></span><br><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
+<p>2.对jupyter_notebook_config.py文件进行修改</p>
+<p>这个模板文件很长，但所有的内容都被注释掉了。可以直接在文档开头复制如下的内容，并进行相应的修改：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># User configuration</span></span><br><span class="line"><span class="comment">#------------------------------------------------------------------------------</span></span><br><span class="line">c.NotebookApp.ip = <span class="string">'*'</span>                              <span class="comment"># 允许从任意 IP 访问</span></span><br><span class="line">c.NotebookApp.open_browser = False                  <span class="comment"># 运行 notebook 应用时不打开浏览器</span></span><br><span class="line">c.NotebookApp.password = u<span class="string">'sha1:e91aa8647e19:65adaefb90a7446283606eeae049af01fa050828'</span>  <span class="comment"># 刚才生成的密码的 hash 值</span></span><br><span class="line">c.NotebookApp.port = 28888  <span class="comment"># 运行端口</span></span><br><span class="line">c.NotebookApp.allow_remote_access = True <span class="comment">#允许远程访问</span></span><br><span class="line">c.NotebookApp.notebook_dir = <span class="string">'/Users/jupyter/'</span> <span class="comment">#jupyter默认根目录</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>关于Hash值，这里涉及到密码学的相关内容，如果希望有比较直观的了解，这里推荐两个小视频：</p>
+<p><a href="https://www.bilibili.com/video/av12465079" target="_blank" rel="noopener">【官方双语】想知道比特币（和其他加密货币）的原理吗？</a></p>
+<p><a href="https://www.bilibili.com/video/av12467314" target="_blank" rel="noopener">【官方双语】256位加密有多安全？</a></p>
+<hr>
+<h4 id="1-3-2-使用ssl协议加密"><a href="#1-3-2-使用ssl协议加密" class="headerlink" title="1.3.2 使用ssl协议加密"></a>1.3.2 使用ssl协议加密</h4><p>仅仅为 jupyter 设定密码并不能保障安全。如果密码在网络中以明文传输，就为中间人提供了截获的机会。稍有网络安全常识的人都知道，密码等敏感信息必须通过加密方式传输。因此，我们还需要提供 HTTPS 连接。</p>
+<h4 id="1-没有域名的情况"><a href="#1-没有域名的情况" class="headerlink" title="(1)没有域名的情况"></a>(1)没有域名的情况</h4><p>对于HTTPS连接而言，如果我们没购买域名，那么可以直接使用openssl在本地生成一个秘钥对。</p>
+<p>可以直接在<code>~/.jupyter/</code>文件夹下直接执行下面的命令：<br><code>openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mycert.pem -out mycert.pem</code></p>
+<p>在.jupyter目录下我们会得到<code>mycert.pem</code>和<code>mycert.key</code>两个文件。将这两个文件也加入到jupyter_notebook_config.py文件中。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># User configuration</span></span><br><span class="line"><span class="comment">#------------------------------------------------------------------------------</span></span><br><span class="line">c.NotebookApp.certfile = <span class="string">'/路径名/mycert.pem'</span></span><br><span class="line">c.NotebookApp.keyfile = <span class="string">'/路径名/mycert.key'</span></span><br><span class="line">c.NotebookApp.ip = <span class="string">'*'</span>                              <span class="comment"># 允许从任意 IP 访问</span></span><br><span class="line">c.NotebookApp.open_browser = False                  <span class="comment"># 运行 notebook 应用时不打开浏览器</span></span><br><span class="line">c.NotebookApp.password = u<span class="string">'sha1:e91aa8647e19:65adaefb90a7446283606eeae049af01fa050828'</span>  <span class="comment"># 刚才生成的密码的 hash 值</span></span><br><span class="line">c.NotebookApp.port = 28888  <span class="comment"># 运行端口</span></span><br><span class="line">c.NotebookApp.allow_remote_access = True <span class="comment">#允许远程访问</span></span><br><span class="line">c.NotebookApp.notebook_dir = <span class="string">'/Users/jupyter/'</span> <span class="comment">#jupyter默认根目录</span></span><br></pre></td></tr></table></figure>
+<p><strong>至此，我们配置好了jupyter应用，并且可以实现在内网使用任意IP进行访问，同时启用了密码和ssl安全协议。</strong></p>
+<hr>
+<p><code>openssl req</code>命令主要的功能有，生成证书请求文件，查看验证证书请求文件，还有就是生成自签名证书。关于秘钥的相关问题有机会希望能单独开一篇文章进行学习和记录。</p>
+<ul>
+<li>-new    :说明生成证书请求文件</li>
+<li>-x509   :说明生成自签名证书</li>
+<li>-key    :指定已有的秘钥文件生成秘钥请求，只与生成证书请求选项-new配合。</li>
+<li>-newkey :-newkey是与-key互斥的，-newkey是指在生成证书请求或者自签名证书的时候自动生成密钥，然后生成的密钥名称由-keyout参数指定。当指定newkey选项时，后面指定rsa:bits说明产生rsa密钥，位数由bits指定。 如果没有指定选项-key和-newkey，默认自动生成秘钥。</li>
+<li>-out:指定生成的证书请求或者自签名证书名称<br>-nodes:如果指定-newkey自动生成秘钥，那么-nodes选项说明生成的秘钥不需要加密，即不需要输入passphase.   </li>
+</ul>
+<hr>
+<h4 id="2-有域名的情况"><a href="#2-有域名的情况" class="headerlink" title="(2)有域名的情况"></a>(2)有域名的情况</h4><p>更进一步，如果我们是在服务器上进行jupyter的配置，那么我们完全可以利用云服务商提供的免费域名ssl证书，实现jupyter应用的加密访问。</p>
+<p>接下来以阿里云为例，进行服务器端的jupyter应用域名绑定。</p>
+<p>1.首先购买免费的ssl证书</p>
+<p><img src="media/15528212653377/15530882010340.jpg" alt="-w1068"></p>
+<p>2.根据网页提示部署到云产品，也即为域名DNS添加一个.TXT的记录</p>
+<p>3.下载秘钥对<br><img src="media/15528212653377/15530882958194.jpg" alt="-w237"></p>
+<p>4.采用第<code>1.3.2</code>节的方法，把下载到的秘钥对拷贝到<code>.jupyter</code>文件夹下，并修改jupyter conifg的相关路径。</p>
+<p>5.在网页的DNS记录中添加一个指向服务器IP的A记录，注意这里可以是主域名也可以二级域名。</p>
+<p>至此，服务器上的ssl加密设置就已经完成了。我们不但可以使用公网的IP（服务器IP）进行访问，还可以使用域名进行加密访问。（传说中的小绿锁）</p>
+<h3 id="1-4-公网访问jupyter应用"><a href="#1-4-公网访问jupyter应用" class="headerlink" title="1.4 公网访问jupyter应用"></a>1.4 公网访问jupyter应用</h3><p>其实能够在内网中访问jupyter，已经足够我们日常生活和工作的需要了。因为一般来说对于校园网或者企业局域网都会有专门的VPN服务，当我们身处非校园网环境给的时候，我们可以比较便捷的通过VPN登录进校园网环境，然后通过内网IP访问jupyter服务。</p>
+<p>但本着能折腾一下是一下和能偷懒就偷懒的精神，我们可能还是希望能够在公网下直接通过域名访问内网的应用。这其实就涉及到了内网穿透的相关问题。</p>
+<p>也就是接下来我们要介绍的应可以实现内网穿透的frp工具。</p>
+<h2 id="二、关于frp"><a href="#二、关于frp" class="headerlink" title="二、关于frp"></a>二、关于frp</h2><p>对于没有公网 IP 的内网用户来说，远程管理或在外网访问内网机器上的服务是一个问题。</p>
+<p>FRP 全名：Fast Reverse Proxy。FRP 是一个使用 Go 语言开发的高性能的反向代理应用，可以帮助您轻松地进行内网穿透，对外网提供服务。FRP 支持 TCP、UDP、HTTP、HTTPS等协议类型，并且支持 Web 服务根据域名进行路由转发。</p>
+<p>其主要作用如下：</p>
+<ul>
+<li>利用处于内网或防火墙后的机器，对外网环境提供 http 或 https 服务。</li>
+<li>对于 http, https 服务支持基于域名的虚拟主机，支持自定义域名绑定，使多个域名可以共用一个80端口。</li>
+<li>利用处于内网或防火墙后的机器，对外网环境提供 tcp 和 udp 服务，例如在家里通过 ssh 访问处于公司内网环境内的主机。</li>
+</ul>
+<p>参考文章：</p>
+<p><a href="https://blog.csdn.net/u013144287/article/details/78589643/" target="_blank" rel="noopener">十分钟教你配置frp实现内网穿透</a></p>
+<p><a href="https://www.jianshu.com/p/00c79df1aaf0" target="_blank" rel="noopener">一款很好用的内网穿透工具—FRP</a></p>
+<h2 id="三、使用frp实现jupyter公网访问"><a href="#三、使用frp实现jupyter公网访问" class="headerlink" title="三、使用frp实现jupyter公网访问"></a>三、使用frp实现jupyter公网访问</h2><p>如果想要实现内网穿透，那我们需要做的准备有：</p>
+<ul>
+<li>公网服务器1台（具有公网IP地址）</li>
+<li>内网主机1台（服务器或台式机均可）</li>
+<li>公网域名1个（非必须，但如果实现ssl加密访问则最好有域名）</li>
+</ul>
+<h3 id="3-1-安装frp"><a href="#3-1-安装frp" class="headerlink" title="3.1 安装frp"></a>3.1 安装frp</h3><p><a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">frp-Github主页</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/fatedier/frp/releases/download/v0.25.1/frp_0.25.1_linux_amd64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>注意:</p>
+<ul>
+<li>linux选amd64;</li>
+<li>mac选freevbsd</li>
+<li>win选windos_amd64</li>
+</ul>
+<p>注意因为frp涉及到内网主机和公网主机，所以我们必须要在两台主机上同时下载并分别进行配置。</p>
+<p>解压缩后我们会发现一系列文件。我们主要使用的就是 <code>frpc.ini</code> 和<code>frps.ini</code>这两个文件；</p>
+<ul>
+<li><p><code>frpc.ini</code> ：客户端，即内网主机配置</p>
+</li>
+<li><p><code>frps.ini</code>：服务器端，即公网服务器配置</p>
+</li>
+</ul>
+<h3 id="3-2-配置公网服务器frps"><a href="#3-2-配置公网服务器frps" class="headerlink" title="3.2 配置公网服务器frps"></a>3.2 配置公网服务器frps</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ vim frps.ini</span><br><span class="line"></span><br><span class="line">[common]</span><br><span class="line">bind_port = 7000 </span><br><span class="line"><span class="comment">#默认配置中监听的是 7000 端口，可根据自己实际情况修改。</span></span><br><span class="line">vhost_http_port = 8000</span><br><span class="line"><span class="comment">#设置内网转发而来的http应用的访问端口是 8000</span></span><br><span class="line">vhost_https_port = 8001</span><br><span class="line"><span class="comment">#设置内网转发而来的https服务的端口是 8001</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动 FRP 服务端</span></span><br><span class="line">$ ./frps -c ./frps.ini</span><br></pre></td></tr></table></figure>
+<p>这样我们就在公网建立了一个能够接受内网转发的服务，并且为内网转发而来的支持不同协议的不同应用分别设置的相关的端口。</p>
+<p><strong>务必牢记去服务器安全组中放行这几个端口</strong></p>
+<h3 id="3-3-配置内网主机frpc"><a href="#3-3-配置内网主机frpc" class="headerlink" title="3.3 配置内网主机frpc"></a>3.3 配置内网主机frpc</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ vim frpc.ini</span><br><span class="line"></span><br><span class="line">[common]</span><br><span class="line"><span class="comment"># server_addr 为 FRP 服务端的公网 IP</span></span><br><span class="line">server_addr = 4.3.2.1</span><br><span class="line"><span class="comment"># server_port 为 FRP 服务端监听的端口</span></span><br><span class="line">server_port = 7000</span><br><span class="line"></span><br><span class="line"><span class="comment">#申请一个远程的 ssh 访问服务</span></span><br><span class="line">[ssh]</span><br><span class="line"><span class="comment">#协议类型tcp</span></span><br><span class="line"><span class="built_in">type</span> = tcp</span><br><span class="line"><span class="comment">#本地ip</span></span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line"><span class="comment">#本地服务所在端口（ssh shenjie@10.143.216.126默认端口）</span></span><br><span class="line">local_port = 22</span><br><span class="line"><span class="comment">#在服务端上注册一个6000端口用于和本地22端口通信</span></span><br><span class="line">remote_port = 6000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[jupyter]</span><br><span class="line"><span class="comment">#协议类型http</span></span><br><span class="line"><span class="built_in">type</span> = https</span><br><span class="line"><span class="comment">#本地服务所占用端口（对应你的jupyter端口）</span></span><br><span class="line">local_port = 28888</span><br><span class="line"><span class="comment">#解析到公网服务器IP的域名（绑定好.TXT记录）</span></span><br><span class="line">custom_domains = **.***.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动 FRP 客户端</span></span><br><span class="line">$ ./frpc -c ./frpc.ini</span><br></pre></td></tr></table></figure>
+<p>我们可以通过访问：<code>https://\*.\*.com:8001</code>来访问我们在内网主机上位于28888端口上的jupyter服务。</p>
+<p>我们可以通过命令：<code>ssh -p 6000 your_name@4.3.2.1</code>通过ssh在任意公网登录内网主机。</p>
+<p>至此我们就完成了在公网服务器上和内网主机上的frp内网穿透工作。</p>
+<h2 id="四、使用过程中遇到的问题"><a href="#四、使用过程中遇到的问题" class="headerlink" title="四、使用过程中遇到的问题"></a>四、使用过程中遇到的问题</h2><p>使用Firefox浏览器，使用域名+端口号形式访问jupyter lab，能够正常连接，但是无法运行命令，页面提示连接不到Kernel。log文件具体报错信息如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[I 18:52:24.668 LabApp] Adapting to protocol v5.1 <span class="keyword">for</span> kernel c95d254f-7469-4b10-856a-2c41a930856f</span><br><span class="line">[W 18:52:24.669 LabApp] 400 GET /api/kernels/c95d254f-7469-4b10-856a-2c41a930856f/channels?session_id=d3b0a731-5c34-46a9-8c56-f03b59d120a4 (127.0.0.1) 4.06ms referer=None</span><br></pre></td></tr></table></figure>
+<p>使用safari浏览器，可以正常运行。</p>
+<p>解决方案：tornado降级至4.5.3，原始版本5.1.1<br>pip：<br><code>pip install tornado==4.5.3</code><br>conda:<br><code>conda install tornado==4.5.3</code></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Jupyter/" rel="tag"># Jupyter</a>
+          
+            <a href="/tags/网络/" rel="tag"># 网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/03/vsap-scf-ediff/" rel="next" title="关于scf中的EDIFF和EDIFFG">
+                <i class="fa fa-chevron-left"></i> 关于scf中的EDIFF和EDIFFG
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Mancn">
+            
+              <p class="site-author-name" itemprop="name">Mancn</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Mancn-Xu" title="GitHub &rarr; https://github.com/Mancn-Xu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:myron_cang@icloud.com" title="E-Mail &rarr; mailto:myron_cang@icloud.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、关于jupyter"><span class="nav-text">一、关于jupyter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-简介"><span class="nav-text">1.1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-本地运行"><span class="nav-text">1.2 本地运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-内网运行jupyter"><span class="nav-text">1.3 内网运行jupyter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-公网访问jupyter应用"><span class="nav-text">1.4 公网访问jupyter应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、关于frp"><span class="nav-text">二、关于frp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、使用frp实现jupyter公网访问"><span class="nav-text">三、使用frp实现jupyter公网访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-安装frp"><span class="nav-text">3.1 安装frp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-配置公网服务器frps"><span class="nav-text">3.2 配置公网服务器frps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-配置内网主机frpc"><span class="nav-text">3.3 配置内网主机frpc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、使用过程中遇到的问题"><span class="nav-text">四、使用过程中遇到的问题</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mancn</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
