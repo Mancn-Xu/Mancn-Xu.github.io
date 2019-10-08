@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文主要介绍如何在macOS系统上安装免费版的qtiplot">
+<meta name="keywords" content="macOS,软件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在macOS上安装 qtiplot 免费版">
+<meta property="og:url" content="https://myvivi.life/2019/10/04/macOS_install_qtiplot/index.html">
+<meta property="og:site_name" content="MYVIVIDLIFE">
+<meta property="og:description" content="本文主要介绍如何在macOS系统上安装免费版的qtiplot">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.myvividlife.cn/15701980935055.jpg">
+<meta property="og:image" content="http://img.myvividlife.cn/15701962584679.jpg">
+<meta property="og:image" content="http://img.myvividlife.cn/15701963904679.jpg">
+<meta property="og:image" content="http://img.myvividlife.cn/15701965188116.jpg">
+<meta property="og:image" content="http://img.myvividlife.cn/15701965871971.jpg">
+<meta property="og:image" content="http://img.myvividlife.cn/15701967107975.jpg">
+<meta property="og:image" content="http://img.myvividlife.cn/15701969103945.jpg">
+<meta property="og:image" content="http://img.myvividlife.cn/15701971608552.jpg">
+<meta property="og:image" content="http://img.myvividlife.cn/15701972234935.jpg">
+<meta property="og:image" content="http://img.myvividlife.cn/15701973134438.jpg">
+<meta property="og:image" content="http://img.myvividlife.cn/15701975570606.jpg">
+<meta property="og:updated_time" content="2019-10-04T14:24:41.041Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在macOS上安装 qtiplot 免费版">
+<meta name="twitter:description" content="本文主要介绍如何在macOS系统上安装免费版的qtiplot">
+<meta name="twitter:image" content="http://img.myvividlife.cn/15701980935055.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://myvivi.life/2019/10/04/macOS_install_qtiplot/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>在macOS上安装 qtiplot 免费版 | MYVIVIDLIFE</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MYVIVIDLIFE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Mancn & Vivian</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-series">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/seris/" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>系列</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-notes">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/notes/" rel="section"><i class="menu-item-icon fa fa-fw fa-sticky-note"></i> <br>札记</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-resources">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/resources" rel="section"><i class="menu-item-icon fa fa-fw fa-download"></i> <br>资源</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://myvivi.life/2019/10/04/macOS_install_qtiplot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mancn">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MYVIVIDLIFE">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在macOS上安装 qtiplot 免费版
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-04 10:21:09 / 修改时间：22:24:41" itemprop="dateCreated datePublished" datetime="2019-10-04T10:21:09+08:00">2019-10-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/macOS使用指南/" itemprop="url" rel="index"><span itemprop="name">macOS使用指南</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">本文主要介绍如何在macOS系统上安装免费版的qtiplot</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>最近更新时间：2019-10-04</p>
+<hr>
+<h1 id="【20191004】在macOS上安装-qtiplot-免费版"><a href="#【20191004】在macOS上安装-qtiplot-免费版" class="headerlink" title="【20191004】在macOS上安装 qtiplot 免费版"></a>【20191004】在macOS上安装 qtiplot 免费版</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>众所周知，对于广大科研狗来说，origin是一款不可多得的使用软件，但origin一直仅提供windows版本，对于使用Mac和Linux的同学们来说是一个非常不好的消息。</p>
+<p>经过笔者的调查了解，市面上和origin功能类似，能够在Mac和Linux平台使用的科研绘图软件不多，这里推荐使用qtiplot和SciDAVis。</p>
+<p>对于这两个软件，笔者都有简单地试用。简而言之前者的功能更为强大，功能也和origin类似，后者相对来说功能简陋，在试用过程中也出现了一些各种各样的bug，这里还是比较推荐使用qtiplot。</p>
+<p>不过qtiplot有一个缺点在于这个软件是“半开源”的。什么叫做“半开源”呢，就是软件的正式版（版本号1.0以上）是需要付费的（大概一年200RMB，官网试用Paypal付款）如果不付费则只能免费使用20分钟并且没有存储项目和导出图像的功能；与此同时，官方免费提供未经过编译的源代码（版本号0.99），可以供使用者自行编译，编译好的版本可以免费使用。经过试用，0.99和1.0版本最主要的区别在于，<strong>官方付费的正式版本是可以直接打开origin源文件的</strong>，但是自行编译的0.99版不可。除此之外两个版本的差异比较细微，使用起来区别不大。</p>
+<p>经过一段时间的检索，发现网络少有关于MacOS编译qtiplot免费版的教程非常稀少，本人是根据知乎@昭华 同学的简短指南，再加上自己的摸索完成安装的，感觉其中还是有不少小坑，对于没接触过MacOS命令行的同学来说还是有一定的门槛，故打算写作这个详细的在MacOS上安装qtiplot的教程。</p>
+<p><img src="http://img.myvividlife.cn/15701980935055.jpg" alt="-w691"></p>
+<h2 id="二、安装流程"><a href="#二、安装流程" class="headerlink" title="二、安装流程"></a>二、安装流程</h2><h3 id="2-1-下载Xcode"><a href="#2-1-下载Xcode" class="headerlink" title="2.1 下载Xcode"></a>2.1 下载Xcode</h3><p>苹果APP Store 搜索并下载 Xcode</p>
+<p><img src="http://img.myvividlife.cn/15701962584679.jpg" alt="-w1313"></p>
+<h3 id="2-2-下载MacPorts"><a href="#2-2-下载MacPorts" class="headerlink" title="2.2 下载MacPorts"></a>2.2 下载MacPorts</h3><p>根据官网下载页面，选择与你电脑版本相关的MacPorts安装包</p>
+<p><a href="https://www.macports.org/install.php" target="_blank" rel="noopener">MacPorts 官方下载页面</a></p>
+<p><img src="http://img.myvividlife.cn/15701963904679.jpg" alt="-w925"></p>
+<p><strong>注意：如果在安装过程中出现长时间等待，请尝试断网安装。</strong></p>
+<h3 id="2-3-安装CommandLine-Tools"><a href="#2-3-安装CommandLine-Tools" class="headerlink" title="2.3 安装CommandLine Tools"></a>2.3 安装CommandLine Tools</h3><p>打开<code>终端</code> （又称<code>Terminal</code>）<br><img src="http://img.myvividlife.cn/15701965188116.jpg" alt="-w363"></p>
+<p>在终端内输入：<br><code>xcode-select --install</code><br><strong>此处注意，<code>xcode-select</code> 和 <code>--install</code>之间有空格</strong></p>
+<p>如下图所示：<br><img src="http://img.myvividlife.cn/15701965871971.jpg" alt="-w573"></p>
+<p>根据弹出的要求进行安装</p>
+<p><strong>详见：<a href="]https://jingyan.baidu.com/article/fec4bce2904b3ef2618d8bcc.html">百度经验：如何安装CommandLine Tools</a></strong></p>
+<h3 id="2-4-通过Ports编译并安装qtiplot"><a href="#2-4-通过Ports编译并安装qtiplot" class="headerlink" title="2.4 通过Ports编译并安装qtiplot"></a>2.4 通过Ports编译并安装qtiplot</h3><p>继续在终端中输入：<br><code>sudo port install qtiplot</code></p>
+<p><img src="http://img.myvividlife.cn/15701967107975.jpg" alt="-w379"></p>
+<p>在弹出的密码输入界面，盲打你的Mac密码。注意此处键入的字符并不会显示出来，输入完密码后直接按回车即可。</p>
+<p>根据命令行中的提示，等待安装完成即可。</p>
+<h2 id="三、疑难解决"><a href="#三、疑难解决" class="headerlink" title="三、疑难解决"></a>三、疑难解决</h2><p>在日常的安装中，由于默认的Ports源在海外，所以安装过程中很可能会出现各种错误提示，所以这是我们需要先把Ports默认的源换成中国境内的源。</p>
+<p>根据MacPorts官网的提示，可以在如下地址找到所有的ports源地址：</p>
+<p><a href="https://trac.macports.org/wiki/Mirrors" target="_blank" rel="noopener">MacPorts官方源汇总</a></p>
+<p><img src="http://img.myvividlife.cn/15701969103945.jpg" alt="-w1183"></p>
+<p>这里我们选用China的源<br><code>rsync://pek.cn.rsync.macports.org/macports/release/tarballs/ports.tar</code></p>
+<h3 id="3-1-port-源更新"><a href="#3-1-port-源更新" class="headerlink" title="3.1 port 源更新"></a>3.1 port 源更新</h3><hr>
+<p><strong>懂得vim操作的同学</strong></p>
+<p>1.继续打开terminal，输入：<br><code>cd /opt/local/etc/macports/</code></p>
+<p>2.输入：<br><code>sudo vi sources.conf</code><br>如果需要输入密码，继续键入密码后按回车</p>
+<p>3.滑动滚轮至文档末尾，如果懂vim操作的同学可以直接将最后一行的内容注释掉，并加入新的China源的地址，退出保存即可<br><img src="http://img.myvividlife.cn/15701971608552.jpg" alt="-w540"></p>
+<p>4.回到<code>Terminal</code>界面，输入<br><code>sudo port -v selfupdate</code> 等待完成更新即可</p>
+<hr>
+<p><strong>不懂vim操作的同学</strong></p>
+<p>1.在finder菜单中找到前往文件夹，或者直接使用快捷键<code>Shift + Command + G</code></p>
+<p><img src="http://img.myvividlife.cn/15701972234935.jpg" alt="-w236"></p>
+<p>2.在弹出的搜索框输入：</p>
+<p><code>/opt/local/etc/macports</code></p>
+<p><img src="http://img.myvividlife.cn/15701973134438.jpg" alt="-w770"></p>
+<p>3.将<code>source.conf</code>首先复制到桌面，然后右键<code>source.conf</code>，使用文本编辑打开</p>
+<p>4.将文档末尾改为如下内容，然后保存关闭，再讲桌面上的文件移动到原始文件夹<br><code>#rsync://rsync.macports.org/macports/release/tarballs/ports.tar [default]
+rsync://pek.cn.rsync.macports.org/macports/release/tarballs/ports.tar</code><br><img src="http://img.myvividlife.cn/15701975570606.jpg" alt="-w571"></p>
+<p>5.回到<code>Terminal</code>界面，输入<br><code>sudo port -v selfupdate</code> 等待完成更新即可</p>
+<hr>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/macOS/" rel="tag"># macOS</a>
+          
+            <a href="/tags/软件/" rel="tag"># 软件</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/20/jupyter_frp/" rel="next" title="jupyter lab——可视化与便捷性的完美结合">
+                <i class="fa fa-chevron-left"></i> jupyter lab——可视化与便捷性的完美结合
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Mancn">
+            
+              <p class="site-author-name" itemprop="name">Mancn</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Mancn-Xu" title="GitHub &rarr; https://github.com/Mancn-Xu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:myron_cang@icloud.com" title="E-Mail &rarr; mailto:myron_cang@icloud.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【20191004】在macOS上安装-qtiplot-免费版"><span class="nav-text">【20191004】在macOS上安装 qtiplot 免费版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、简介"><span class="nav-text">一、简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装流程"><span class="nav-text">二、安装流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-下载Xcode"><span class="nav-text">2.1 下载Xcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-下载MacPorts"><span class="nav-text">2.2 下载MacPorts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-安装CommandLine-Tools"><span class="nav-text">2.3 安装CommandLine Tools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-通过Ports编译并安装qtiplot"><span class="nav-text">2.4 通过Ports编译并安装qtiplot</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、疑难解决"><span class="nav-text">三、疑难解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-port-源更新"><span class="nav-text">3.1 port 源更新</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mancn</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
